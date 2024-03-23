@@ -1,66 +1,79 @@
 <?php
+
+// Obtener el ID del genero
 $generoID = "";
 if (isset($_GET["generoID"])) {
     $generoID = $_GET["generoID"];
 }
 ?>
 
-
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <div>
-            <div>
-                <?php
-                require 'menu.php';
-                require 'bd.php';
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <?php require 'menu.php'; ?>
+    <?php require 'bd.php'; ?>
 
-                $sel = "SELECT
-        juegos.juegoID,
-        juegos.nombre,
-        juegos.imagen,
-        juegos.descripcion,
-        juegos.fecha_salida,
-        juegos.precio,
-        GROUP_CONCAT(generos.nombre) AS generos
-    FROM juegos
-    INNER JOIN juegos_generos ON juegos_generos.juegoID = juegos.juegoID
-    INNER JOIN generos ON generos.generoID = juegos_generos.generoID
-    WHERE juegos_generos.generoID = '$generoID'
-    GROUP BY juegos.juegoID";
+    <div class="contenedor-titulo">
+        <?php
+        // Consulta para obtener el nombre del genero
 
-                $juegos = $bd->query($sel);
+        $sel = "SELECT nombre FROM generos WHERE generoID = ?";
+        $statementGenero = $bd->prepare($sel);
+        $statementGenero->execute([$generoID]);
+        $genero = $statementGenero->fetch();
+        $nombreDelGenero = isset($genero['nombre']) ? $genero['nombre'] : 'Desconocido';
+        
+        // Nombre del genero
+        echo "<div class='genero-titulo'>Género: $nombreDelGenero</div>";
+        ?>
+    </div>
 
-                $queryGenero = "SELECT nombre FROM generos WHERE generoID = ?";
-                $statementGenero = $bd->prepare($queryGenero);
-                $statementGenero->execute([$generoID]);
-                $genero = $statementGenero->fetch();
-                $nombreDelGenero = isset($genero['nombre']) ? $genero['nombre'] : 'Desconocido';
+    <div class="contenedor-juegos">
+        <?php
+        
+        // Consulta SQL
+        $sel = "SELECT
+            juegos.juegoID,
+            juegos.nombre,
+            juegos.imagen,
+            juegos.descripcion,
+            juegos.fecha_salida,
+            juegos.precio,
+            GROUP_CONCAT(generos.nombre) AS generos
+        FROM juegos
+        INNER JOIN juegos_generos ON juegos_generos.juegoID = juegos.juegoID
+        INNER JOIN generos ON generos.generoID = juegos_generos.generoID
+        WHERE juegos_generos.generoID = '$generoID'
+        GROUP BY juegos.juegoID";
 
-                $html = "";
+        $juegos = $bd->query($sel);
+        
+        // Inicio lista de juegos de genero X
+        foreach ($juegos as $juego) {
+            ?>
+            <a href='PagJuego.php?juegoID=<?= $juego['juegoID'] ?>' class='enlace-juego'>
+                <div class='juego'>
+                    <div class='contenido'>
+                        
+                        <!-- Nombre -->
+                        <h2><?= $juego['nombre'] ?></h2>
+                        
+                        <!-- Imagen -->
+                        <img src='<?= $juego['imagen'] ?>' alt='<?= $juego['nombre'] ?>'>
+                        
+                        <!-- Precio -->
+                        <p>Precio: <?= $juego['precio'] ?></p>
+                    </div>
+                </div>
+            </a>
+            <?php
+        }
+        ?>
+    </div>
 
-                $html .= "Genero: " . $nombreDelGenero . "";
-
-                foreach ($juegos as $juego) {
-
-                    $html .= "<a  href='PagJuego.php?juegoID=$juego[juegoID]'>";
-                    $html .= "<div class='juego'style='background-color: black; color: white;' >";
-                    $html .= "<div class='contenido' >";
-                    $html .= "<h2>$juego[nombre]</h2>";
-                    $html .= "<img src='$juego[imagen]' alt='$juego[nombre]'>";
-                    $html .= "<p>Precio: $juego[precio]</p>";
-                    $html .= "</p>";
-                    $html .= "</div>";
-                    $html .= "</div>";
-                    $html .= "</a>";
-                }
-
-                echo $html;
-                ?>
-            </div>
-        </div>
-    </body>
+</body>
 </html>

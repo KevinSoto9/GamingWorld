@@ -1,9 +1,129 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : Mar 15, 2024, 9:09:42 PM
-    Author     : Administrator
-*/
+.contenedor-juegos {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 50px;
+    background-color: #222;
+    color: white; 
+}
 
+.juego {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.enlace-juego {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.juego:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.juego img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.contenido {
+    padding: 10px;
+}
+
+.contenido h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: white; 
+}
+
+.contenido p {
+    margin: 5px 0;
+}
+
+.genero-titulo {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 9em;
+}
+
+.generos{
+    text-decoration: none;
+    color: white;
+}
+
+.paginacion {
+    margin-top: 20px;
+}
+
+.paginacion button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.paginacion button:hover {
+    background-color: #0056b3;
+}
+
+.enlace-genero {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    font-size: 9em;
+}
+
+.menu-izquierdo {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-izquierdo li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.menu-derecho {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-derecho li {
+    display: inline;
+    margin-left: 10px;
+}
+
+.navbar button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+.navbar button:hover {
+    text-decoration: underline;
+}

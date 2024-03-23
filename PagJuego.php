@@ -1,4 +1,6 @@
 <?php
+
+// Conseguir el ID del Juego
 $juegoID = "";
 if (isset($_GET["juegoID"])) {
     $juegoID = $_GET["juegoID"];
@@ -9,15 +11,18 @@ if (isset($_GET["juegoID"])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Gaming World</title>
     </head>
     <body>
         <div>
             <div>
                 <?php
+                
+                // Requires
                 require 'menu.php';
                 require 'bd.php';
-
+                
+                // Consulta SQL
                 $sel = "SELECT
             juegos.juegoID,
             juegos.nombre,
@@ -39,19 +44,33 @@ if (isset($_GET["juegoID"])) {
         GROUP BY juegos.juegoID";
 
                 $juegos = $bd->query($sel);
-
+                
+                // Inicio lista de juegos
                 $html = "";
 
                 foreach ($juegos as $juego) {
 
                     $html .= "<div class='juego' style='background-color: black; color: white;'>";
                     $html .= "<div class='contenido'>";
+                    
+                    // Nombre
                     $html .= "<h2>$juego[nombre]</h2>";
+                    
+                    // Imagen
                     $html .= "<img src='$juego[imagen]' alt='$juego[nombre]'>";
+                    
+                    // Descripcion
                     $html .= "<p>$juego[descripcion]</p>";
+                    
+                    // Precio
                     $html .= "<p>Precio: $juego[precio]</p>";
-
-                    // Géneros
+                    
+                    // Fecha de salida
+                    $fecha_salida = $juego['fecha_salida'];
+                    $fecha_formateada = date("d \\ F \\ Y", strtotime($fecha_salida));
+                    $html .= "<p>Fecha de salida: $fecha_formateada</p>";
+                    
+                    //  Generos
                     $generos = explode(",", $juego["generos"]);
                     $html .= "<p>Géneros: ";
                     foreach ($generos as $genero) {
