@@ -7,6 +7,16 @@ if(isset($_POST['generos'])) {
 } else {
     $generosSeleccionados = array(); // Caso vacio
 }
+if(isset($_POST["precio"])){
+    $precioSeleccionado = $_POST["precio"];
+} else {
+    // Si no se especifica un precio, obtener el precio máximo de los juegos
+    $maxPrecioQuery = "SELECT MAX(precio) AS max_precio FROM juegos";
+    $maxPrecioStatement = $bd->query($maxPrecioQuery);
+    $maxPrecioRow = $maxPrecioStatement->fetch();
+    $precioSeleccionado = $maxPrecioRow['max_precio'];
+}
+
 
 // Consulta SQL
 $sel = "SELECT
@@ -27,6 +37,8 @@ if (!empty($generosSeleccionados)) {
     $generosFiltro = implode(",", $generosSeleccionados);
     $sel .= " AND juegos_generos.generoID IN ($generosFiltro)";
 }
+
+$sel .= " AND juegos.precio <= ".$precioSeleccionado;
 
 $sel .= " GROUP BY juegos.juegoID
         ORDER BY juegos.nombre ASC";

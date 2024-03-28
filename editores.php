@@ -9,27 +9,27 @@
     <?php require 'bd.php'; ?>
 
     <div class="contenedor-titulo">
-        <h1>Lista de Géneros</h1>
+        <h1>Lista de Editores</h1>
     </div>
 
     <div class="contenedor-listados">
         <?php
-        // Consulta SQL para obtener todos los géneros
-        $generos_query = "SELECT generoID, nombre FROM generos ORDER BY nombre ASC";
-        $statementGeneros = $bd->prepare($generos_query);
-        $statementGeneros->execute();
+        // Consulta SQL para obtener todos los editores
+        $editores_query = "SELECT editorID, nombre FROM editores ORDER BY nombre ASC";
+        $statementEditores = $bd->prepare($editores_query);
+        $statementEditores->execute();
 
-        // Mostrar los géneros
+        // Mostrar los editores
         $contador = 0;
         echo "<div class='fila'>";
-        foreach ($statementGeneros as $genero) {
-            $generoID = $genero['generoID'];
-            $nombreGenero = $genero['nombre'];
+        foreach ($statementEditores as $editor) {
+            $editorID = $editor['editorID'];
+            $nombreEditor = $editor['nombre'];
             echo "<div class='listado'>";
-            echo "<a class='enlace-listado' href='PagGenero.php?generoID=$generoID'>$nombreGenero</a>";
+            echo "<a class='enlace-listado' href='PagEditor.php?editorID=$editorID'>$nombreEditor</a>";
             echo "</div>";
             $contador++;
-            // Cerrar la fila después de mostrar 4 géneros
+            // Cerrar la fila después de mostrar 4 editores
             if ($contador % 4 == 0) {
                 echo "</div><div class='fila'>";
             }

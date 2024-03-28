@@ -5,6 +5,7 @@
     grid-gap: 50px;
     background-color: #222;
     color: white; 
+    margin-top: 2%;
 }
 
 .juego {
@@ -45,7 +46,7 @@
     margin: 5px 0;
 }
 
-.genero-titulo {
+.listado-titulo {
     background-color: #333;
     color: #fff;
     padding: 10px;
@@ -76,7 +77,7 @@
     background-color: #0056b3;
 }
 
-.enlace-genero {
+.enlace-listado {
     text-decoration: none;
     color: white;
 }
@@ -128,14 +129,14 @@
     text-decoration: underline;
 }
 
-/* Estilos para la lista de géneros */
+/* Estilos para la listados */
 .contenedor-titulo {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.contenedor-generos {
-    max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+.contenedor-listados {
+    max-width: 70%; 
     margin: 0 auto;
     background-color: white;
 }
@@ -147,8 +148,8 @@
     margin-bottom: 20px;
 }
 
-.genero {
-    width: calc(25% - 20px); /* Ajusta el ancho según tus necesidades */
+.listado {
+    width: calc(25% - 50px); 
     background-color: #f2f2f2;
     border: 1px solid #ddd;
     padding: 20px;
@@ -157,14 +158,14 @@
     text-align: center;
 }
 
-.genero a {
+.listado a {
     color: #333;
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.genero:hover {
+.listado:hover {
     background-color: #ccc;
 }
 .container {
@@ -174,7 +175,7 @@
 }
 
 .buscador {
-    margin-bottom: 20px;
+    margin-bottom: 5%;
 }
 
 #buscar-juego {
@@ -197,6 +198,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .filtros label {
@@ -205,3 +207,34 @@
     margin-bottom: 10px;
 }
 
+.filtros {
+    margin-bottom: 20px;
+}
+.generos-container {
+    display: flex;
+    align-items: center;
+}
+.generos-container span {
+    flex: 1;
+}
+
+.filtros-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap : 5%;
+}
+.filtros-container span {
+    flex: 1;
+}
+input[type="range"] {
+    width: 100%;
+}
+p {
+    margin-top: 10px;
+}
+
+#filtroGenero, #filtroPrecio {
+    display: none;
+    margin-bottom: 5%;
+}

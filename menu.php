@@ -8,6 +8,8 @@
             <li><button onclick="location.href = 'PagPrincipal.php'">Inicio</button></li>
             <li><button onclick="location.href = 'juegos.php'">Juegos</button></li>
             <li><button onclick="location.href = 'categorias.php'">Categorías</button></li>
+            <li><button onclick="location.href = 'desarrolladores.php'">Desarrolladores</button></li>
+            <li><button onclick="location.href = 'editores.php'">Editores</button></li>
             <li><button onclick="location.href = 'novedades.php'">Novedades</button></li>
             <li><button onclick="location.href = 'noticias.php'">Noticias</button></li>
             <li><button onclick="location.href = 'carrito.php'">Carrito</button></li>
