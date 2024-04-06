@@ -12,6 +12,7 @@ if (isset($_GET["juegoID"])) {
     <head>
         <meta charset="UTF-8">
         <title>Gaming World</title>
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <div>
@@ -50,18 +51,28 @@ if (isset($_GET["juegoID"])) {
 
                 foreach ($juegos as $juego) {
 
-                    $html .= "<div class='juego' style='background-color: black; color: white;'>";
-                    $html .= "<div class='contenido'>";
+                    $html .= "<div class='juegoSolo' style='background-color: black; color: white;'>";
+                    $html .= "<div class='contenidoSolo'>";
+                    
+                    //Contenedor Principal
+                    $html .= "<div class='infoPrincipal'>";
                     
                     // Nombre
                     $html .= "<h2>$juego[nombre]</h2>";
                     
                     // Imagen
                     $html .= "<img src='$juego[imagen]' alt='$juego[nombre]'>";
+                    $html .= "</div>";
+                    
+                    //Contenedor Secundario
+                    $html .= "<div class='infoSecundaria'>";
                     
                     // Descripcion
                     $html .= "<p>$juego[descripcion]</p>";
+                    $html .= "</div>";
                     
+                    //Contenedor Final
+                    $html .= "<div class='infoFinal'>";
                     // Precio
                     $html .= "<p>Precio: $juego[precio]</p>";
                     
@@ -88,6 +99,7 @@ if (isset($_GET["juegoID"])) {
 
                     // Editor
                     $html .= "<p>Editor: $juego[editor]</p>";
+                    $html .= "</div>";
 
                     $html .= "</div>";
                     $html .= "</div>";

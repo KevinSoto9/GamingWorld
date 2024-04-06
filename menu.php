@@ -13,6 +13,7 @@
             <li><button onclick="location.href = 'novedades.php'">Novedades</button></li>
             <li><button onclick="location.href = 'noticias.php'">Noticias</button></li>
             <li><button onclick="location.href = 'carrito.php'">Carrito</button></li>
+            <li><button onclick="location.href = 'Admin.php'">Admin</button></li>
         </ul>
         
         <!-- Log Out -->
