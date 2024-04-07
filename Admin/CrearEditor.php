@@ -1,7 +1,50 @@
 <?php
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $nombre = $_POST["nombre"];
+    
+    try {
+        require '../bd.php';
+        $ins = "INSERT INTO `editores` (`editorID`, `nombre`) VALUES (NULL, '$nombre')";
+        $resul = $bd->query($ins);
+        if ($resul) {
+            header("Location:../Admin.php");
+        }
+    } catch (PDOException $e) {
+        echo "Error: Comprueba que los datos introducidos no estan ya en la base de datos";
+    }
+}
 
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gaming World</title>
+        <link rel="stylesheet" href="../css/main.css">
+        
+        <?php require '../menu2.php'; ?>
+        
+    </head>
+    <body>
+        
+        <!-- Formulario de creacion de Editores -->
+        <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            
+            <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos del Editor</h1>
+            
+            <!-- Contenedor de los datos -->
+            <div class="formularioCrear-container">
+                
+                <!-- Nombre -->
+                <div class="formularioCrear-container-datos">
+                    
+                    <p class="formularioCrear-container-datos-nombre">Nombre</p>
+                    <input type="text" name="nombre">
+
+                
+                <input type="submit">
+                
+            </div>
+    </body>
+</html>

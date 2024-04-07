@@ -5,7 +5,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     
     try {
         require '../bd.php';
-        $ins = "INSERT INTO `desarrolladores` (`desarrolladorID`, `nombre`) VALUES (NULL, '$nombre')";
+        $ins = "INSERT INTO `generos` (`generoID`, `nombre`) VALUES (NULL, '$nombre')";
         $resul = $bd->query($ins);
         if ($resul) {
             header("Location:../Admin.php");
@@ -28,10 +28,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     </head>
     <body>
         
-        <!-- Formulario de creacion de Desarrolladores -->
+        <!-- Formulario de creacion de Generos -->
         <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
-            <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos del Desarrollador</h1>
+            <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos del Genero</h1>
             
             <!-- Contenedor de los datos -->
             <div class="formularioCrear-container">

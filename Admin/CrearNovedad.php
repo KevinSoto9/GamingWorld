@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         <!-- Formulario de creacion de Novedades -->
         <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
-            <h1 class="formularioCrear-titulo">Introduzca los datos de la Novedad</h1>
+            <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos de la Novedad</h1>
             
             <!-- Contenedor de los datos -->
             <div class="formularioCrear-container">
@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <!-- Descripcion -->
                 <div class="formularioCrear-container-datos">
                     
-                    <p class="formularioCrear-container-datos-titulo">Drescripcion</p>
+                    <p class="formularioCrear-container-datos-descripcion">Descripcion</p>
                     <input type="textarea" name="descripcion">
                     
                 </div>
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <!-- Fecha -->
                 <div class="formularioCrear-container-datos">
                     
-                    <p class="formularioCrear-container-datos-titulo">Fecha</p>
+                    <p class="formularioCrear-container-datos-fecha">Fecha</p>
                     <input type="date" name="fecha">
                     
                 </div>
@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <!-- Imagen -->
                 <div class="formularioCrear-container-datos">
                     
-                    <p class="formularioCrear-container-datos-titulo">Imagen</p>
+                    <p class="formularioCrear-container-datos-imagen">Imagen</p>
                     <input type="text" name="imagen">
                     
                 </div>
