@@ -169,6 +169,15 @@
     text-align: center;
 }
 
+.container-juegos {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .buscador {
     margin-bottom: 5%;
 
@@ -293,14 +302,7 @@
     margin-bottom: 2%;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;
-}
+
 
 .calendario-titulo {
     margin-bottom: 10px;
