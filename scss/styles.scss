@@ -202,9 +202,14 @@
         justify-content: center;
         flex-wrap: wrap;
         margin-bottom: 20px;
+        
+        
+        label{
+            padding: 5px;
+        }
 
-        span {
-            flex: 1;
+        span { 
+            margin: 0 10px 10px 0; 
         }
     }
 
