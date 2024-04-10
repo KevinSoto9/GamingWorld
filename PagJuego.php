@@ -12,7 +12,7 @@ if (isset($_GET["juegoID"])) {
     <head>
         <meta charset="UTF-8">
         <title>Gaming World</title>
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         <div>

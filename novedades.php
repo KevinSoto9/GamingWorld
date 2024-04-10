@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Gaming World</title>
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         <div>
@@ -12,6 +12,16 @@
                 // Requires
                 require 'menu.php';
                 require 'bd.php';
+                ?>
+                
+                <div class="calendario-link">
+                    
+                    <button onclick="location.href = 'calendario.php'">Ver Calendario</button>
+                  
+                </div>
+                
+                
+                <?php
                 
                 //Fecha actual
                 $fechaActual = date('Y-m-d');
@@ -22,6 +32,7 @@
                 $novedades = $bd->query($sel);
                 
                 // Inicio lista de novedades
+                
                 $html = "";
 
                 foreach ($novedades as $novedad) {

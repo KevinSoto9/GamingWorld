@@ -10,7 +10,7 @@ if (isset($_GET["editorID"])) {
     <head>
         <meta charset="UTF-8">
         <title>Gaming World</title>
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         <?php require 'menu.php'; ?>

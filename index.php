@@ -1,7 +1,9 @@
 <?php
     
+session_start(); 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $Email= $_POST["Email"];
+    $Email = $_POST["Email"];
     $Password = $_POST["Password"];
 
     try{
@@ -15,19 +17,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($Email == $usuario['Email'] && $Password == $usuario['Password']) {
 
                     if ($usuario['Tipo'] == 'Cliente')  {
-                        header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']) . "';");
+                        $_SESSION['tipo_usuario'] = $usuario['Tipo'];
+                        header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     } else {
-                        header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']) . "';");
+                        $_SESSION['tipo_usuario'] = $usuario['Tipo'];
+                        header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     }
                 }
             }
             exit();
         } else {
-        echo "El email o la password están mal";
+            echo "El email o la password están mal";
         }
     } catch (Exception $ex) {
 
-        }
+    }
 }
 ?>
 <!DOCTYPE html>
