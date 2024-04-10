@@ -10,7 +10,7 @@
             require 'menu.php';
             require 'bd.php';
 
-            echo "<link rel='stylesheet' href='css/main.css'>";
+            echo "<link rel='stylesheet' href='css/styles.css'>";
 
             // Num de juegos por pagina
             $registros_por_pagina = 16;
