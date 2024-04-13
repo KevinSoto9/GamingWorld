@@ -7,7 +7,7 @@
         <ul class="menu-izquierdo">
             <li><button onclick="location.href = 'PagPrincipal.php'">Inicio</button></li>
             <li><button onclick="location.href = 'juegos.php'">Juegos</button></li>
-            <li><button onclick="location.href = 'categorias.php'">Generos</button></li>
+            <li><button onclick="location.href = 'categorias.php'">Categorías</button></li>
             <li><button onclick="location.href = 'desarrolladores.php'">Desarrolladores</button></li>
             <li><button onclick="location.href = 'editores.php'">Editores</button></li>
             <li><button onclick="location.href = 'novedades.php'">Novedades</button></li>
@@ -23,6 +23,7 @@
         
         <!-- Log Out -->
         <ul class="menu-derecho">
+            <li><button onclick="location.href = 'perfil.php'">Perfil</button></li>
             <li><button onclick="location.href = 'index.php'">Log Out</button></li>
         </ul>
     </nav>

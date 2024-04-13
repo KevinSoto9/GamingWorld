@@ -27,7 +27,7 @@
                         <!-- Instrucciones -->
                         <div id="instrucciones-container" style="display: none;" class="instrucciones-container">
 
-                            <p>Instrucciones para insertar un Juego:</p>
+                            <p>- Instrucciones para insertar un Juego:</p>
                             <ul>
                                 <li>Para poder insertar un juego este debe tener tanto sus generos, desarrollador y editor añadido de lo contrario el juego no se mostrara</li>
                                 <li>Primero insertar la informacion del juego</li>
@@ -38,16 +38,16 @@
                             </ul>
                             <br>
 
-                            <p>Instrucciones para añadir generos a un Juego:</p>
+                            <p>- Instrucciones para añadir generos a un Juego:</p>
                             <ul>
                                 <li>Para poder añadir generos a un juego, estos tienen que estar creados anteriormente</li>
                                 <li>Primero hay que elegir el juego en el listado que aparece, y luegos los generos</li>
-                                <li>Al añadi los generos no se pueden repetir , si lo intentas saldra un mensaje diciendo lo anterior</li>
+                                <li>Al añadir los generos no se pueden repetir , si lo intentas saldra un mensaje diciendo lo anterior</li>
                                 <li>Tras eso se deberian haber añadido correctamente</li>
                             </ul>
                             <br>
 
-                            <p>Instrucciones para añadir un desarrollador/editor a un Juego:</p>
+                            <p>- Instrucciones para añadir un desarrollador/editor a un Juego:</p>
                             <ul>
                                 <li>Para poder añadir un desarrollador/editor a un juego, este tienen que estar creado anteriormente</li>
                                 <li>Primero hay que elegir el juego en el listado que aparece, y luego el desarrollador/genero</li>
@@ -55,13 +55,22 @@
                             </ul>
                             <br>
 
-                            <p>Instrucciones para insertar una Novedad:</p>
+                            <p>- Instrucciones para insertar una Novedad:</p>
                             <ul>
                                 <li>Para poder insertar una novedad , la fecha debe ser mayor a la actual</li>
                                 <li>No hace falta informacion de generos , desarroladores o editores, solo la que pone en el formulario y enviarlo</li>
                                 <li>Tras eso se deberia haber añadido correctamente</li>
                             </ul>
                             <br>
+                            
+                            <p>- Instrucciones para crear un Usuario Admin:</p>
+                            <ul>
+                                <li>El correo debe terminar en @gamingworld.com, de lo contrario no te dejara crearlo</li>
+                                <li>La contrasena debe tener minimo 8 caracteres y debe ser la misma que en confirmar constrasena</li>
+                                <li>Tras eso envias los datos y se deberia crear el usuario administrador</li>
+                            </ul>
+                            <br>
+                            
                         </div>
                     </div>
 
@@ -129,6 +138,7 @@
                             <button onclick="location.href = 'Admin/CrearNovedad.php'">Añadir Novedad</button>
                             <button onclick="location.href = 'novedades.php?usuario=admin'">Administar</button>
                             <button onclick="location.href = 'novedades.php'">Listar</button>
+                            <button onclick="location.href = 'calendario.php'">Ver Calendario</button>
                         </div>
 
                     </div>
@@ -144,6 +154,19 @@
                             <button onclick="location.href = 'noticias.php'">Listar</button>
                         </div>
                     </div>
+                    
+                    <!-- Usuarios -->
+                    <div class='admin-options admin-options-noticias'>
+
+                        <h2 class='admin-options-novedades-titulo'>Usuarios</h2>
+
+                        <div class='admin-options-novedades-container'>
+                            <button onclick="location.href = 'Admin/CrearAdmin.php'">Crear Usuario Administrador</button>
+                            <button onclick="location.href = 'Admin/ListarClientes.php'">Listar Usuarios</button>
+                            <button onclick="location.href = 'Admin/ListarAdministradores.php'">Listar Administradores</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
 

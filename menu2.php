@@ -23,6 +23,7 @@
         
         <!-- Log Out -->
         <ul class="menu-derecho">
+            <li><button onclick="location.href = '../perfil.php'">Perfil</button></li>
             <li><button onclick="location.href = '../Logout.php'">Log Out</button></li>
         </ul>
     </nav>

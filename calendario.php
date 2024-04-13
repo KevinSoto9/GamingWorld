@@ -10,17 +10,17 @@
         <?php
         require 'menu.php';
 
-// Función para obtener las novedades del mes actual desde la base de datos
+        // Obtener las novedades del mes actual desde la base de datos
         function obtenerNovedadesMesActual($month, $year) {
             require 'bd.php';
 
-            // Consulta SQL para obtener las novedades del mes actual
+            // Consulta SQL 
             $sql = "SELECT * FROM novedades WHERE MONTH(fecha) = ? AND YEAR(fecha) = ?";
             $stmt = $bd->prepare($sql);
             $stmt->execute([$month, $year]);
             $novedades = array();
 
-            // Verificar si hay errores en la ejecución de la consulta
+            // Verificar si hay errores
             $errorInfo = $stmt->errorInfo();
             if ($errorInfo[0] !== '00000') {
                 echo "Error al ejecutar la consulta: " . $errorInfo[2];
@@ -37,8 +37,7 @@
             return $novedades;
         }
 
-// Función para generar el calendario y resaltar las fechas con novedades
-        // Función para generar el calendario y resaltar las fechas con novedades
+        // Gnerar el calendario 
         function generar_calendario($month, $year, $lang, $holidays = null) {
             $novedades = obtenerNovedadesMesActual($month, $year);
 
@@ -79,7 +78,7 @@
                     $class .= " not-work ";
                 }
 
-                // Comprueba si hay novedades para esta fecha
+                // Comprueba si hay novedades 
                 if (isset($novedades[$list_day])) {
                     $class .= " novedad ";
                     $calendar .= "<div class='{$class}'>" . $list_day . "<br>" . $novedades[$list_day] . "</div>";
@@ -103,11 +102,11 @@
             return $calendar;
         }
 
-// Obtener el mes y el año actual
+
         $currentMonth = min(isset($_GET['month']) ? $_GET['month'] : date('n'), 12);
         $currentYear = isset($_GET['year']) ? $_GET['year'] : date('Y');
 
-// Limitar el mes actual
+
         $currentMonth = max($currentMonth, date('n'));
 
         echo '<div class="calendario">';
@@ -151,7 +150,8 @@
             }
             
             document.addEventListener("DOMContentLoaded", function() {
-    // Resaltar los días con novedades en rojo
+    
+   
     var calendarDays = document.querySelectorAll('.calendar-day');
     calendarDays.forEach(function(day) {
         if (day.querySelector('.novedad')) {

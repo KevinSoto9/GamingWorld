@@ -179,7 +179,7 @@
   display: flex;
   background-color: #333;
   color: white;
-  width: 40%;
+  width: 50%;
   margin: 20px auto;
   padding: 20px;
   border-radius: 10px;
@@ -294,5 +294,70 @@
 
 .calendar-day div {
   max-width: 50px; }
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; }
+  .perfil h1 {
+    align-self: center;
+    margin-top: 20px; }
+  .perfil .perfil-contenido {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly; }
+    .perfil .perfil-contenido .perfil-usuario,
+    .perfil .perfil-contenido .perfil-tarjeta {
+      width: 45%;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+  .perfil .perfil-usuario {
+    align-self: flex-start; }
+  .perfil .perfil-tarjeta {
+    align-self: flex-end; }
+  .perfil .perfil-quitarTarjeta {
+    margin-top: 3%;
+    align-self: center; }
+  .perfil .perfil-cambiarContrasena,
+  .perfil .perfil-quitarTarjeta {
+    margin-top: 10%;
+    margin-bottom: 5%; }
+  @media screen and (max-width: 1280px) {
+    .perfil .perfil-contenido {
+      flex-direction: column; }
+    .perfil .perfil-usuario,
+    .perfil .perfil-tarjeta {
+      align-self: center;
+      margin: 3%;
+      width: 90%; } }
+
+.tablaUsuarios {
+  margin: 20px auto;
+  max-width: 800px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow-x: auto; }
+  .tablaUsuarios table {
+    width: 100%;
+    border-collapse: collapse; }
+    .tablaUsuarios table th, .tablaUsuarios table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      padding-left: 25px; }
+    .tablaUsuarios table th {
+      background-color: #f2f2f2; }
+    .tablaUsuarios table tbody tr:hover {
+      background-color: #f5f5f5; }
+
+.tablaTitulo {
+  text-align: center;
+  margin-top: 30px; }
+
+.tablaUsuarios td {
+  width: 50%; }
 
 /*# sourceMappingURL=styles.css.map */

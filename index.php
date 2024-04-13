@@ -18,9 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($usuario['Tipo'] == 'Cliente')  {
                         $_SESSION['tipo_usuario'] = $usuario['Tipo'];
+                        $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
                         header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     } else {
                         $_SESSION['tipo_usuario'] = $usuario['Tipo'];
+                        $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
                         header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     }
                 }
@@ -38,7 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Gaming World</title>
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -49,6 +52,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Password: <input type="password" name="Password" value="<?php if (isset($Password)) echo $Password; ?>"> 
         <br>
         <input type="submit" name="actualizar" value="Login">
-    </form>
+        
+        </form>
+        
+        <div class="regristo">
+            
+            <p>No te has registrado?<p>   
+            <button onclick="window.location.href='registroCliente.php'">Hazlo aquí</button>
+
+        <div>
     </body>
 </html>
