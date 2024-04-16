@@ -12,17 +12,7 @@
                 // Requires
                 require 'menu.php';
                 require 'bd.php';
-                ?>
-                
-                <div class="calendario-link">
-                    
-                    <button onclick="location.href = 'calendario.php'">Ver Calendario</button>
-                  
-                </div>
-                
-                
-                <?php
-                
+
                 //Fecha actual
                 $fechaActual = date('Y-m-d');
                 
@@ -34,6 +24,14 @@
                 // Inicio lista de novedades
                 
                 $html = "";
+                
+                $html .= "<div class='titulo'>";
+                $html .= "<h1>Novedades</h1>";
+                $html .= "</div>";
+                
+                $html .= "<div class='calendario-link'>";
+                $html .= "<button onclick=\"location.href = 'calendario.php'\">Ver Calendario</button>";
+                $html .= "</div>";
 
                 foreach ($novedades as $novedad) {
 

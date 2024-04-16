@@ -18,10 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($usuario['Tipo'] == 'Cliente')  {
                         $_SESSION['tipo_usuario'] = $usuario['Tipo'];
+                        $_SESSION['Alias']= $usuario['Alias'];
                         $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
                         header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     } else {
                         $_SESSION['tipo_usuario'] = $usuario['Tipo'];
+                        $_SESSION['Alias']= $usuario['Alias'];
                         $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
                         header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     }

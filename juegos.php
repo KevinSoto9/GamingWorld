@@ -10,20 +10,24 @@
     ?>
 </head>
 <body>
+    
+    <div class="titulo">
+        <h1>Juegos</h1>
+    </div>
+    
     <div class="container">
         <div class="buscador">
-            <h3>Buscar juegos:</h3>
-            <form id="form-buscar" action="buscar_juego.php" method="POST">
-                <input type="text" name="searchTerm" id="buscar-juego" placeholder="Buscar por nombre...">
-            </form>
+            <div id="form-buscar">
+                <input type="search" name="searchTerm" id="buscar-juego" placeholder="Buscar por nombre...">
+            </div>
         </div>
 
         <!-- Mostrar/ocultar el filtro de generos -->
-        <button id="toggleGenero">Mostrar/Ocultar Género</button>
+        <button id="toggleGenero">Mostrar/Ocultar Géneros</button>
 
         <!-- Filtro de generos -->
         <div class="filtros" id="filtroGenero">
-            <h3>Filtrar por Género:</h3>
+            <h3>Filtrar por Géneros:</h3>
             <div class="generos-container">
                 <?php
                     require 'bd.php'; 

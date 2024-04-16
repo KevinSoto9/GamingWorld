@@ -1,3 +1,10 @@
+body {
+  background-color: #1a1c1d; }
+
+a {
+  text-decoration: none;
+  color: white; }
+
 .contenedor-juegos {
   position: relative;
   display: grid;
@@ -18,7 +25,7 @@
     transition: transform 0.2s ease; }
     .contenedor-juegos .juego .enlace-juego {
       text-decoration: none;
-      color: inherit; }
+      color: white; }
     .contenedor-juegos .juego:hover {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transform: translateY(-22px); }
@@ -177,7 +184,7 @@
 
 .juegoSolo {
   display: flex;
-  background-color: #333;
+  background-color: black;
   color: white;
   width: 50%;
   margin: 20px auto;
@@ -191,7 +198,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    text-align: center; }
     .juegoSolo .infoPrincipal h2 {
       margin-top: 0;
       font-size: 1.5em;
@@ -209,7 +217,7 @@
     justify-content: center; }
     .juegoSolo .infoSecundaria p,
     .juegoSolo .infoFinal p {
-      margin: 0; }
+      margin-bottom: 5px; }
     .juegoSolo .infoSecundaria .infoSecundaria p,
     .juegoSolo .infoFinal .infoSecundaria p {
       font-size: 1.2em;
@@ -359,5 +367,32 @@
 
 .tablaUsuarios td {
   width: 50%; }
+
+.titulo {
+  text-align: center;
+  font-size: 1.5rem; }
+
+.calendario-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px; }
+
+.comentarios {
+  flex-direction: column; }
+  .comentarios h2 {
+    text-align: center; }
+  .comentarios .comentarios-content {
+    border: 1px white solid;
+    border-radius: 10px;
+    padding: 2%;
+    margin-bottom: 4%; }
+
+.comentar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5%; }
 
 /*# sourceMappingURL=styles.css.map */

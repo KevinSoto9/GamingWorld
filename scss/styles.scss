@@ -1,3 +1,13 @@
+body{
+    background-color: rgb(26, 28, 29);
+}
+
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
 .contenedor-juegos {
     position: relative;
     display: grid;
@@ -20,7 +30,7 @@
 
         .enlace-juego {
             text-decoration: none;
-            color: inherit;
+            color: white;
         }
 
         &:hover {
@@ -241,7 +251,7 @@
 
 .juegoSolo {
     display: flex;
-    background-color: #333;
+    background-color: black; 
     color: white;
     width: 50%;
     margin: 20px auto;
@@ -257,6 +267,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
 
         h2 {
             margin-top: 0;
@@ -280,7 +291,7 @@
         justify-content: center;
 
         p {
-            margin: 0;
+            margin-bottom: 5px;
         }
 
         .infoSecundaria p {
@@ -488,3 +499,38 @@
     }
 }
 
+.titulo{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+.calendario-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.comentarios{
+    flex-direction: column;
+
+    h2{
+        text-align: center;
+    }
+    
+    .comentarios-content{
+        border: 1px white solid;
+        border-radius: 10px;
+        padding: 2%;
+        margin-bottom: 4%;
+    }
+}
+
+.comentar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5%;
+}

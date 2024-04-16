@@ -110,7 +110,7 @@
         $currentMonth = max($currentMonth, date('n'));
 
         echo '<div class="calendario">';
-        echo '<h1>Calendario de Juegos del 2024</h1>';
+        echo "<div class='titulo'><h1>Calendario de Juegos del 2024</h1></div>";
 
         $meses = array(
             1 => 'Enero',

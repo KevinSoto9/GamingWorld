@@ -47,7 +47,14 @@
             $juegos = $bd->query($sel);
 
             // Lista de juegos
-            $html = "<div class='contenedor-juegos'>";
+            
+            $html = "";
+            
+            $html .= "<div class='titulo'>";
+            $html .= "<h1>GamingWorld</h1>";
+            $html .= "</div>";
+            
+            $html .= "<div class='contenedor-juegos'>";
 
             foreach ($juegos as $juego) {
                 $html .= "<div class='contenedor-juegos-content'>";
