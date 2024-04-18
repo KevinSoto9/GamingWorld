@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="hidden" name="fechaActual" value="<?php echo htmlspecialchars($fechaActual); ?>">
                 <div class="formularioCrear-container-datos">
                     <p class="formularioCrear-container-datos-comentario">Comentario</p>
-                    <input type="text" name="comentario">
+                    <textarea name="comentario" rows="9" cols="90"></textarea>
                 </div>
                 <input type="submit" value="Enviar">
             </div>

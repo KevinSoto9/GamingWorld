@@ -22,7 +22,11 @@
                 $fechaActual = date('Y-m-d');
                 
                 
-                $sel = "SELECT * FROM noticias";
+                $sel = "SELECT n.*
+                        FROM noticias AS n
+                        INNER JOIN noticias_detalles AS nd ON n.noticiaID = nd.noticiaID
+                        ORDER BY nd.fechaPublicacion DESC
+                        ";
 
                 $novedades = $bd->query($sel);
                 
@@ -58,7 +62,9 @@
                     
                     $html .= "<a>";
                     $html .= "</div>";
+                    $html .= "</div>";
                 }
+                
 
                 echo $html;
                 ?>
