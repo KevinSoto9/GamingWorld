@@ -20,15 +20,13 @@ if (isset($_GET["noticiaID"])) {
                 // Requires
                 require 'menu.php';
                 require 'bd.php';
-                
                 ?>
-                
+
                 <div class="titulo">
                     <h1>Noticia</h1>
                 </div>
-                
-                <?php
 
+                <?php
                 // Consulta SQL
                 $sel = "SELECT * FROM `noticias_detalles` WHERE `noticiaID` = '$noticiaID'";
                 $novedades = $bd->query($sel);
@@ -104,6 +102,8 @@ if (isset($_GET["noticiaID"])) {
 
                         $html .= "<div class='comentarios-content'>";
 
+                        $html .= "<div class='comentarios-content-info'>";
+
                         $NombreUsuario = $comentario['usuarioID'];
 
                         $sel3 = "SELECT * FROM `usuarios` WHERE `UsuarioID` = '$NombreUsuario'";
@@ -120,6 +120,19 @@ if (isset($_GET["noticiaID"])) {
                         $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
 
                         $html .= '<p>' . $fechaFormateada . '</p>';
+
+                        $html .= "</div>";
+
+                        $html .= "<div class='comentario-content-opciones'>";
+
+                        if ($usuario['Alias'] == $_SESSION['Alias']) {
+                            $html .= "<button onclick=\"window.location.href='EditarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . $noticiaID . "'\">Editar</button>";
+                        }
+                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
+                            $html .= "<button onclick=\"window.location.href='EliminarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . $noticiaID . "'\">Eliminar</button>";
+                        }
+
+                        $html .= "</div>";
 
                         $html .= "</div>";
                     }

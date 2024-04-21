@@ -63,6 +63,15 @@
                             </ul>
                             <br>
                             
+                            <p>- Instrucciones para crear una Noticia:</p>
+                            <ul>
+                                <li>Prinero debes crear la noticia principal en si, sin detalles</li>
+                                <li>Tras eso deberas ir poner los detalles de la noticias, (el titulo y la imagen no son las mismas)</li>
+                                <li>Sin intentas ver la noticia sin haber creado sus detalles, esta no aparecera</li>
+                                <li>Tras haber insertado todo lo necesario deberia poder ver la noticia y todo la informacion de los detalles</li>
+                            </ul>
+                            <br>
+                            
                             <p>- Instrucciones para crear un Usuario Admin:</p>
                             <ul>
                                 <li>El correo debe terminar en @gamingworld.com, de lo contrario no te dejara crearlo</li>
@@ -150,13 +159,14 @@
 
                         <div class='admin-options-novedades-container'>
                             <button onclick="location.href = 'Admin/CrearNoticia.php'">Añadir Noticia</button>
+                            <button onclick="location.href = 'Admin/CrearNoticiaDetalles.php'">Añadir Detalles de la Noticia</button>
                             <button onclick="location.href = 'noticias.php?usuario=admin'">Administar</button>
                             <button onclick="location.href = 'noticias.php'">Listar</button>
                         </div>
                     </div>
                     
                     <!-- Usuarios -->
-                    <div class='admin-options admin-options-noticias'>
+                    <div class='admin-options admin-options-usuarios'>
 
                         <h2 class='admin-options-novedades-titulo'>Usuarios</h2>
 

@@ -19,13 +19,12 @@ if (isset($_GET["juegoID"])) {
                 // Requires
                 require 'menu.php';
                 require 'bd.php';
-                
                 ?>
-                
+
                 <div class="titulo">
                     <h1>Juego</h1>
                 </div>
-                
+
                 <?php
                 // Consulta SQL para el juego
                 $sel = "SELECT
@@ -35,6 +34,8 @@ if (isset($_GET["juegoID"])) {
                         juegos.descripcion,
                         juegos.fecha_salida,
                         juegos.precio,
+                        desarrolladores.desarrolladorID,
+                        editores.editorID,
                         GROUP_CONCAT(DISTINCT generos.nombre) AS generos,
                         desarrolladores.nombre AS desarrollador,
                         editores.nombre AS editor
@@ -97,28 +98,37 @@ if (isset($_GET["juegoID"])) {
                     $html .= "<p>Precio: $juego[precio]</p>";
 
                     // Fecha de salida
-                     $fecha_salida = strtotime($juego['fecha_salida']);
+                    $fecha_salida = strtotime($juego['fecha_salida']);
                     $fechaFormateada = 'Publicado el ' . date('j', $fecha_salida) . ' de ' . $meses[date('F', $fecha_salida)] . ' de ' . date('Y', $fecha_salida);
                     $html .= "<p>Fecha de salida: $fechaFormateada</p>";
 
                     //  Generos
+                    // Generos
                     $generos = explode(",", $juego["generos"]);
                     $html .= "<p>Géneros: ";
-                    foreach ($generos as $genero) {
+                    $generosCount = count($generos);
+                    foreach ($generos as $key => $genero) {
                         $query = "SELECT generoID FROM generos WHERE nombre = ?";
                         $statement = $bd->prepare($query);
                         $statement->execute([$genero]);
                         $resultado = $statement->fetch();
                         $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-                        $html .= "<a href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
+                        $html .= "<a href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>";
+
+                        // Añadir coma si no es el último género
+                        if ($key < $generosCount - 1) {
+                            $html .= ", ";
+                        }
                     }
                     $html .= "</p>";
 
                     // Desarrollador
-                    $html .= "<p>Desarrollador: $juego[desarrollador]</p>";
+                    $desarrolladorID = urlencode($juego['desarrolladorID']);
+                    $html .= "<p>Desarrollador: <a href='PagDesarrollador.php?desarrolladorID=$desarrolladorID'>$juego[desarrollador]</a></p>";
 
                     // Editor
-                    $html .= "<p>Editor: $juego[editor]</p>";
+                    $editorID = urlencode($juego['editorID']);
+                    $html .= "<p>Editor: <a href='PagEditor.php?editorID=$editorID'>$juego[editor]</a></p>";
                     $html .= "</div>";
 
                     $html .= "</div>";
