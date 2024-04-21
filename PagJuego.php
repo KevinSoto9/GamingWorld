@@ -159,6 +159,8 @@ if (isset($_GET["juegoID"])) {
 
                         $htmlComentarios .= "<div class='comentarios-content'>";
 
+                        $htmlComentarios .= "<div class='comentarios-content-info'>";
+
                         $NombreUsuario = $comentario['UsuarioID'];
 
                         $sel3 = "SELECT * FROM `usuarios` WHERE `UsuarioID` = '$NombreUsuario'";
@@ -173,8 +175,22 @@ if (isset($_GET["juegoID"])) {
 
                         $fecha = strtotime($comentario['fecha']);
                         $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
-
+                        
                         $htmlComentarios .= '<p>' . $fechaFormateada . '</p>';
+
+                        $htmlComentarios .= "</div>";
+
+                        $htmlComentarios .= "<div class='comentario-content-opciones'>";
+
+                        if ($usuario['Alias'] == $_SESSION['Alias']) {
+                            $htmlComentarios .= "<button onclick=\"window.location.href='EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
+                        }
+                        
+                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
+                            $htmlComentarios .= "<button onclick=\"window.location.href='EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
+                        }
+
+                        $htmlComentarios .= "</div>";
 
                         $htmlComentarios .= "</div>";
                     }
