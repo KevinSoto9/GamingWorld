@@ -1,5 +1,23 @@
 <?php
 
+session_start();
+
+$html = "";
+
+if (!isset($_SESSION['Tipo']) || $_SESSION['Tipo'] !== "administrador") {
+    $html .= "<div class='NoAdmin'>";
+    $html .= "No has iniciado sesión";
+    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
+    $html .= "</div>";
+   
+    echo $html;
+}
+
+else{
+    
+
+session_abort();
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $nombre = $_POST["nombre"];
     $imagen = $_POST["imagen"];
@@ -97,3 +115,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             </div>
     </body>
 </html>
+
+<?php
+}
+?>

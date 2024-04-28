@@ -1,9 +1,27 @@
 <?php
-// Conseguir el ID del Juego
+
+session_start();
+
+$html = "";
+
+if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    $html .= "<div class='NoSesion'>";
+    $html .= "No has iniciado sesión";
+    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
+    $html .= "</div>";
+   
+    echo $html;
+}
+
+else{
+    
+    // Conseguir el ID del Juego
 $juegoID = "";
 if (isset($_GET["juegoID"])) {
     $juegoID = $_GET["juegoID"];
 }
+
+session_abort()
 ?>
 
 <html>
@@ -50,9 +68,6 @@ if (isset($_GET["juegoID"])) {
                         GROUP BY juegos.juegoID";
 
                 $juegos = $bd->query($sel);
-
-                // Inicio lista de juegos
-                $html = "";
 
                 $meses = array(
                     'January' => 'Enero',
@@ -209,3 +224,7 @@ if (isset($_GET["juegoID"])) {
         </div>
     </body>
 </html>
+
+<?php
+}
+?>

@@ -192,7 +192,10 @@
     </html>
     <?php
 } else {
-
+    
+    echo "<div class='NoAdmin'>";
     echo "<p>No tienes permiso para acceder a esta página.</p>";
+    echo "<button onclick='window.location.href=\"PagPrincipal.php\"'>Hazlo Aquí</button>";
+    echo "</div>";
 }
 ?>
