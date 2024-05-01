@@ -9,6 +9,8 @@
             <?php
             require 'menu.php';
             require 'bd.php';
+            
+            
 
             echo "<link rel='stylesheet' href='css/styles.css'>";
 
@@ -54,6 +56,10 @@
             $html .= "<h1>GamingWorld</h1>";
             $html .= "</div>";
             
+            $html .= "<div class='calendario-link'>";
+            $html .= "<button onclick=\"location.href = 'historico.php'\">Ver Historial</button>";
+            $html .= "</div>";
+
             $html .= "<div class='contenedor-juegos'>";
 
             foreach ($juegos as $juego) {
