@@ -63,7 +63,7 @@ function renderizarJuegos($juegos) {
         $html .= "<h2>{$juego['nombre']}</h2>";
         
         // Imagen
-        $html .= "<img src='{$juego['imagen']}' alt='{$juego['nombre']}'>";
+        $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
         
         // Precio
         $html .= "<p>Precio: {$juego['precio']}</p>";

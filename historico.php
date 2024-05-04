@@ -72,7 +72,7 @@ foreach ($juegos_por_anio as $anio => $juegos) {
         $html .= "<div class='juego'>";
         $html .= "<div class='contenido'>";
         $html .= "<h3>{$juego['nombre']}</h3>";
-        $html .= "<img src='{$juego['imagen']}' alt='{$juego['nombre']}'>";
+        $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
         $html .= "</div>";
         $html .= "</div>";
         $html .= "</a>";

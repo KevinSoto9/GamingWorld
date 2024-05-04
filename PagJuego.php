@@ -96,7 +96,7 @@ session_abort()
                     $html .= "<h2>$juego[nombre]</h2>";
 
                     // Imagen
-                    $html .= "<img src='$juego[imagen]' alt='$juego[nombre]'>";
+                    $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' alt='$juego[nombre]'>";
                     $html .= "</div>";
 
                     // Contenedor Secundario
