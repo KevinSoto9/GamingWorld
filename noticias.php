@@ -51,7 +51,7 @@
                     $html .= "<h2>$novedad[titulo]</h2>";
                     
                     // Imagen
-                    $html .= "<img src='$novedad[imagen]' alt='$novedad[titulo]'>";
+                    $html .= "<img src='ImagenesNoticias/{$novedad['imagen']}' alt='$novedad[titulo]'>";
                     $html .= "</div>";
                     
                     //Contenedor Secundario
