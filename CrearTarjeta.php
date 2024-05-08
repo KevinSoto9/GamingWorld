@@ -1,6 +1,8 @@
 <?php
-
 session_start();
+
+
+require 'bd.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numTarjeta = $_POST["numTarjeta"];
@@ -9,38 +11,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $CVC = $_POST["CVC"];
     $confirmarCVC = $_POST["confirmarCVC"];
 
-    // Validar 
+
     if (!preg_match("/^\d{16}$/", $numTarjeta)) {
-        echo "<script>alert('El número de tarjeta debe contener exactamente 16 dígitos.');</script>";
+        $error = "El número de tarjeta debe contener exactamente 16 dígitos.";
     } elseif (!preg_match("/^[a-zA-Z]+\s[a-zA-Z]+$/", $nombreApellidosPropie)) {
-        echo "<script>alert('El nombre del propietario debe contener al menos un nombre y un apellido separados por un espacio.');</script>";
+        $error = "El nombre del propietario debe contener al menos un nombre y un apellido separados por un espacio.";
+    } elseif (!preg_match("/^\d{2}\/\d{2}$/", $fechaExp) || !checkdate(substr($fechaExp, 0, 2), 1, "20" . substr($fechaExp, 3, 2))) {
+        $error = "La fecha de expiración ingresada no es válida.";
+    } elseif (strlen($CVC) !== 3 || $CVC !== $confirmarCVC) {
+        $error = "El CVC ingresado no es válido o no coincide.";
     } else {
-        // Verificar fecha logicca
-        list($mes, $anio) = explode('/', $fechaExp);
-        if (!checkdate($mes, 1, "20$anio")) {
-            echo "<script>alert('La fecha de expiración ingresada no es válida.');</script>";
-        } elseif (!preg_match("/^\d{2}\/\d{2}$/", $fechaExp)) {
-            echo "<script>alert('La fecha de expiración debe estar en el formato MM/AA.');</script>";
-        } elseif (strlen($CVC) !== 3 || $CVC !== $confirmarCVC) {
-            echo "<script>alert('El CVC ingresado no es válido o no coincide.');</script>";
-        } else {
+
+        $usuario_id = $_SESSION['UsuarioID'];
+        $insertQuery = $bd->prepare("INSERT INTO `tarjetas` (`tarjetaID`, `NumTarjeta`, `Nombre`, `FechaExp`, `CVC`, `UsuarioID`) VALUES (NULL, ?, ?, ?, ?, ?)");
+        if ($insertQuery->execute([$numTarjeta, $nombreApellidosPropie, $fechaExp, $CVC, $usuario_id])) {
             
-            $usuario_id = $_SESSION['UsuarioID'];
-            
-            try {
-                require 'bd.php';
-                $ins = "INSERT INTO `tarjetas` (`tarjetaID`, `NumTarjeta`, `Nombre`, `FechaExp`, `CVC`, `UsuarioID`) VALUES (NULL, '$numTarjeta', '$nombreApellidosPropie', '$fechaExp', '$CVC', '$usuario_id')";
-                $resul = $bd->query($ins);
-                if ($resul) {
-                    header("Location:perfil.php");
-                }
-            } catch (PDOException $e) {
-                echo $e->getMessage();
+            $tarjetaID = $bd->lastInsertId();
+            $carritoQuery = $bd->prepare("INSERT INTO `carrito` (`carritoID`, `usuarioID`, `tarjetaID`) VALUES (NULL, ?, ?)");
+            if ($carritoQuery->execute([$usuario_id, $tarjetaID])) {
+                header("Location: perfil.php");
+                exit();
+            } else {
+                $error = "Error al insertar en la tabla carrito.";
             }
+        } else {
+            $error = "Error al insertar en la tabla tarjetas.";
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
