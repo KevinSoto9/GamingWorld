@@ -42,6 +42,7 @@ $juegos = $bd->query($sel);
 $html = "";
 $html .= "<div class='titulo'>";
 $html .= "<h1>GamingWorld</h1>";
+$html .= "<div id='mensaje'></div>";
 $html .= "</div>";
 $html .= "<div class='calendario-link'>";
 $html .= "<button onclick=\"location.href = 'historico.php'\">Ver Historial</button>";
@@ -75,6 +76,24 @@ foreach ($juegos as $juego) {
         $html .= "<a class='generos' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
     }
     $html .= "</p>";
+    
+    $usuarioID = $_SESSION['UsuarioID'];
+
+    $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
+    $stmt = $bd->prepare($carritoSelect);
+    $stmt->bindParam(':usuarioID', $usuarioID);
+    $stmt->execute();
+    $numFilas = $stmt->rowCount();
+
+
+    if ($numFilas > 0) {
+        $html .= "<a href='#' class='agregar-carrito' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</a>";
+        
+    } else {
+        $html .= "<a href='#' class='asociar-tarjeta'>Asociar una tarjeta para poder comprar</a>";
+    }
+
+
     $html .= "</div>";
     $html .= "</div>";
     $html .= "</a>";
@@ -92,6 +111,31 @@ for ($i = 1; $i <= $total_paginas; $i++) {
     $html .= "</form>";
 }
 $html .= "</div>";
+
+$html .= "<script>";
+$html .= "document.addEventListener('DOMContentLoaded', function() {";
+$html .= "    var agregarCarritoBtns = document.querySelectorAll('.agregar-carrito');";
+$html .= "    var asociarTarjetaBtns = document.querySelectorAll('.asociar-tarjeta');";
+
+$html .= "    agregarCarritoBtns.forEach(function(btn) {";
+$html .= "        btn.addEventListener('click', function(event) {";
+$html .= "            event.preventDefault();"; 
+$html .= "            var juegoID = btn.getAttribute('data-juego-id');";
+$html .= "            var precio = btn.getAttribute('data-precio');";
+$html .= "            fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID={$_SESSION['UsuarioID']}')";
+$html .= "                .then(response => response.text())";
+$html .= "                .then(text => document.getElementById('mensaje').textContent = text);";
+$html .= "        });";
+$html .= "    });";
+
+$html .= "    asociarTarjetaBtns.forEach(function(btn) {";
+$html .= "        btn.addEventListener('click', function(event) {";
+$html .= "            event.preventDefault();"; // Prevenir el comportamiento predeterminado del enlace
+$html .= "            document.getElementById('mensaje').textContent = 'Debes tener una tarjeta asociada a tu perfil para poder comprar productos';";
+$html .= "        });";
+$html .= "    });";
+$html .= "});";
+$html .= "</script>";
 
 echo $html;
 ?>
