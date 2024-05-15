@@ -12,7 +12,7 @@
 
         $html = "";
 
-        if (!isset($_SESSION['Tipo']) || $_SESSION['Tipo'] !== "administrador") {
+        if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
             $html .= "<div class='NoAdmin'>";
             $html .= "No has iniciado sesión";
             $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";

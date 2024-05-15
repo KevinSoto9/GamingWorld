@@ -84,7 +84,7 @@ if (isset($_GET["desarrolladorID"])) {
                             <h2><?= $juego['nombre'] ?></h2>
                             
                             <!-- Imagen -->
-                            <img src='<?= $juego['imagen'] ?>' alt='<?= $juego['nombre'] ?>'>
+                            <img src='ImagenesJuegos/<?= $juego['imagen'] ?>' alt='<?= $juego['nombre'] ?>'>
                             
                             <!-- Precio -->
                             <p>Precio: <?= $juego['precio'] ?></p>
