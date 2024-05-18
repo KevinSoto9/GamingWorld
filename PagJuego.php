@@ -41,6 +41,8 @@ session_abort()
 
                 <div class="titulo">
                     <h1>Juego</h1>
+                    
+                    <div id="mensaje"></div>
                 </div>
 
                 <?php
@@ -144,6 +146,21 @@ session_abort()
                     // Editor
                     $editorID = urlencode($juego['editorID']);
                     $html .= "<p>Editor: <a href='PagEditor.php?editorID=$editorID'>$juego[editor]</a></p>";
+                    
+                     $usuarioID = $_SESSION['UsuarioID'];
+
+                    $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
+                    $stmt = $bd->prepare($carritoSelect);
+                    $stmt->bindParam(':usuarioID', $usuarioID);
+                    $stmt->execute();
+                    $numFilas = $stmt->rowCount();
+
+                    if ($numFilas > 0) {
+                        $html .= "<a href='#' class='agregar-carrito' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</a>";
+                    } else {
+                        $html .= "<a href='#' class='asociar-tarjeta'>Asociar una tarjeta para poder comprar</a>";
+                    }
+
                     $html .= "</div>";
 
                     $html .= "</div>";
@@ -217,6 +234,8 @@ session_abort()
                 }
 
                 $htmlComentarios .= "</div>";
+                
+                
 
                 echo $htmlComentarios;
                 ?>
@@ -224,7 +243,29 @@ session_abort()
         </div>
     </body>
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    function attachEventListeners() {
+        $('.juegoSolo').on('click', '.agregar-carrito', function(event) {
+            event.preventDefault();
+            var juegoID = $(this).data('juego-id');
+            var precio = $(this).data('precio');
+            var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
+            fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
+                .then(response => response.text())
+                .then(text => $('#mensaje').text(text));
+        });
 
+        $('.juegoSolo').on('click', '.asociar-tarjeta', function(event) {
+            event.preventDefault();
+            $('#mensaje').text('Debes tener una tarjeta asociada a tu perfil para poder comprar productos');
+        });
+    }
+
+    attachEventListeners();
+});
+</script>
 <?php
 }
 ?>

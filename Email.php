@@ -9,58 +9,69 @@ require 'vendor/phpmailer/phpmailer/src/Exception.php';
 require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
-// Función para procesar la compra y generar el contenido del PDF
 function procesarCompra($usuarioID, $pdf) {
     $output = "";
 
-    require 'bd.php';
-    $selCarrito = "SELECT cj.juegoID, j.nombre, cj.precio, cj.cantidad 
-                 FROM carrito_juegos cj 
-                 INNER JOIN juegos j ON cj.juegoID = j.juegoID 
-                 WHERE cj.carritoID IN (SELECT carritoID FROM carrito WHERE usuarioID = :usuarioID)";
+    require 'bd.php'; // Conectar a la base de datos
+    // Consultar los detalles del carrito del usuario
+    $selCarrito = "SELECT cj.juegoID, j.nombre, cj.precio, cj.cantidad
+                  FROM carrito_juegos cj
+                  INNER JOIN juegos j ON cj.juegoID = j.juegoID
+                  WHERE cj.carritoID IN (SELECT carritoID FROM carrito WHERE usuarioID = :usuarioID)";
     $stmtCarrito = $bd->prepare($selCarrito);
     $stmtCarrito->bindParam(':usuarioID', $usuarioID);
     $stmtCarrito->execute();
     $carrito = $stmtCarrito->fetchAll(PDO::FETCH_ASSOC);
 
+    // Verificar si el carrito está vacío
     if (empty($carrito)) {
         $output .= "El carrito está vacío. No hay nada que procesar.";
         return $output;
     }
 
-    $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(0, 10, utf8_decode('Detalles de la compra:'), 0, 1);
-    $pdf->Ln();
-    $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(50, 10, utf8_decode('Nombre del Juego'), 1, 0, 'C');
-    $pdf->Cell(40, 10, utf8_decode('Precio (€)'), 1, 0, 'C');
-    $pdf->Cell(40, 10, utf8_decode('Cantidad'), 1, 0, 'C');
-    $pdf->Cell(40, 10, utf8_decode('Total por Juego (€)'), 1, 1, 'C');
+    // Configuración del PDF
+    $pdf->SetFont('helvetica', '', 10);
+    $pdf->SetFillColor(220, 220, 220); // Color de fondo de las filas alternas
+    $pdf->SetLineWidth(0.2);
 
-    $totalPrecioJuegos = 0; // Inicializamos el total de precios de los juegos
+    $pdf->Cell(0, 10, 'Detalles de la compra:', 0, 1);
+
+    // Encabezados de la tabla
+    $pdf->Cell(90, 10, 'Nombre del Juego', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Precio ', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Cantidad ', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Total ', 1, 1, 'C');
+
+    $totalPrecioJuegos = 0; // Inicializar total de precios de juegos
 
     foreach ($carrito as $item) {
         $nombreJuego = $item['nombre'];
         $precio = $item['precio'];
         $cantidad = $item['cantidad'];
 
-        $totalPorJuego = $precio * $cantidad;
-        $totalPrecioJuegos += $totalPorJuego; // Sumamos al total de precios de los juegos
+        // Ajustar altura de la fila según la longitud del nombre del juego
+        $alturaCelda = ceil((strlen($nombreJuego) / 30) * 10) + 5;
 
-        $pdf->Cell(50, 10, utf8_decode($nombreJuego), 1, 0);
-        $pdf->Cell(40, 10, utf8_decode(number_format($precio, 2, ',', '.') . ' €'), 1, 0, 'C');
-        $pdf->Cell(40, 10, utf8_decode($cantidad), 1, 0, 'C');
-        $pdf->Cell(40, 10, utf8_decode(number_format($totalPorJuego, 2, ',', '.') . ' €'), 1, 1, 'C');
+        // Eliminar caracteres no deseados y convertir la codificación del nombre del juego
+        $nombreJuego = iconv('UTF-8', 'windows-1252//TRANSLIT', preg_replace('/[^\w\s-]/', '', $nombreJuego));
+
+        $pdf->Cell(90, $alturaCelda, $nombreJuego, 1, 0);
+        $pdf->Cell(30, $alturaCelda, number_format($precio, 2, ',', '.'), 1, 0, 'C');
+        $pdf->Cell(30, $alturaCelda, $cantidad, 1, 0, 'C');
+        $pdf->Cell(30, $alturaCelda, number_format($precio * $cantidad, 2, ',', '.'), 1, 1, 'C');
+
+        $totalPorJuego = $precio * $cantidad;
+        $totalPrecioJuegos += $totalPorJuego; // Sumar al total de precios de juegos
     }
 
     // Calcular el total de la compra en euros
     $totalCompra = array_sum(array_column($carrito, 'precio')) * array_sum(array_column($carrito, 'cantidad'));
 
-    $output .= "Total de la compra: " . number_format($totalCompra, 2, ',', '.') . ' €';
+    $output .= "Total: " . number_format($totalCompra, 2, ',', '.');
 
     // Mostrar el total de todos los juegos comprados
-    $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(0, 10, utf8_decode('Total de todos los juegos comprados: '.$totalPrecioJuegos), 0, 0);
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 10, 'Total de todos los juegos comprados: ' . number_format($totalPrecioJuegos, 2, ',', '.') . ' Euros', 0, 1);
 
     // Eliminar los elementos del carrito de la base de datos
     $delCarrito = "DELETE FROM carrito_juegos WHERE carritoID IN (SELECT carritoID FROM carrito WHERE usuarioID = :usuarioID)";

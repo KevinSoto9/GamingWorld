@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require 'bd.php';
 
 $searchTerm = $_POST['searchTerm'];
@@ -80,13 +83,29 @@ function renderizarJuegos($juegos) {
                     $html .= "<a class='generos' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
                 }
         $html .= "</p>";
+        
+         
+        $usuarioID = $_SESSION['UsuarioID'];
+
+        $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
+        $stmt = $bd->prepare($carritoSelect);
+        $stmt->bindParam(':usuarioID', $usuarioID);
+        $stmt->execute();
+        $numFilas = $stmt->rowCount();
+
+        if ($numFilas > 0) {
+            $html .= "<a href='#' class='agregar-carrito' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</a>";
+        } else {
+            $html .= "<a href='#' class='asociar-tarjeta'>Asociar una tarjeta para poder comprar</a>";
+        }
+
         $html .= "</div>";
         $html .= "</div>";
         $html .= "</a>";
         $html .= "</div>";
     }
     $html .= "</div>";
-
+    
     echo $html;
 }
 ?>

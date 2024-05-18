@@ -13,6 +13,9 @@
     
     <div class="titulo">
         <h1>Juegos</h1>
+        
+        <div id="mensaje"></div>
+        
     </div>
     
     <div class="container">
@@ -81,68 +84,94 @@
 
     <!-- Script AJAX para buscar juegos -->
     <script>
-        $(document).ready(function() {
-            // Función para cargar los juegos
-            function cargarJuegos(searchTerm, generosSeleccionados, precioSeleccionado) {
-                $.ajax({
-                    url: "buscar_juego.php",
-                    method: "POST",
-                    data: { searchTerm: searchTerm, generos: generosSeleccionados, precio: precioSeleccionado }, // Pasar el precio seleccionado
-                    success: function(response) {
-                        $(".contenedor-juegos").html(response);
-                    }
-                });
+$(document).ready(function() {
+    // Function to load games
+    function cargarJuegos(searchTerm, generosSeleccionados, precioSeleccionado) {
+        $.ajax({
+            url: "buscar_juego.php",
+            method: "POST",
+            data: { searchTerm: searchTerm, generos: generosSeleccionados, precio: precioSeleccionado },
+            success: function(response) {
+                $(".contenedor-juegos").html(response);
+                // Attach event listeners after loading games
+                attachEventListeners();
             }
-            
-            // Por defecto oculto
-            $("#filtroGenero, #filtroPrecio").hide();
+        });
+    }
 
-            // Función para obtener los generos seleccionados
-            function obtenerSeleccion(nombreClase) {
-                var seleccion = [];
-                $(nombreClase + ":checked").each(function() {
-                    seleccion.push($(this).val());
-                });
-                return seleccion;
-            }
+    // Function to get selected genres
+    function obtenerSeleccion(nombreClase) {
+        var seleccion = [];
+        $(nombreClase + ":checked").each(function() {
+            seleccion.push($(this).val());
+        });
+        return seleccion;
+    }
 
-            // Cargar todos los juegos al cargar la pagina
-            cargarJuegos("", obtenerSeleccion(".filtro-genero"), $("#precios").val());
+    // Load all games on page load
+    cargarJuegos("", obtenerSeleccion(".filtro-genero"), $("#precios").val());
 
-            // Escuchar cambios en el buscador
-            $("#buscar-juego").on("input", function() {
-                var searchTerm = $(this).val();
-                var generosSeleccionados = obtenerSeleccion(".filtro-genero");
-                cargarJuegos(searchTerm, generosSeleccionados, $("#precios").val()); // Pasar el precio seleccionado
-            });
+    // Listen for changes in the search input
+    $("#buscar-juego").on("input", function() {
+        var searchTerm = $(this).val();
+        var generosSeleccionados = obtenerSeleccion(".filtro-genero");
+        cargarJuegos(searchTerm, generosSeleccionados, $("#precios").val());
+    });
 
-            // Escuchar cambios en los géneros seleccionados
-            $(".filtro-genero").change(function() {
-                var searchTerm = $("#buscar-juego").val();
-                var generosSeleccionados = obtenerSeleccion(".filtro-genero");
-                cargarJuegos(searchTerm, generosSeleccionados, $("#precios").val()); // Pasar el precio seleccionado
-            });
+    // Listen for changes in the genre filters
+    $(".filtro-genero").change(function() {
+        var searchTerm = $("#buscar-juego").val();
+        var generosSeleccionados = obtenerSeleccion(".filtro-genero");
+        cargarJuegos(searchTerm, generosSeleccionados, $("#precios").val());
+    });
 
-            // Escuchar cambios en el rango de precios
-            $("#precios").on("input", function() {
-                var precioSeleccionado = $(this).val();
-                $("#precioSeleccionado").text(precioSeleccionado);
-                var searchTerm = $("#buscar-juego").val();
-                var generosSeleccionados = obtenerSeleccion(".filtro-genero");
-                cargarJuegos(searchTerm, generosSeleccionados, precioSeleccionado); // Pasar el precio seleccionado
-            });
+    // Listen for changes in the price range
+    $("#precios").on("input", function() {
+        var precioSeleccionado = $(this).val();
+        $("#precioSeleccionado").text(precioSeleccionado);
+        var searchTerm = $("#buscar-juego").val();
+        var generosSeleccionados = obtenerSeleccion(".filtro-genero");
+        cargarJuegos(searchTerm, generosSeleccionados, precioSeleccionado);
+    });
 
-            // Mostrar/ocultar el filtro de generos
-            $("#toggleGenero").click(function() {
-                $("#filtroGenero").slideToggle();
-            });
+    // Show/hide genre filter
+    $("#toggleGenero").click(function() {
+        $("#filtroGenero").slideToggle();
+    });
 
-            // Mostrar/ocultar el filtro de precios
-            $("#togglePrecio").click(function() {
-                $("#filtroPrecio").slideToggle();
-            });
+    // Show/hide price filter
+    $("#togglePrecio").click(function() {
+        $("#filtroPrecio").slideToggle();
+    });
+
+    // Attach event listeners to the dynamically loaded buttons
+     function attachEventListeners() {
+        // Remove existing event listeners first to prevent duplication
+        $('.contenedor-juegos').off('click', '.agregar-carrito');
+        $('.contenedor-juegos').off('click', '.asociar-tarjeta');
+
+        // Add new event listeners
+        $('.contenedor-juegos').on('click', '.agregar-carrito', function(event) {
+            event.preventDefault();
+            var juegoID = $(this).data('juego-id');
+            var precio = $(this).data('precio');
+            var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
+            fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
+                .then(response => response.text())
+                .then(text => $('#mensaje').text(text));
+        });
+
+        $('.contenedor-juegos').on('click', '.asociar-tarjeta', function(event) {
+            event.preventDefault();
+            $('#mensaje').text('Debes tener una tarjeta asociada a tu perfil para poder comprar productos');
+        });
+    }
+
+    // Initially attach event listeners
+    attachEventListeners();
         });
     </script>
+
 
 </body>
 </html>
