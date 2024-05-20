@@ -3,6 +3,8 @@
     <!-- Barra de navegacion -->
     <nav class="navbar">
         
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        
         <!-- Paginas de la web -->
         <ul class="menu-izquierdo">
             <li><button onclick="location.href = 'PagPrincipal.php'">Inicio</button></li>
