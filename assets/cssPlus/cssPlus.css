@@ -1,0 +1,50 @@
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+.login-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ff8800;
+}
+.btn-warning {
+    background-color: #ff8800;
+    border-color: #ff8800;
+}
+.btn-warning:hover {
+    background-color: #e67e00;
+    border-color: #e67e00;
+}
+.card-title {
+    font-family: 'Lato', sans-serif;
+    color: #ff8800;
+}
+.input-group-text {
+    background-color: #ff8800;
+    border: none;
+}
+.input-group-text i {
+    color: #fff;
+}
+.navbar-nav .nav-item .nav-link {
+    color: #f0f0f0;
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ff8800;
+}
+.dropdown-menu {
+    background-color: #1e1e1e;
+}
+.dropdown-item {
+    color: #f0f0f0;
+}
+.dropdown-item:hover {
+    color: #ff8800;
+    background-color: transparent;
+}
+.navbar{
+    background-color: #1e1e1e;
+}

@@ -36,62 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <title>Gaming World</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <style>
-            body {
-                background-color: #121212;
-                color: #f0f0f0;
-            }
-            .login-container {
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .login-card {
-                background-color: #1e1e1e;
-                padding: 40px;
-                border-radius: 10px;
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            }
-            .form-control:focus {
-                box-shadow: none;
-                border-color: #ff8800;
-            }
-            .btn-warning {
-                background-color: #ff8800;
-                border-color: #ff8800;
-                font-size: 1.2rem;
-                padding: 10px 0;
-            }
-            .btn-warning:hover {
-                background-color: #e67e00;
-                border-color: #e67e00;
-            }
-            .card-title {
-                font-family: 'Arial Black', sans-serif;
-                font-size: 2rem;
-                color: #ff8800;
-            }
-            .register p {
-                margin-bottom: 0.5rem;
-            }
-            .input-group-text {
-                background-color: #ff8800;
-                border: none;
-            }
-            .input-group-text i {
-                color: #fff;
-            }
-            .form-group label {
-                font-size: 1.1rem;
-            }
-        </style>
+        <link rel="stylesheet" href="assets/cssPlus/cssPlus.css"
     </head>
     <body>
-        <div class="container login-container">
+        <div class="container d-flex align-items-center justify-content-center min-vh-100">
             <div class="row w-100">
-                <div class="col-md-8 offset-md-2 col-lg-10 offset-lg-1">
-                    <div class="login-card">
+                <div class="col-md-8 offset-md-2 col-lg-12 offset-lg-0">
+                    <div class="login-card p-4 rounded">
                         <div class="text-center mb-4">
                             <img src="Imagenes/LogoPng.png" alt="Gaming World Logo" class="img-fluid" style="max-width: 200px;">
                         </div>
