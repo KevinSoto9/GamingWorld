@@ -4,7 +4,7 @@ body {
 }
 .login-card {
     background-color: #1e1e1e;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
 }
 .form-control:focus {
     box-shadow: none;
@@ -20,7 +20,6 @@ body {
 }
 .card-title {
     font-family: 'Lato', sans-serif;
-    color: #ff8800;
 }
 .input-group-text {
     background-color: #ff8800;
@@ -31,6 +30,7 @@ body {
 }
 .navbar-nav .nav-item .nav-link {
     color: #f0f0f0;
+    font-size: 2em;
 }
 .navbar-nav .nav-item .nav-link:hover {
     color: #ff8800;
@@ -46,5 +46,8 @@ body {
     background-color: transparent;
 }
 .navbar{
+    background-color: #1e1e1e;
+}
+.card-header{
     background-color: #1e1e1e;
 }

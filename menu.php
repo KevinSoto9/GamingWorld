@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <!-- Foto y contenido -->
             <a class="navbar-brand mr-auto" href="#">
-                <img src="Imagenes/Titulo.png" width="100%" height="30" class="d-inline-block align-top" alt="">
+                <img src="Imagenes/Titulo.png" width="100%" height="50vw" class="d-inline-block align-top" alt="">
             </a>
 
             <!-- Botón para mostrar opciones en dispositivos pequeños -->
@@ -37,7 +37,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="perfil.php">Perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.php">Log Out</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                 </ul>
             </div>
         </div>
