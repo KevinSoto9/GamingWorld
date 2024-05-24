@@ -3,13 +3,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../assets/cssPlus/cssPlus.css">
 
-    <!-- Barra de navegacion -->
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-        <!-- Contenido de la barra de navegacion -->
+     <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-xl navbar-dark ">
+        <!-- Contenido de la barra de navegación -->
         <div class="container-fluid">
             <!-- Foto y contenido -->
-            <a class="navbar-brand mr-auto" href="#">
-                <img src="../Imagenes/Titulo.png" width="100%" height="50vw" class="d-inline-block align-top" alt="">
+            <a class="navbar-brand mr-auto" href="../PagPrincipal.php">
+                <img src="../Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
 
             <!-- Botón para mostrar opciones en dispositivos pequeños -->
@@ -22,9 +22,6 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="../PagPrincipal.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="../juegos.php">Juegos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../categorias.php">Categorías</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../desarrolladores.php">Desarrolladores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../editores.php">Editores</a></li>
                     <li class="nav-item"><a class="nav-link" href="../novedades.php">Novedades</a></li>
                     <li class="nav-item"><a class="nav-link" href="../noticias.php">Noticias</a></li>
                     <li class="nav-item"><a class="nav-link" href="../carrito.php">Carrito</a></li>
@@ -35,9 +32,9 @@
                     }
                     ?>
                 </ul>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav md-auto">
                     <li class="nav-item"><a class="nav-link" href="../perfil.php">Perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">Log Out</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../logout.php">LogOut</a></li>
                 </ul>
             </div>
         </div>

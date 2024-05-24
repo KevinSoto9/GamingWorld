@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="../css/styles.css">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-        <?php
-        require '../menu2.php';
+</head>
+<body class="text-white"> 
 
-        $html = "";
+<?php
+require '../menu2.php';
 
-        if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
-            $html .= "<div class='NoAdmin'>";
-            $html .= "No has iniciado sesión";
-            $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
-            $html .= "</div>";
+$html = "";
 
-            echo $html;
-        } else {
+if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
+    
+    require '../PersonalAutorizado.php';
+} else {
 
-            ?>
+?>
 
-            <h1 class="tablaTitulo">Lista de Administradores</h1>
+<h1 class="text-center text-white mt-4">Lista de Administradores</h1> 
 
-            <div class="tablaUsuarios">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 mt-4">
+            <table class="table text-white"> 
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
 
                 <?php
                 try {
@@ -34,37 +41,27 @@
                     $resul = $bd->query($sel);
 
                     if ($resul) {
-
-                        echo '<table class="tabla">';
-                        echo '<thead>';
-                        echo '<tr>';
-                        echo '<th>Nombre</th>';
-                        echo '<th>Email</th>';
-                        echo '</tr>';
-                        echo '</thead>';
-                        echo '<tbody>';
-
                         foreach ($resul as $res) {
-
                             echo '<tr>';
                             echo "<td>" . $res['Alias'] . "</td>";
                             echo "<td>" . $res['Email'] . "</td>";
                             echo '</tr>';
                         }
-
-                        echo '</tbody>';
-                        echo '</table>';
                     }
                 } catch (PDOException $e) {
-                    echo $e->getMessage();
+                    echo '<tr><td colspan="2">' . $e->getMessage() . '</td></tr>';
                 }
                 ?>
 
-            <div>
-
-    </body>
-</html>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <?php
 }
 ?>
+
+</body>
+</html>

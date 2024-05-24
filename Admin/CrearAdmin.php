@@ -5,12 +5,8 @@ session_start();
 $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
-    $html .= "<div class='NoAdmin'>";
-    $html .= "No has iniciado sesión";
-    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
-    $html .= "</div>";
-   
-    echo $html;
+    
+    require '../PersonalAutorizado.php';
 }
 
 else{
@@ -53,61 +49,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Gaming World</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Gaming World - Crear Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <?php require '../menu2.php'; ?>
+    
 </head>
 <body>
-    
-    <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        
-        <h1 class="formularioCrear-tituloPrincipal">Introduzca sus datos</h1>
-        
-        <!-- Contenedor de los datos -->
-        <div class="formularioCrear-container">
-            
-            <!-- Email -->
-            <div class="formularioCrear-container-datos">
-                
-                <p class="formularioCrear-container-datos-email">Email</p>
-                <input type="email" name="email" required>
-                
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <h1 class="formularioCrear-tituloPrincipal">Registro de Usuario</h1>
+                    
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <!-- Nombre de Usuario -->
+                    <div class="form-group">
+                        <label for="alias">Nombre de Usuario</label>
+                        <input type="text" id="alias" name="alias" class="form-control" required>
+                    </div>
+                    
+                    <!-- Contraseña -->
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control" minlength="8" required>
+                    </div>
+                    
+                    <!-- Confirmar Contraseña -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmar Contraseña</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" minlength="8" required>
+                    </div>
+                    
+                    <!-- Botón de Enviar -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
             </div>
-            
-            <!-- Usuario -->
-            <div class="formularioCrear-container-datos">
-                
-                <p class="formularioCrear-container-datos-nombreUsuario">Nombre de Usuario</p>
-                <input type="text" name="alias" required>
-                
-            </div>
-            
-            <!-- Contraseña -->
-            <div class="formularioCrear-container-datos">
-                
-                <p class="formularioCrear-container-datos-password">Contraseña</p>
-                <input type="password" name="password" minlength="8" required>
-                
-            </div>
-            
-            <!-- Confirmar contraseña -->
-            <div class="formularioCrear-container-datos">
-                
-                <p class="formularioCrear-container-datos-conPassword">Confirmar Contraseña</p>
-                <input type="password" name="confirmPassword" minlength="8" required>
-                
-            </div>
-            
-            <br>
-            
-            <input type="submit" value="Enviar">
         </div>
-    </form>
-    
-    <div>
-        <a href="../Admin.php">Volver<a>
-    </div>        
-            
+    </div>
 </body>
+
 </html>
 
 <?php

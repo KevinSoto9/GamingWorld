@@ -5,12 +5,8 @@ session_start();
 $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
-    $html .= "<div class='NoAdmin'>";
-    $html .= "No has iniciado sesión";
-    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
-    $html .= "</div>";
    
-    echo $html;
+    require '../PersonalAutorizado.php';
 }
 
 else{
@@ -36,36 +32,41 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="../css/styles.css">
-        
-        <?php require '../menu2.php'; ?>
-        
-    </head>
-    <body>
-        
-        <!-- Formulario de creacion de Desarrolladores -->
-        <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            
-            <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos del Desarrollador</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World - Crear Desarrollador</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <?php require '../menu2.php'; ?>
+    
+</head>
+<body>
+    <!-- Formulario de creación de Desarrolladores -->
+    <div class="container mt-5">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="formularioCrear">
+            <h1 class="text-center">Introduzca los datos del Desarrollador</h1>
             
             <!-- Contenedor de los datos -->
             <div class="formularioCrear-container">
                 
                 <!-- Nombre -->
-                <div class="formularioCrear-container-datos">
-                    
-                    <p class="formularioCrear-container-datos-nombre">Nombre</p>
-                    <input type="text" name="nombre">
-
+                <div class="form-group formularioCrear-container-datos">
+                    <label for="nombre" class="formularioCrear-container-datos-nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
                 
-                <input type="submit">
+                <button type="submit" class="btn btn-primary">Enviar</button>
                 
             </div>
-    </body>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
+
 
 <?php
 }

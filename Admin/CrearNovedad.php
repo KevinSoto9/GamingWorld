@@ -5,12 +5,8 @@ session_start();
 $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
-    $html .= "<div class='NoAdmin'>";
-    $html .= "No has iniciado sesión";
-    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
-    $html .= "</div>";
-   
-    echo $html;
+    
+    require '../PersonalAutorizado.php';
 }
 
 else{
@@ -39,61 +35,77 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="../css/styles.css">
-        
-        <?php require '../menu2.php'; ?>
-        
-    </head>
-    <body>
-        
-        <!-- Formulario de creacion de Novedades -->
-        <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World - Crear Novedad</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <?php require '../menu2.php'; ?>
+    
+</head>
+<body>
+    <div class="container mt-5">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="formularioCrear">
+            <h1 class="text-center">Introduzca los datos del Detalle de la Noticia</h1>
             
-            <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos de la Novedad</h1>
-            
-            <!-- Contenedor de los datos -->
-            <div class="formularioCrear-container">
-                
-                <!-- Titulo -->
-                <div class="formularioCrear-container-datos">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Noticia -->
+                    <div class="form-group">
+                        <label for="noticiaID">Noticia</label>
+                        <select name="noticiaID" id="noticiaID" class="form-control">
+                            <?php foreach ($stmtNoticias as $fila): ?>
+                                <option value="<?php echo htmlspecialchars($fila['noticiaID']); ?>"><?php echo htmlspecialchars($fila['titulo']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     
-                    <p class="formularioCrear-container-datos-titulo">Titulo</p>
-                    <input type="text" name="titulo">
+                    <!-- Título -->
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" name="titulo" id="titulo" class="form-control">
+                    </div>
                     
+                    <!-- Descripción -->
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea name="descripcion" id="descripcion" rows="4" class="form-control"></textarea>
+                    </div>
                 </div>
                 
-                <!-- Descripcion -->
-                <div class="formularioCrear-container-datos">
+                <div class="col-md-6">
+                    <!-- Imagen -->
+                    <div class="form-group">
+                        <label for="imagen">Imagen</label>
+                        <input type="text" name="imagen" id="imagen" class="form-control">
+                    </div>
                     
-                    <p class="formularioCrear-container-datos-descripcion">Descripcion</p>
-                    <input type="textarea" name="descripcion">
+                    <!-- Fecha de Publicación -->
+                    <div class="form-group">
+                        <label for="fechaPublicacion">Fecha de Publicación</label>
+                        <input type="date" name="fechaPublicacion" id="fechaPublicacion" class="form-control">
+                    </div>
                     
+                    <!-- URL de la Noticia -->
+                    <div class="form-group">
+                        <label for="urlNoticia">URL de la Noticia</label>
+                        <input type="text" name="urlNoticia" id="urlNoticia" class="form-control">
+                    </div>
                 </div>
-                
-                <!-- Fecha -->
-                <div class="formularioCrear-container-datos">
-                    
-                    <p class="formularioCrear-container-datos-fecha">Fecha</p>
-                    <input type="date" name="fecha">
-                    
-                </div>
-                
-                <!-- Imagen -->
-                <div class="formularioCrear-container-datos">
-                    
-                    <p class="formularioCrear-container-datos-imagen">Imagen</p>
-                    <input type="text" name="imagen">
-                    
-                </div>
-                
-                <input type="submit">
-                
             </div>
-    </body>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
+
 
 <?php
 }

@@ -5,12 +5,8 @@ session_start();
 $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
-    $html .= "<div class='NoAdmin'>";
-    $html .= "No has iniciado sesión";
-    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
-    $html .= "</div>";
-   
-    echo $html;
+    
+    require '../PersonalAutorizado.php';
 }
 
 else{
@@ -40,54 +36,53 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Gaming World</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Gaming World - Crear Noticia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
     <?php require '../menu2.php'; ?>
     
 </head>
 <body>
-    
     <!-- Formulario de creación de Noticias -->
-    <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        
-        <h1 class="formularioCrear-tituloPrincipal">Introduzca los datos de la Noticia</h1>
-        
-        <!-- Contenedor de los datos -->
-        <div class="formularioCrear-container">
+    <div class="container mt-5">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="formularioCrear">
+            <h1 class="text-center">Introduzca los datos de la Noticia</h1>
             
-            <!-- Título -->
-            <div class="formularioCrear-container-datos">
+            <!-- Contenedor de los datos -->
+            <div class="formularioCrear-container">
                 
-                <p class="formularioCrear-container-datos-titulo">Título</p>
-                <input type="text" name="titulo">
+                <!-- Título -->
+                <div class="form-group formularioCrear-container-datos">
+                    <label for="titulo" class="formularioCrear-container-datos-titulo">Título</label>
+                    <input type="text" name="titulo" id="titulo" class="form-control">
+                </div>
+                
+                <!-- Resumen -->
+                <div class="form-group formularioCrear-container-datos">
+                    <label for="resumen" class="formularioCrear-container-datos-resumen">Resumen</label>
+                    <textarea name="resumen" id="resumen" rows="4" cols="50" class="form-control"></textarea>
+                </div>
+                
+                <!-- Imagen -->
+                <div class="form-group formularioCrear-container-datos">
+                    <label for="imagen" class="formularioCrear-container-datos-imagen">Imagen</label>
+                    <input type="text" name="imagen" id="imagen" class="form-control">
+                </div>
+                
+                <br>
+                
+                <button type="submit" class="btn btn-primary">Enviar</button>
                 
             </div>
-            
-            <!-- Resumen -->
-            <div class="formularioCrear-container-datos">
-                
-                <p class="formularioCrear-container-datos-resumen">Resumen</p>
-                <textarea name="resumen" rows="4" cols="50"></textarea>
-                
-            </div>
-            
-            <!-- Imagen -->
-            <div class="formularioCrear-container-datos">
-                
-                <p class="formularioCrear-container-datos-imagen">Imagen</p>
-                <input type="text" name="imagen">
-                
-            </div>
-            
-            <br></br>
-            
-            <input type="submit">
-            
-        </div>
-    </form>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
 <?php
 }

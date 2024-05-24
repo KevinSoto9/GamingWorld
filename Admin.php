@@ -35,7 +35,6 @@
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/AñadirGeneros.php'"><i class="fas fa-edit"></i> Añadir Géneros</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/AñadirDesarrollador.php'"><i class="fas fa-edit"></i> Añadir Desarrollador</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/AñadirEditor.php'"><i class="fas fa-edit"></i> Añadir Editor</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'juegos.php?usuario=admin'"><i class="fas fa-cogs"></i> Administrar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'juegos.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
@@ -51,7 +50,6 @@
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearGenero.php'"><i class="fas fa-plus"></i> Añadir Género</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'categorias.php?usuario=admin'"><i class="fas fa-cogs"></i> Administrar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'categorias.php?'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
@@ -67,7 +65,6 @@
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearDesarrollador.php'"><i class="fas fa-plus"></i> Añadir Desarrollador</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'desarrolladores.php?usuario=admin'"><i class="fas fa-cogs"></i> Administrar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'desarrolladores.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
@@ -83,7 +80,6 @@
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearEditor.php'"><i class="fas fa-plus"></i> Añadir Editor</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'editores.php?usuario=admin'"><i class="fas fa-cogs"></i> Administrar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'editores.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
@@ -99,7 +95,6 @@
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearNovedad.php'"><i class="fas fa-plus"></i> Añadir Novedad</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'novedades.php?usuario=admin'"><i class="fas fa-cogs"></i> Administrar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'novedades.php'"><i class="fas fa-list"></i> Listar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'calendario.php'"><i class="fas fa-calendar-alt"></i> Ver Calendario</button>
                             </div>
@@ -117,7 +112,6 @@
                             <div class="d-flex flex-wrap justify-content-center">
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearNoticia.php'"><i class="fas fa-plus"></i> Añadir Noticia</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearNoticiaDetalles.php'"><i class="fas fa-info-circle"></i> Añadir Detalles</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'noticias.php?usuario=admin'"><i class="fas fa-cogs"></i> Administrar</button>
                                 <button class="btn btn-warning m-2" onclick="location.href = 'noticias.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
@@ -151,10 +145,27 @@
         </script>
 
         <?php else: ?>
-        <div class='NoAdmin text-center'>
-            <p>No tienes permiso para acceder a esta página.</p>
-            <button class="btn btn-warning" onclick='window.location.href="PagPrincipal.php"'>Volver a la Página Principal</button>
-        </div>
+        <!DOCTYPE html>
+            <html lang='es'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+                    <link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>
+                    <title>Acceso Restringido</title>
+                </head>
+                <body>
+                    <div class='container mt-5'>
+                        <div class='alert alert-danger text-center' role='alert'>
+                            No has iniciado sesión como administrador.
+                            <button class='btn btn-dark ml-4' onclick='window.location.href="../index.php"'>Iniciar sesión</button>
+                        </div>
+                        <div class='text-center'> 
+                            <img src='Imagenes/PersonalAutorizado.jpg' class='img-fluid mt-2' alt='Imagen'>
+                        </div>
+                    </div>
+                </body>
+            </html>
         <?php endif; ?>
     </div>
 </body>
