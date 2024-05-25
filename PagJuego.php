@@ -1,271 +1,225 @@
 <?php
-
 session_start();
 
 $html = "";
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    $html .= "<div class='container'>";
     $html .= "<div class='NoSesion'>";
-    $html .= "No has iniciado sesión";
-    $html .= "<button onclick='window.location.href=\"index.php\"'>Hazlo Aquí</button>";
+    $html .= "<h2>No has iniciado sesión</h2>";
+    $html .= "<button class='btn btn-primary' onclick='window.location.href=\"index.php\"'>Iniciar sesión</button>";
     $html .= "</div>";
-   
+    $html .= "</div>";
     echo $html;
-}
-
-else{
-    
+} else {
     // Conseguir el ID del Juego
-$juegoID = "";
-if (isset($_GET["juegoID"])) {
-    $juegoID = $_GET["juegoID"];
-}
+    $juegoID = "";
+    if (isset($_GET["juegoID"])) {
+        $juegoID = $_GET["juegoID"];
+    }
+    ?>
+    <!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Gaming World</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="css/styles.css">
+            <style>
+                body {
+                    background-color: #343a40;
+                    color: white;
+                }
+            </style>
+        </head>
+        <body>
+            <?php
+            session_abort();
+            require 'menu.php';
+            require 'bd.php';
 
-session_abort()
-?>
+            // Consulta SQL para el juego
+            $sel = "SELECT
+                    juegos.juegoID,
+                    juegos.nombre,
+                    juegos.imagen,
+                    juegos.descripcion,
+                    juegos.fecha_salida,
+                    juegos.precio,
+                    desarrolladores.desarrolladorID,
+                    editores.editorID,
+                    GROUP_CONCAT(DISTINCT generos.nombre) AS generos,
+                    desarrolladores.nombre AS desarrollador,
+                    editores.nombre AS editor
+                    FROM juegos
+                    INNER JOIN juegos_generos ON juegos_generos.juegoID = juegos.juegoID
+                    INNER JOIN generos ON generos.generoID = juegos_generos.generoID
+                    INNER JOIN juegos_desarrolladores ON juegos_desarrolladores.juegoID = juegos.juegoID
+                    INNER JOIN desarrolladores ON desarrolladores.desarrolladorID = juegos_desarrolladores.desarrolladorID
+                    INNER JOIN juegos_editores ON juegos_editores.juegoID = juegos.juegoID
+                    INNER JOIN editores ON editores.editorID = juegos_editores.editorID
+                    WHERE juegos.juegoID = '$juegoID'
+                    GROUP BY juegos.juegoID";
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <div>
-            <div>
-                <?php
-                // Requires
-                require 'menu.php';
-                require 'bd.php';
+            $juegos = $bd->query($sel);
+
+            $meses = array(
+                'January' => 'Enero',
+                'February' => 'Febrero',
+                'March' => 'Marzo',
+                'April' => 'Abril',
+                'May' => 'Mayo',
+                'June' => 'Junio',
+                'July' => 'Julio',
+                'August' => 'Agosto',
+                'September' => 'Septiembre',
+                'October' => 'Octubre',
+                'November' => 'Noviembre',
+                'December' => 'Diciembre'
+            );
+
+            echo "<div class='container'>";
+
+            foreach ($juegos as $juego) {
                 ?>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8">
+                        <div class="card bg-dark text-white">
+                            <div class="card-header">
+                                <h2><?php echo $juego['nombre']; ?></h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="ImagenesJuegos/<?php echo $juego['imagen']; ?>" alt="<?php echo $juego['nombre']; ?>" class="img-fluid">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p><?php echo $juego['descripcion']; ?></p>
+                                        <p>Precio: <?php echo $juego['precio']; ?></p>
+                                        <?php
+                                        $fecha_salida = strtotime($juego['fecha_salida']);
+                                        $fechaFormateada = 'Publicado el ' . date('j', $fecha_salida) . ' de ' . $meses[date('F', $fecha_salida)] . ' de ' . date('Y', $fecha_salida);
+                                        ?>
+                                        <p>Fecha de salida: <?php echo $fechaFormateada; ?></p>
+                                        <p>Géneros: <?php echo $juego['generos']; ?></p>
+                                        <p>Desarrollador: <a href="PagDesarrollador.php?desarrolladorID=<?php echo urlencode($juego['desarrolladorID']); ?>"><?php echo $juego['desarrollador']; ?></a></p>
+                                        <p>Editor: <a href="PagEditor.php?editorID=<?php echo urlencode($juego['editorID']); ?>"><?php echo $juego['editor']; ?></a></p>
+                                        <?php
+                                        $usuarioID = $_SESSION['UsuarioID'];
 
-                <div class="titulo">
-                    <h1>Juego</h1>
-                    
-                    <div id="mensaje"></div>
+                                        $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
+                                        $stmt = $bd->prepare($carritoSelect);
+                                        $stmt->bindParam(':usuarioID', $usuarioID);
+                                        $stmt->execute();
+                                        $numFilas = $stmt->rowCount();
+
+                                        if ($numFilas > 0) {
+                                            echo "<a href='#' class='btn btn-primary agregar-carrito' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</a>";
+                                        } else {
+                                            echo "<a href='#' class='btn btn-primary asociar-tarjeta'>Asociar una tarjeta para poder comprar</a>";
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                            <?php
+// Mostrar comentarios
+                            $htmlComentarios = "";
+
+                            $htmlComentarios .= "<div class='bg-dark mt-5 rounded juegoSolo comentarios'>";
+                            $htmlComentarios .= "<h2 class='card-header'>Comentarios</h2>";
+
+// Consulta SQL para obtener los comentarios del juego
+                            $sel2 = "SELECT * FROM `comentarios_juegos` WHERE `JuegoID` = '$juegoID'";
+                            $comentarios = $bd->query($sel2);
+
+                            if ($comentarios->rowCount() < 1) {
+                                $htmlComentarios .= "<div class='card-body'>";
+                                $htmlComentarios .= "<div class='noComentarios'>";
+                                $htmlComentarios .= "<h2>No hay comentarios, sé el primero en decir algo</h2>";
+                                $htmlComentarios .= "<button class='mt-2 btn btn-primary' onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
+                                $htmlComentarios .= "</div>";
+                                $htmlComentarios .= "</div>";
+                            } else {
+                                $htmlComentarios .= "<div class='card-body'>";
+                                foreach ($comentarios as $comentario) {
+                        $htmlComentarios .= "<div class='card comentarios-content bg-secondary'>";
+                        $htmlComentarios .= "<div class='card-body comentarios-content-info'>";
+
+// Consulta preparada para obtener los datos del usuario
+                                    $sel3 = $bd->prepare("SELECT Alias FROM `usuarios` WHERE `UsuarioID` = :UsuarioID");
+                                    $sel3->execute(['UsuarioID' => $comentario['UsuarioID']]);
+                                    $usuario = $sel3->fetch();
+
+                                    $htmlComentarios .= '<p class="card-text">' . $usuario['Alias'] . '</p>';
+                                    $htmlComentarios .= '<p class="card-text">' . $comentario['comentario'] . '</p>';
+                                    $fecha = strtotime($comentario['fecha']);
+                                    $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
+                                    $htmlComentarios .= '<p class="card-text">' . $fechaFormateada . '</p>';
+                                    $htmlComentarios .= "</div>";
+
+                                    $htmlComentarios .= "<div class='comentario-content-opciones card-body'>";
+                                    if ($usuario['Alias'] == $_SESSION['Alias']) {
+                                        $htmlComentarios .= "<button class='btn btn-primary mr-2' onclick=\"window.location.href='EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
+                                    }
+                                    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
+                                        $htmlComentarios .= "<button class='btn btn-primary' onclick=\"window.location.href='EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
+                                    }
+                                    $htmlComentarios .= "</div>";
+
+                                    $htmlComentarios .= "</div>";
+                                }
+                                $htmlComentarios .= "<div class='comentar mt-3'>";
+                                $htmlComentarios .= "<h2>¿Quieres comentar algo?</h2>";
+                                $htmlComentarios .= "<button class='btn btn-primary' onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
+                                $htmlComentarios .= "</div>";
+                                $htmlComentarios .= "</div>";
+                            }
+
+                            $htmlComentarios .= "</div>";
+
+                            echo $htmlComentarios;
+                            ?>
+
                 </div>
-
-                <?php
-                // Consulta SQL para el juego
-                $sel = "SELECT
-                        juegos.juegoID,
-                        juegos.nombre,
-                        juegos.imagen,
-                        juegos.descripcion,
-                        juegos.fecha_salida,
-                        juegos.precio,
-                        desarrolladores.desarrolladorID,
-                        editores.editorID,
-                        GROUP_CONCAT(DISTINCT generos.nombre) AS generos,
-                        desarrolladores.nombre AS desarrollador,
-                        editores.nombre AS editor
-                        FROM juegos
-                        INNER JOIN juegos_generos ON juegos_generos.juegoID = juegos.juegoID
-                        INNER JOIN generos ON generos.generoID = juegos_generos.generoID
-                        INNER JOIN juegos_desarrolladores ON juegos_desarrolladores.juegoID = juegos.juegoID
-                        INNER JOIN desarrolladores ON desarrolladores.desarrolladorID = juegos_desarrolladores.desarrolladorID
-                        INNER JOIN juegos_editores ON juegos_editores.juegoID = juegos.juegoID
-                        INNER JOIN editores ON editores.editorID = juegos_editores.editorID
-                        WHERE juegos.juegoID = '$juegoID'
-                        GROUP BY juegos.juegoID";
-
-                $juegos = $bd->query($sel);
-
-                $meses = array(
-                    'January' => 'Enero',
-                    'February' => 'Febrero',
-                    'March' => 'Marzo',
-                    'April' => 'Abril',
-                    'May' => 'Mayo',
-                    'June' => 'Junio',
-                    'July' => 'Julio',
-                    'August' => 'Agosto',
-                    'September' => 'Septiembre',
-                    'October' => 'Octubre',
-                    'November' => 'Noviembre',
-                    'December' => 'Diciembre'
-                );
-
-                foreach ($juegos as $juego) {
-
-                    $html .= "<div class='juegoSolo' style='background-color: black; color: white;'>";
-                    $html .= "<div class='contenidoSolo'>";
-
-                    // Contenedor Principal
-                    $html .= "<div class='infoPrincipal'>";
-
-                    // Nombre
-                    $html .= "<h2>$juego[nombre]</h2>";
-
-                    // Imagen
-                    $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' alt='$juego[nombre]'>";
-                    $html .= "</div>";
-
-                    // Contenedor Secundario
-                    $html .= "<div class='infoSecundaria'>";
-
-                    // Descripcion
-                    $html .= "<p>$juego[descripcion]</p>";
-                    $html .= "</div>";
-
-                    // Contenedor Final
-                    $html .= "<div class='infoFinal'>";
-
-                    // Precio
-                    $html .= "<p>Precio: $juego[precio]</p>";
-
-                    // Fecha de salida
-                    $fecha_salida = strtotime($juego['fecha_salida']);
-                    $fechaFormateada = 'Publicado el ' . date('j', $fecha_salida) . ' de ' . $meses[date('F', $fecha_salida)] . ' de ' . date('Y', $fecha_salida);
-                    $html .= "<p>Fecha de salida: $fechaFormateada</p>";
-
-                    //  Generos
-                    // Generos
-                    $generos = explode(",", $juego["generos"]);
-                    $html .= "<p>Géneros: ";
-                    $generosCount = count($generos);
-                    foreach ($generos as $key => $genero) {
-                        $query = "SELECT generoID FROM generos WHERE nombre = ?";
-                        $statement = $bd->prepare($query);
-                        $statement->execute([$genero]);
-                        $resultado = $statement->fetch();
-                        $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-                        $html .= "<a href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>";
-
-                        // Añadir coma si no es el último género
-                        if ($key < $generosCount - 1) {
-                            $html .= ", ";
-                        }
-                    }
-                    $html .= "</p>";
-
-                    // Desarrollador
-                    $desarrolladorID = urlencode($juego['desarrolladorID']);
-                    $html .= "<p>Desarrollador: <a href='PagDesarrollador.php?desarrolladorID=$desarrolladorID'>$juego[desarrollador]</a></p>";
-
-                    // Editor
-                    $editorID = urlencode($juego['editorID']);
-                    $html .= "<p>Editor: <a href='PagEditor.php?editorID=$editorID'>$juego[editor]</a></p>";
-                    
-                     $usuarioID = $_SESSION['UsuarioID'];
-
-                    $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
-                    $stmt = $bd->prepare($carritoSelect);
-                    $stmt->bindParam(':usuarioID', $usuarioID);
-                    $stmt->execute();
-                    $numFilas = $stmt->rowCount();
-
-                    if ($numFilas > 0) {
-                        $html .= "<a href='#' class='agregar-carrito' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</a>";
-                    } else {
-                        $html .= "<a href='#' class='asociar-tarjeta'>Asociar una tarjeta para poder comprar</a>";
-                    }
-
-                    $html .= "</div>";
-
-                    $html .= "</div>";
-                    $html .= "</div>";
-                }
-
-                echo $html;
-
-                // Mostrar comentarios
-                $htmlComentarios = "";
-
-                $htmlComentarios .= "<div class='juegoSolo comentarios'>";
-                $htmlComentarios .= "<h2>Comentarios</h2>";
-
-                $sel2 = "SELECT * FROM `comentarios_juegos` WHERE `JuegoID` = '$juegoID'";
-
-                $comentarios = $bd->query($sel2);
-
-                if ($comentarios->rowCount() < 1) {
-
-                    $htmlComentarios .= "<div class='noComentarios'>";
-                    $htmlComentarios .= "<h2>No hay comentarios, sé el primero en decir algo</h2>";
-                    $htmlComentarios .= "<button onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
-                    $htmlComentarios .= "</div>";
-                } else {
-
-                    foreach ($comentarios as $comentario) {
-
-                        $htmlComentarios .= "<div class='comentarios-content'>";
-
-                        $htmlComentarios .= "<div class='comentarios-content-info'>";
-
-                        $NombreUsuario = $comentario['UsuarioID'];
-
-                        $sel3 = "SELECT * FROM `usuarios` WHERE `UsuarioID` = '$NombreUsuario'";
-
-                        $usuarios = $bd->query($sel3);
-
-                        foreach ($usuarios as $usuario) {
-                            $htmlComentarios .= '<p>' . $usuario['Alias'] . '</p>';
-                        }
-
-                        $htmlComentarios .= '<p>' . $comentario['comentario'] . '</p>';
-
-                        $fecha = strtotime($comentario['fecha']);
-                        $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
-                        
-                        $htmlComentarios .= '<p>' . $fechaFormateada . '</p>';
-
-                        $htmlComentarios .= "</div>";
-
-                        $htmlComentarios .= "<div class='comentario-content-opciones'>";
-
-                        if ($usuario['Alias'] == $_SESSION['Alias']) {
-                            $htmlComentarios .= "<button onclick=\"window.location.href='EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
-                        }
-                        
-                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
-                            $htmlComentarios .= "<button onclick=\"window.location.href='EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
-                        }
-
-                        $htmlComentarios .= "</div>";
-
-                        $htmlComentarios .= "</div>";
-                    }
-
-                    $htmlComentarios .= "<div class='comentar'>";
-                    $htmlComentarios .= "<h2>¿Quieres comentar algo?</h2>";
-                    $htmlComentarios .= "<button onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
-                    $htmlComentarios .= "</div>";
-                }
-
-                $htmlComentarios .= "</div>";
-                
-                
-
-                echo $htmlComentarios;
-                ?>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
+
     </body>
-</html>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    function attachEventListeners() {
-        $('.juegoSolo').on('click', '.agregar-carrito', function(event) {
-            event.preventDefault();
-            var juegoID = $(this).data('juego-id');
-            var precio = $(this).data('precio');
-            var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
-            fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
-                .then(response => response.text())
-                .then(text => $('#mensaje').text(text));
-        });
+    </html>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function attachEventListeners() {
+                $('.card').on('click', '.agregar-carrito', function (event) {
+                    event.preventDefault();
+                    var juegoID = $(this).data('juego-id');
+                    var precio = $(this).data('precio');
+                    var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
+                    fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
+                            .then(response => response.text())
+                            .then(text => $('#mensaje').text(text));
+                });
 
-        $('.juegoSolo').on('click', '.asociar-tarjeta', function(event) {
-            event.preventDefault();
-            $('#mensaje').text('Debes tener una tarjeta asociada a tu perfil para poder comprar productos');
-        });
-    }
+                $('.card').on('click', '.asociar-tarjeta', function (event) {
+                    event.preventDefault();
+                    $('#mensaje').text('Debes tener una tarjeta asociada a tu perfil para poder comprar productos');
+                });
+            }
 
-    attachEventListeners();
-});
-</script>
-<?php
+            attachEventListeners();
+        });
+    </script>
+
+    <?php
 }
 ?>
+

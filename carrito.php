@@ -27,6 +27,9 @@ if ($carritoID) {
         $html .= "<table class='table table-dark table-striped'>";
         $html .= "<thead><tr><th>Nombre del Juego</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Acciones</th></tr></thead>";
         $html .= "<tbody>";
+
+        $totalGeneral = 0;
+
         while ($row = $stmtCarritoJuegos->fetch(PDO::FETCH_ASSOC)) {
             $nombreJuego = $row['nombre'];
             $precio = $row['precio'];
@@ -37,13 +40,17 @@ if ($carritoID) {
                         <td>$nombreJuego</td>
                         <td>$precio</td>
                         <td>$cantidad</td>
-                        <td>$total</td>
+                        <td class='total'>$total</td>
                         <td>
                             <button class='btn btn-danger eliminar-juego' data-juego-id='$juegoID' data-carrito-id='$carritoID'>Eliminar</button>
                         </td>
                       </tr>";
+            $totalGeneral += $total;
         }
+
         $html .= "</tbody></table>";
+
+        $html .= "<h3 class='text-center text-white total-general'>Total General: $$totalGeneral</h3>";
 
         $html .= "<form action='Email.php' method='post' class='text-center'>";
         $html .= "<input type='submit' value='Finalizar la compra' class='btn btn-success'>";
@@ -98,15 +105,27 @@ $(document).ready(function() {
                     } else {
                         row.remove();
                     }
-                    // Check if the table is empty
-                    if ($('#juegoTable tbody tr').length === 0) {
-                        location.reload();
-                    }
+                    // Update total general and check if it's zero
+                    updateTotalGeneral();
                 } else {
                     alert(res.message);
                 }
             }
         });
     });
+
+    function updateTotalGeneral() {
+        var totalGeneral = 0;
+        $('.table tbody tr').each(function() {
+            var total = parseFloat($(this).find('td:eq(3)').text());
+            totalGeneral += total;
+        });
+        if (totalGeneral === 0) {
+            location.reload(); // Reload page to show empty cart
+        } else {
+            $('.total-general').text('Total General: $' + totalGeneral.toFixed(2));
+        }
+    }
+
 });
 </script>
