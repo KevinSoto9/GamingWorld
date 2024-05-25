@@ -1,75 +1,47 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <div>
-            <div>
-                <?php
-                
-                // Requires
-                require 'menu.php';
-                require 'bd.php';
-                ?>
-                
-                
-                
-                
-                <?php
-                
-                $fechaActual = date('Y-m-d');
-                
-                
-                $sel = "SELECT n.*
-                        FROM noticias AS n
-                        INNER JOIN noticias_detalles AS nd ON n.noticiaID = nd.noticiaID
-                        ORDER BY nd.fechaPublicacion DESC
-                        ";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="text-white">
+    <?php require 'menu.php'; ?>
 
-                $novedades = $bd->query($sel);
-                
-                // Inicio lista de novedades
-                
-                $html = "";
-                
-                $html .= "<div class='titulo'>";
-                $html .= "<h1>Noticias</h1>";
-                $html .= "</div>";
+    <div class="container mt-5">
+        <?php
+        require 'bd.php';
+        
+        $sel = "SELECT n.*
+                FROM noticias AS n
+                INNER JOIN noticias_detalles AS nd ON n.noticiaID = nd.noticiaID
+                ORDER BY nd.fechaPublicacion DESC";
 
-                foreach ($novedades as $novedad) {
+        $novedades = $bd->query($sel);
+        
+        echo "<div class='text-center mb-5'>";
+        echo "<h1>Noticias</h1>";
+        echo "</div>";
 
-                    $html .= "<div class='juegoSolo' style='background-color: black; color: white;'>";
-                    $html .= "<a href='PagNoticia.php?noticiaID={$novedad['noticiaID']}' class='enlace-juego'>";
-                    $html .= "<div class='contenidoSolo'>";
-                    
-                    //Contenedor Principal
-                    $html .= "<div class='infoPrincipal'>";
-                    
-                    // Titulo
-                    $html .= "<h2>$novedad[titulo]</h2>";
-                    
-                    // Imagen
-                    $html .= "<img src='ImagenesNoticias/{$novedad['imagen']}' alt='$novedad[titulo]'>";
-                    $html .= "</div>";
-                    
-                    //Contenedor Secundario
-                    $html .= "<div class='infoSecundaria'>";
-                    // Descripcion
-                    $html .= "<p>$novedad[resumen]</p>";
-                    $html .= "</div>";
-                    
-                    $html .= "<a>";
-                    $html .= "</div>";
-                    $html .= "</div>";
-                }
-                
+        echo "<div class='row'>";
+        foreach ($novedades as $novedad) {
+            echo "<div class='col-md-4 mb-4'>";
+            echo "<div class='card bg-dark text-white h-100'>";
+            echo "<a href='PagNoticia.php?noticiaID={$novedad['noticiaID']}' class='enlace-juego text-white'>";
+            echo "<img src='ImagenesNoticias/{$novedad['imagen']}' class='card-img-top' alt='{$novedad['titulo']}'>";
+            echo "<div class='card-body'>";
+            echo "<h5 class='card-title'>{$novedad['titulo']}</h5>";
+            echo "<p class='card-text'>{$novedad['resumen']}</p>";
+            echo "</div>";
+            echo "</a>";
+            echo "</div>";
+            echo "</div>";
+        }
+        echo "</div>";
+        ?>
+    </div>
 
-                echo $html;
-                ?>
-            </div>
-        </div>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
-

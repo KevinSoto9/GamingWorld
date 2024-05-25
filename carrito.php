@@ -2,7 +2,8 @@
 require 'menu.php';
 require 'bd.php';
 
-echo "<link rel='stylesheet' href='css/styles.css'>";
+echo "<link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>";
+echo "<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'>";
 
 $usuarioID = $_SESSION['UsuarioID'];
 
@@ -12,49 +13,66 @@ $stmtCarrito->bindParam(':usuarioID', $usuarioID);
 $stmtCarrito->execute();
 $carritoID = $stmtCarrito->fetchColumn();
 
-$html = "<div>";
+$html = "<body>";
+$html .= "<div class='container mt-5'>";
 
 if ($carritoID) {
     $selCarritoJuegos = "SELECT cj.juegoID, j.nombre, cj.precio, cj.cantidad FROM `carrito_juegos` cj INNER JOIN `juegos` j ON cj.juegoID = j.juegoID WHERE `carritoID` = :carritoID";
     $stmtCarritoJuegos = $bd->prepare($selCarritoJuegos);
     $stmtCarritoJuegos->bindParam(':carritoID', $carritoID);
     $stmtCarritoJuegos->execute();
-    
-    $html .= "<h2>Lista de la compra</h2>";
-    $html .= "<table>";
-    $html .= "<tr><th>Nombre del Juego</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Acciones</th></tr>";
-    while ($row = $stmtCarritoJuegos->fetch(PDO::FETCH_ASSOC)) {
-        $nombreJuego = $row['nombre'];
-        $precio = $row['precio'];
-        $cantidad = $row['cantidad'];
-        $total = $precio * $cantidad;
-        $juegoID = $row['juegoID'];
-        $html .= "<tr id='juego-$juegoID'>
-                    <td>$nombreJuego</td>
-                    <td>$precio</td>
-                    <td>$cantidad</td>
-                    <td>$total</td>
-                    <td>
-                        <button class='eliminar-juego' data-juego-id='$juegoID' data-carrito-id='$carritoID'>Eliminar</button>
-                    </td>
-                  </tr>";
-    }
-    $html .= "</table>";
-    
-    $html .= "<form action='Email.php' method='post'>";
-    $html .= "<input type='submit' value='Finalizar la compra'>";
-    $html .= "</form>";
 
+    if ($stmtCarritoJuegos->rowCount() > 0) {
+        $html .= "<h2 class='text-center text-white'>Lista de la compra</h2>";
+        $html .= "<table class='table table-dark table-striped'>";
+        $html .= "<thead><tr><th>Nombre del Juego</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Acciones</th></tr></thead>";
+        $html .= "<tbody>";
+        while ($row = $stmtCarritoJuegos->fetch(PDO::FETCH_ASSOC)) {
+            $nombreJuego = $row['nombre'];
+            $precio = $row['precio'];
+            $cantidad = $row['cantidad'];
+            $total = $precio * $cantidad;
+            $juegoID = $row['juegoID'];
+            $html .= "<tr id='juego-$juegoID'>
+                        <td>$nombreJuego</td>
+                        <td>$precio</td>
+                        <td>$cantidad</td>
+                        <td>$total</td>
+                        <td>
+                            <button class='btn btn-danger eliminar-juego' data-juego-id='$juegoID' data-carrito-id='$carritoID'>Eliminar</button>
+                        </td>
+                      </tr>";
+        }
+        $html .= "</tbody></table>";
+
+        $html .= "<form action='Email.php' method='post' class='text-center'>";
+        $html .= "<input type='submit' value='Finalizar la compra' class='btn btn-success'>";
+        $html .= "</form>";
+    } else {
+        $html .= "<div class='text-center'>";
+        $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
+        $html .= "<img src='Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
+        $html .= "<div class='mt-4'>";
+        $html .= "<a href='Pagprincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+        $html .= "</div>";
+        $html .= "</div>";
+    }
 } else {
-    $html .= "<p>No hay juegos en el carrito.</p>";
+    $html .= "<div class='text-center'>";
+    $html .= "<h2 class='text-white'>Tu carrito está vacío</h2>";
+    $html .= "<img src='Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4'>";
+    $html .= "<a href='Pagprincipal.php' class='btn btn-primary'>Volver a la tienda</a>";
+    $html .= "</div>";
 }
 
 $html .= "</div>";
+$html .= "</body>";
 
 echo $html;
 ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
     $('.eliminar-juego').on('click', function() {
@@ -79,6 +97,10 @@ $(document).ready(function() {
                         row.find('td:eq(3)').text(total.toFixed(2));
                     } else {
                         row.remove();
+                    }
+                    // Check if the table is empty
+                    if ($('#juegoTable tbody tr').length === 0) {
+                        location.reload();
                     }
                 } else {
                     alert(res.message);

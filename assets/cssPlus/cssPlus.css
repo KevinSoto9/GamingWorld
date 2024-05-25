@@ -1,5 +1,5 @@
 body {
-    background-color: #121212;
+    background-color: #121212 !important;
     color: #f0f0f0;
 }
 .login-card {
@@ -51,4 +51,23 @@ body {
 .card-header{
     background-color: #1e1e1e;
 }
-
+.perfil {
+    padding: 30px;
+    border-radius: 10px;
+}
+.perfil-contenido {
+    display: flex;
+    flex-wrap: wrap;
+}
+.perfil-usuario, .perfil-tarjeta {
+    margin-bottom: 20px;
+}
+.perfil-usuario-container, .perfil-tarjeta-vinculada {
+    word-wrap: break-word;
+    padding: 20px;
+    background-color: #3c3c3c;
+    border-radius: 10px;
+}
+.perfil-usuario h2, .perfil-tarjeta h2 {
+    font-size: 1.2rem;
+}

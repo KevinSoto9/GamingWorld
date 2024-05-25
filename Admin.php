@@ -19,7 +19,7 @@
             <h1 class="admin-titulo text-center mb-4">Área de Administración</h1>
 
             <div class="text-center mb-4">
-                <button class="btn btn-warning" onclick="location.href = 'Instrucciones.php'">Ver Instrucciones</button>
+                <button class="btn btn-primary" onclick="location.href = 'Instrucciones.php'">Ver Instrucciones</button>
             </div>
 
             <div class="row">
@@ -31,11 +31,11 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearJuego.php'"><i class="fas fa-plus"></i> Añadir Juego</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/AñadirGeneros.php'"><i class="fas fa-edit"></i> Añadir Géneros</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/AñadirDesarrollador.php'"><i class="fas fa-edit"></i> Añadir Desarrollador</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/AñadirEditor.php'"><i class="fas fa-edit"></i> Añadir Editor</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'juegos.php'"><i class="fas fa-list"></i> Listar</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearJuego.php'"><i class="fas fa-plus"></i> Añadir Juego</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/AñadirGeneros.php'"><i class="fas fa-edit"></i> Añadir Géneros</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/AñadirDesarrollador.php'"><i class="fas fa-edit"></i> Añadir Desarrollador</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/AñadirEditor.php'"><i class="fas fa-edit"></i> Añadir Editor</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'juegos.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
                     </div>
@@ -49,8 +49,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearGenero.php'"><i class="fas fa-plus"></i> Añadir Género</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'categorias.php?'"><i class="fas fa-list"></i> Listar</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearGenero.php'"><i class="fas fa-plus"></i> Añadir Género</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'categorias.php?'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
                     </div>
@@ -64,8 +64,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearDesarrollador.php'"><i class="fas fa-plus"></i> Añadir Desarrollador</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'desarrolladores.php'"><i class="fas fa-list"></i> Listar</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearDesarrollador.php'"><i class="fas fa-plus"></i> Añadir Desarrollador</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'desarrolladores.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
                     </div>
@@ -79,8 +79,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearEditor.php'"><i class="fas fa-plus"></i> Añadir Editor</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'editores.php'"><i class="fas fa-list"></i> Listar</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearEditor.php'"><i class="fas fa-plus"></i> Añadir Editor</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'editores.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
                     </div>
@@ -94,9 +94,9 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearNovedad.php'"><i class="fas fa-plus"></i> Añadir Novedad</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'novedades.php'"><i class="fas fa-list"></i> Listar</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'calendario.php'"><i class="fas fa-calendar-alt"></i> Ver Calendario</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearNovedad.php'"><i class="fas fa-plus"></i> Añadir Novedad</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'novedades.php'"><i class="fas fa-list"></i> Listar</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'calendario.php'"><i class="fas fa-calendar-alt"></i> Ver Calendario</button>
                             </div>
                         </div>
                     </div>
@@ -110,9 +110,9 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearNoticia.php'"><i class="fas fa-plus"></i> Añadir Noticia</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearNoticiaDetalles.php'"><i class="fas fa-info-circle"></i> Añadir Detalles</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'noticias.php'"><i class="fas fa-list"></i> Listar</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearNoticia.php'"><i class="fas fa-plus"></i> Añadir Noticia</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearNoticiaDetalles.php'"><i class="fas fa-info-circle"></i> Añadir Detalles</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'noticias.php'"><i class="fas fa-list"></i> Listar</button>
                             </div>
                         </div>
                     </div>
@@ -126,9 +126,9 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/CrearAdmin.php'"><i class="fas fa-user-plus"></i> Crear Administrador</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/ListarClientes.php'"><i class="fas fa-list"></i> Listar Usuarios</button>
-                                <button class="btn btn-warning m-2" onclick="location.href = 'Admin/ListarAdministradores.php'"><i class="fas fa-list"></i> Listar Administradores</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/CrearAdmin.php'"><i class="fas fa-user-plus"></i> Crear Administrador</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/ListarClientes.php'"><i class="fas fa-list"></i> Listar Usuarios</button>
+                                <button class="btn btn-primary m-2" onclick="location.href = 'Admin/ListarAdministradores.php'"><i class="fas fa-list"></i> Listar Administradores</button>
                             </div>
                         </div>
                     </div>

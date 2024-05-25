@@ -1,153 +1,86 @@
-<?php
-// Conseguir el ID de la noticia
-$noticiaID = "";
-if (isset($_GET["noticiaID"])) {
-    $noticiaID = $_GET["noticiaID"];
-}
-?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <?php 
+    // Conseguir el ID de la noticia
+    $noticiaID = "";
+    if (isset($_GET["noticiaID"])) {
+        $noticiaID = $_GET["noticiaID"];
+    }
+    ?>
 
+    <?php 
+    // Requires
+    require 'menu.php';
+    require 'bd.php';
+    ?>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <div>
-            <div>
+    <div class="container mt-5">
+        <div class="titulo text-center mb-4">
+            <h1>Noticia</h1>
+        </div>
+
+        <?php
+        // Consulta SQL
+        $sel = "SELECT * FROM `noticias_detalles` WHERE `noticiaID` = '$noticiaID'";
+        $novedades = $bd->query($sel);
+
+        // Inicio lista de novedades
+        foreach ($novedades as $novedad) {
+            $html = "";
+            $html .= "<div class='card bg-dark text-white mb-4'>";
+            $html .= "<img src='ImagenesNoticiasDetalles/{$novedad['imagen']}' class='card-img-top' alt='{$novedad['titulo']}'>";
+            $html .= "<div class='card-body'>";
+            $html .= "<h5 class='card-title'>{$novedad['titulo']}</h5>";
+            $html .= "<p class='card-text'>{$novedad['descripcion']}</p>";
+            $html .= "<p class='card-text'><small class='text-muted'>Publicado el ". date('j \d\e F \d\e Y', strtotime($novedad['fechaPublicacion'])) ."</small></p>";
+            $html .= "<a href='{$novedad['urlNoticia']}' class='btn btn-primary' target='_blank'>Ver noticia completa</a>";
+            $html .= "</div>";
+            $html .= "</div>";
+
+            echo $html;
+        }
+        ?>
+        
+        <div class="card bg-dark text-white mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Comentarios</h5>
+
                 <?php
-                // Requires
-                require 'menu.php';
-                require 'bd.php';
-                ?>
-
-                <div class="titulo">
-                    <h1>Noticia</h1>
-                </div>
-
-                <?php
-                // Consulta SQL
-                $sel = "SELECT * FROM `noticias_detalles` WHERE `noticiaID` = '$noticiaID'";
-                $novedades = $bd->query($sel);
-
-                // Inicio lista de novedades
-                $html = "";
-
-                $meses = array(
-                    'January' => 'Enero',
-                    'February' => 'Febrero',
-                    'March' => 'Marzo',
-                    'April' => 'Abril',
-                    'May' => 'Mayo',
-                    'June' => 'Junio',
-                    'July' => 'Julio',
-                    'August' => 'Agosto',
-                    'September' => 'Septiembre',
-                    'October' => 'Octubre',
-                    'November' => 'Noviembre',
-                    'December' => 'Diciembre'
-                );
-
-                foreach ($novedades as $novedad) {
-
-                    $noticiaDetalleID = $novedad['noticiaDetalleID'];
-
-                    $html .= "<div class='juegoSolo' style='background-color: black; color: white;'>";
-                    $html .= "<div class='contenidoSolo'>";
-
-                    // Contenedor Principal
-                    $html .= "<div class='infoPrincipal'>";
-
-                    // Titulo
-                    $html .= "<h2>$novedad[titulo]</h2>";
-
-                    // Imagen
-                    $html .= "<img src='ImagenesNoticiasDetalles/{$novedad['imagen']}' alt='$novedad[titulo]'>";
-                    $html .= "</div>";
-
-                    // Contenedor Secundario
-                    $html .= "<div class='infoSecundaria'>";
-                    $html .= "<p>{$novedad['descripcion']}</p>";
-                    $html .= "<p>Publicación original: <a href='{$novedad['urlNoticia']}' target='_blank'>Ver aquí</a></p>";
-                    $html .= "</div>";
-
-                    // Fecha de publicación de la noticia
-                    $fechaPublicacion = strtotime($novedad['fechaPublicacion']);
-                    $fechaFormateadaPublicacion = 'Publicado el ' . date('j', $fechaPublicacion) . ' de ' . $meses[date('F', $fechaPublicacion)] . ' de ' . date('Y', $fechaPublicacion);
-                    $html .= "<p>{$fechaFormateadaPublicacion}</p>";
-
-                    $html .= "</div>";
-                    $html .= "<a>";
-                    $html .= "</div>";
-                    $html .= "</div>";
-                }
-
-                $html .= "<div class='juegoSolo comentarios'>";
-                $html .= "<h2>Comentarios</h2>";
-
-                $sel2 = "SELECT * FROM `comentarios_noticias` WHERE `noticiaDetalleID` = '$noticiaDetalleID'";
-
+                $sel2 = "SELECT * FROM `comentarios_noticias` WHERE `noticiaDetalleID` = '$noticiaID'";
                 $comentarios = $bd->query($sel2);
 
                 if ($comentarios->rowCount() < 1) {
-
-                    $html .= "<div class='noComentarios'>";
-                    $html .= "<h2>No hay comentarios, sé el primero en decir algo</h2>";
-                    $html .= "<button onclick='window.location.href=\"CrearComentarioNoticia.php?noticiaDetalleID=" . urlencode($noticiaDetalleID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
-                    $html .= "</div>";
+                    echo "<p class='card-text'>No hay comentarios, sé el primero en decir algo</p>";
                 } else {
-
                     foreach ($comentarios as $comentario) {
-
-                        $html .= "<div class='comentarios-content'>";
-
-                        $html .= "<div class='comentarios-content-info'>";
-
+                        echo "<div class='card bg-secondary text-white mb-3'>";
+                        echo "<div class='card-body'>";
                         $NombreUsuario = $comentario['usuarioID'];
-
                         $sel3 = "SELECT * FROM `usuarios` WHERE `UsuarioID` = '$NombreUsuario'";
-
                         $usuarios = $bd->query($sel3);
-
                         foreach ($usuarios as $usuario) {
-                            $html .= '<p>' . $usuario['Alias'] . '</p>';
+                            echo "<h5 class='card-title'>{$usuario['Alias']}</h5>";
                         }
-
-                        $html .= '<p>' . $comentario['comentario'] . '</p>';
-
-                        $fecha = strtotime($comentario['fecha']);
-                        $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
-
-                        $html .= '<p>' . $fechaFormateada . '</p>';
-
-                        $html .= "</div>";
-
-                        $html .= "<div class='comentario-content-opciones'>";
-
-                        if ($usuario['Alias'] == $_SESSION['Alias']) {
-                            $html .= "<button onclick=\"window.location.href='EditarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . $noticiaID . "'\">Editar</button>";
-                        }
-                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
-                            $html .= "<button onclick=\"window.location.href='EliminarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . $noticiaID . "'\">Eliminar</button>";
-                        }
-
-                        $html .= "</div>";
-
-                        $html .= "</div>";
+                        echo "<p class='card-text'>{$comentario['comentario']}</p>";
+                        echo "<p class='card-text'><small class='text-muted'>Publicado el ". date('j \d\e F \d\e Y \a \l\a\s H:i', strtotime($comentario['fecha'])) ."</small></p>";
+                        echo "</div>";
+                        echo "</div>";
                     }
-
-                    $html .= "<div class='comentar'>";
-                    $html .= "<h2>¿Quieres comentar algo?</h2>";
-                    $html .= "<button onclick='window.location.href=\"CrearComentarioNoticia.php?noticiaDetalleID=" . urlencode($noticiaDetalleID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
-                    $html .= "</div>";
                 }
-
-                $html .= "</div>";
-
-                echo $html;
                 ?>
+
+                <a href="CrearComentarioNoticia.php?noticiaDetalleID=<?php echo urlencode($noticiaID) ?>&usuarioID=<?php echo urldecode($_SESSION['UsuarioID']) ?>" class="btn btn-primary">Agregar comentario</a>
             </div>
         </div>
-    </body>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

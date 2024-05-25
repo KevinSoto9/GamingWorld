@@ -1,73 +1,52 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <div>
-            <div>
-                <?php
-                
-                // Requires
-                require 'menu.php';
-                require 'bd.php';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  
+        <?php 
+        // Requires
+        require 'menu.php';
+        require 'bd.php';
 
-                //Fecha actual
-                $fechaActual = date('Y-m-d');
-                
-                // Consulta SQL
-                $sel = "SELECT * FROM novedades ORDER BY fecha DESC";
+        //Fecha actual
+        $fechaActual = date('Y-m-d');
 
-                $novedades = $bd->query($sel);
-                
-                // Inicio lista de novedades
-                
-                $html = "";
-                
-                $html .= "<div class='titulo'>";
-                $html .= "<h1>Novedades</h1>";
-                $html .= "</div>";
-                
-                $html .= "<div class='calendario-link'>";
-                $html .= "<button onclick=\"location.href = 'calendario.php'\">Ver Calendario</button>";
-                $html .= "</div>";
-
-                foreach ($novedades as $novedad) {
-
-                    $html .= "<div class='juegoSolo' style='background-color: black; color: white;'>";
-                    $html .= "<div class='contenidoSolo'>";
-                    
-                    //Contenedor Principal
-                    $html .= "<div class='infoPrincipal'>";
-                    
-                    // Titulo
-                    $html .= "<h2>$novedad[titulo]</h2>";
-                    
-                    // Imagen
-                    $html .= "<img src='ImagenesNovedades/{$novedad['imagen']}' alt='$novedad[titulo]'>";
-                    $html .= "</div>";
-                    
-                    //Contenedor Secundario
-                    $html .= "<div class='infoSecundaria'>";
-                    // Descripcion
-                    $html .= "<p>$novedad[descripcion]</p>";
-                    $html .= "</div>";
-                    
-                    //Contenedor Final
-                    $html .= "<div class='infoFinal'>";
-                    // Fecha
-                    $html .= "<p>Fecha de Lanzamiento: $novedad[fecha]</p>";
-                    $html .= "</div>";
-                    
-                    $html .= "</div>";
-                    $html .= "</div>";
-                }
-
-                echo $html;
-                ?>
-            </div>
+        // Consulta SQL
+        $sel = "SELECT * FROM novedades ORDER BY fecha DESC";
+        $novedades = $bd->query($sel);
+        ?>
+<div class="container mt-5">
+        <div class="titulo text-center">
+            <h1>Novedades</h1>
         </div>
-    </body>
-</html>
 
+        <div class="calendario-link text-center mb-3">
+            <button class="btn btn-primary" onclick="location.href = 'calendario.php'">Ver Calendario</button>
+        </div>
+
+        <div class="row">
+            <?php foreach ($novedades as $novedad): ?>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card bg-dark text-white">
+                        <img src="ImagenesNovedades/<?php echo $novedad['imagen']; ?>" class="card-img-top" alt="<?php echo $novedad['titulo']; ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $novedad['titulo']; ?></h5>
+                            <p class="card-text"><?php echo $novedad['descripcion']; ?></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Fecha de Lanzamiento: <?php echo $novedad['fecha']; ?></small>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

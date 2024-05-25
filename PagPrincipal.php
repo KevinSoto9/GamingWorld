@@ -3,11 +3,12 @@ require 'menu.php';
 require 'bd.php';
 
 echo "<link rel='stylesheet' href='css/styles.css'>";
+echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>"; // Agregamos Bootstrap
 
 // Num de juegos por pagina
 $registros_por_pagina = 16;
 
-// Obtener la paggina actual
+// Obtener la página actual
 $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
 // Offset por donde empezar a coger datos
@@ -40,98 +41,78 @@ $juegos = $bd->query($sel);
 
 // Lista de juegos
 $html = "";
-$html .= "<div class='titulo'>";
-$html .= "<h1>GamingWorld</h1>";
-$html .= "<div id='mensaje'></div>";
+$html .= "<div class='container-fluid mv-80'>"; // Cambiamos a container-fluid para que ocupe todo el ancho disponible
+
+// Título
+$html .= "<h1 class='text-center mt-5 text-white mb-5'>GamingWorld</h1>";
+
+// Botón del historial
+$html .= "<div class='mb-5 container d-flex justify-content-center align-items-center'>";
+$html .= "<button class='btn btn-secondary' onclick=\"window.location.href='historico.php'\">Ver Historial</button>";
 $html .= "</div>";
-$html .= "<div class='calendario-link'>";
-$html .= "<button onclick=\"location.href = 'historico.php'\">Ver Historial</button>";
+
+$html .= "<div class='modal fade' id='mensajeModal' tabindex='-1' role='dialog' aria-labelledby='mensajeModalLabel' aria-hidden='true'>";
+$html .= "<div class='modal-dialog' role='document'>";
+$html .= "<div class='modal-content'>";
+$html .= "<div class='modal-header'>";
+$html .= "<h5 class='modal-title' id='mensajeModalLabel'>Juego añadido</h5>";
+$html .= "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+$html .= "<span aria-hidden='true'>&times;</span>";
+$html .= "</button>";
 $html .= "</div>";
-$html .= "<div class='contenedor-juegos'>";
+$html .= "<div class='modal-body' id='mensajeModalBody'></div>";
+$html .= "</div>";
+$html .= "</div>";
+$html .= "</div>";
+
+$html .= "<div id='mensaje'></div>"; // Movemos el div del mensaje al final
+
+$html .= "<div class='row'>"; // Creamos una fila de Bootstrap
 
 foreach ($juegos as $juego) {
-    $html .= "<div class='contenedor-juegos-content'>";
-    $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='enlace-juego'>";
-    $html .= "<div class='juego'>";
-    $html .= "<div class='contenido'>";
-
-    // Nombre
-    $html .= "<h2>{$juego['nombre']}</h2>";
-
-    //Imagen
-    $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
-
-    // Precio
-    $html .= "<p>Precio: {$juego['precio']}</p>";
-
-    // Generos 
+    $html .= "<div class='col-md-3'>"; // Dividimos en columnas de Bootstrap
+    $html .= "<div class='card mb-5 bg-dark text-white'>";
+    $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='enlace-juego text-white'>";
+    $html .= "<img class='card-img-top' src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
+    $html .= "<div class='card-body'>";
+    $html .= "<h5 class='card-title'>{$juego['nombre']}</h5>";
+    $html .= "<p class='card-text'>Precio: {$juego['precio']}</p>";
+    $html .= "<p class='card-text'>Géneros: ";
     $generos = explode(",", $juego["generos"]);
-    $html .= "<p>Géneros: ";
     foreach ($generos as $genero) {
-        $query = "SELECT generoID FROM generos WHERE nombre = ?";
-        $statement = $bd->prepare($query);
-        $statement->execute([$genero]);
-        $resultado = $statement->fetch();
-        $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-        $html .= "<a class='generos' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
+        $html .= "<a class='generos text-white' href='#'>$genero</a>, ";
     }
     $html .= "</p>";
-    
-    $usuarioID = $_SESSION['UsuarioID'];
-
-    $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
-    $stmt = $bd->prepare($carritoSelect);
-    $stmt->bindParam(':usuarioID', $usuarioID);
-    $stmt->execute();
-    $numFilas = $stmt->rowCount();
-
-
-    if ($numFilas > 0) {
-        $html .= "<a href='#' class='agregar-carrito' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</a>";
-        
-    } else {
-        $html .= "<a href='#' class='asociar-tarjeta'>Asociar una tarjeta para poder comprar</a>";
-    }
-
-
+    $html .= "<button class='btn btn-primary agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>"; // Botón de agregar al carrito con modal
     $html .= "</div>";
     $html .= "</div>";
     $html .= "</a>";
     $html .= "</div>";
 }
 
-$html .= "</div>";
+$html .= "</div>"; // Cerramos la fila de Bootstrap
+$html .= "</div>"; // Cerramos el contenedor de Bootstrap
 
 // Paginación botones
-$html .= "<div class='paginacion'>";
+$html .= "<div class='container'>";
+$html .= "<ul class='pagination justify-content-center'>"; // Cambiamos a paginación de Bootstrap
 for ($i = 1; $i <= $total_paginas; $i++) {
-    $html .= "<form action='' method='GET' style='display:inline;'>";
-    $html .= "<input type='hidden' name='pagina' value='$i'>";
-    $html .= "<button type='submit'>$i</button>";
-    $html .= "</form>";
+    $html .= "<li class='page-item bg-dark'><a class='page-link bg-dark text-white' href='?pagina=$i'>$i</a></li>";
 }
+$html .= "</ul>";
 $html .= "</div>";
 
 $html .= "<script>";
 $html .= "document.addEventListener('DOMContentLoaded', function() {";
 $html .= "    var agregarCarritoBtns = document.querySelectorAll('.agregar-carrito');";
-$html .= "    var asociarTarjetaBtns = document.querySelectorAll('.asociar-tarjeta');";
 
 $html .= "    agregarCarritoBtns.forEach(function(btn) {";
-$html .= "        btn.addEventListener('click', function(event) {";
-$html .= "            event.preventDefault();"; 
+$html .= "        btn.addEventListener('click', function() {";
 $html .= "            var juegoID = btn.getAttribute('data-juego-id');";
 $html .= "            var precio = btn.getAttribute('data-precio');";
 $html .= "            fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID={$_SESSION['UsuarioID']}')";
 $html .= "                .then(response => response.text())";
-$html .= "                .then(text => document.getElementById('mensaje').textContent = text);";
-$html .= "        });";
-$html .= "    });";
-
-$html .= "    asociarTarjetaBtns.forEach(function(btn) {";
-$html .= "        btn.addEventListener('click', function(event) {";
-$html .= "            event.preventDefault();"; // Prevenir el comportamiento predeterminado del enlace
-$html .= "            document.getElementById('mensaje').textContent = 'Debes tener una tarjeta asociada a tu perfil para poder comprar productos';";
+$html .= "                .then(text => document.getElementById('mensajeModalBody').textContent = text);";
 $html .= "        });";
 $html .= "    });";
 $html .= "});";
@@ -139,3 +120,5 @@ $html .= "</script>";
 
 echo $html;
 ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
