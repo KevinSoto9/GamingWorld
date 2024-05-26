@@ -75,21 +75,6 @@ function renderizarJuegos($juegos)
             $html .= "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
         }
         $html .= "</p>";
-
-        $usuarioID = $_SESSION['UsuarioID'];
-
-        $carritoSelect = "SELECT * FROM carrito WHERE usuarioID = :usuarioID";
-        $stmt = $bd->prepare($carritoSelect);
-        $stmt->bindParam(':usuarioID', $usuarioID);
-        $stmt->execute();
-        $numFilas = $stmt->rowCount();
-
-        if ($numFilas > 0) {
-            $html .= "<button class='btn btn-primary agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>";
-        } else {
-            $html .= "<button class='btn btn-secondary asociar-tarjeta'>Asociar una tarjeta para poder comprar</button>";
-        }
-
         $html .= "</div>";
         $html .= "</a>";
         $html .= "</div>";

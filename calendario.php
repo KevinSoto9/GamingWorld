@@ -151,7 +151,7 @@ $currentYear = isset($_GET['year']) ? $_GET['year'] : date('Y');
 $currentMonth = max($currentMonth, date('n'));
 
 echo '<div class="container">';
-echo "<div class='titulo'><h1 class='text-center'>Calendario de Juegos del 2024</h1></div>";
+echo "<div class='titulo'><h1 class='text-center  mt-4'>Calendario de Juegos del 2024</h1></div>";
 
 $meses = array(
     1 => 'Enero',
@@ -170,7 +170,7 @@ $meses = array(
 
 $nombre_mes = $meses[$currentMonth];
 
-echo "<h2 class='calendario-titulo text-center'>" . $nombre_mes . ' ' . $currentYear . "</h2>";
+echo "<h2 class='calendario-titulo text-center mb-4'>" . $nombre_mes . ' ' . $currentYear . "</h2>";
 echo '</div>';
 
 ?>
@@ -180,7 +180,7 @@ echo '</div>';
         <div class="col-md-8">
             <div class="card bg-dark">
                 <div class="card-header">
-                    <h1 class='calendario-titulo'><?php echo $nombre_mes . ' ' . $currentYear; ?></h1>
+                    <h1 class='calendario-titulo mt-3'><?php echo $nombre_mes . ' ' . $currentYear; ?></h1>
                 </div>
                 <div class="card-body">
                     <?php echo generar_calendario($currentMonth, $currentYear, "es"); ?>
@@ -192,10 +192,10 @@ echo '</div>';
 
 <div class="container">
     <div class="row justify-content-center mt-3">
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center mt-3">
             <button class="btn btn-primary" onclick="changeMonth(-1)" <?php if ($currentMonth == date('n')) echo "disabled"; ?>>Anterior</button>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center mt-3">
             <button class="btn btn-primary" onclick="changeMonth(1)" <?php if ($currentMonth == 12) echo "disabled"; ?>>Siguiente</button>
         </div>
     </div>

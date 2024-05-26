@@ -20,18 +20,18 @@
         $novedades = $bd->query($sel);
         ?>
 <div class="container mt-5">
-        <div class="titulo text-center">
+        <div class="titulo text-center mb-2">
             <h1>Novedades</h1>
         </div>
 
         <div class="calendario-link text-center mb-3">
-            <button class="btn btn-primary" onclick="location.href = 'calendario.php'">Ver Calendario</button>
+            <button class="btn btn-primary mt-4 mb-4" onclick="location.href = 'calendario.php'">Ver Calendario</button>
         </div>
 
         <div class="row">
             <?php foreach ($novedades as $novedad): ?>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card bg-dark text-white">
+                    <div class="card bg-dark text-white h-100">
                         <img src="ImagenesNovedades/<?php echo $novedad['imagen']; ?>" class="card-img-top" alt="<?php echo $novedad['titulo']; ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $novedad['titulo']; ?></h5>

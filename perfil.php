@@ -55,7 +55,7 @@
 
                 <div class="perfil-cambiarContrasena mt-3">
                     <h2>¿Quieres cambiar la contraseña?</h2>
-                    <?php echo "<button class='btn btn-primary' onclick='window.location.href=\"CambiarContra.php?UsuarioID=" . urlencode($usuario_id) . "\"'>Hazlo Aquí</button>"; ?>
+                    <?php echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"CambiarContra.php?UsuarioID=" . urlencode($usuario_id) . "\"'>Hazlo Aquí</button>"; ?>
                 </div>
             </div>
 
@@ -105,7 +105,7 @@
                             foreach ($tarjeta_res as $tar) {
                                 echo "<div class='perfil-quitarTarjeta-content'>";
                                 echo "<h2>¿Quieres desvincular la tarjeta?</h2>";
-                                echo "<button class='btn btn-primary' onclick='window.location.href=\"QuitarTarjeta.php?tarjetaID=" . urlencode($tar['tarjetaID']) . "\"'>Hazlo Aquí</button>";
+                                echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"QuitarTarjeta.php?tarjetaID=" . urlencode($tar['tarjetaID']) . "\"'>Hazlo Aquí</button>";
                                 echo "</div>";
                             }
                         }

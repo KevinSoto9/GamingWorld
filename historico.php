@@ -2,9 +2,10 @@
 require 'menu.php';
 require 'bd.php';
 
-echo "<link rel='stylesheet' href='css/styles.css'>";
+echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>";
 
-$html = "<div class='titulo'>";
+$html = "<div class='container-fluid mv-80'>";
+$html .= "<div class='text-center text-white mb-4 mt-4'>";
 $html .= "<h1>Historial de Videojuegos</h1>";
 $html .= "</div>";
 
@@ -29,31 +30,34 @@ $sel = "SELECT
 
 $juegos = $bd->query($sel);
 
-$html .= "<div class='decadas-nav'>";
-$html .= "<form action='' method='GET' style='display:inline;'>";
+$html .= "<div class='mb-4 text-center text-white'>";
+$html .= "<div class='btn-group' role='group mx-auto'>";
+
+$html .= "<form action='' class='mr-2' method='GET' style='display:inline ;'>";
 $html .= "<input type='hidden' name='decada' value='2020'>";
-$html .= "<button type='submit'>2024-2020</button>";
+$html .= "<button type='submit' class='btn btn-primary'>2024-2020</button>";
 $html .= "</form>";
 
-$html .= "<form action='' method='GET' style='display:inline;'>";
+$html .= "<form action='' class='mr-1'method='GET' style='display:inline;'>";
 $html .= "<input type='hidden' name='decada' value='2010'>";
-$html .= "<button type='submit'>2019-2010</button>";
+$html .= "<button type='submit' class='btn btn-primary'>2019-2010</button>";
 $html .= "</form>";
 
-$html .= "<form action='' method='GET' style='display:inline;'>";
+$html .= "<form action='' class='ml-1' method='GET' style='display:inline;'>";
 $html .= "<input type='hidden' name='decada' value='2000'>";
-$html .= "<button type='submit'>2009-2000</button>";
+$html .= "<button type='submit' class='btn btn-primary'>2009-2000</button>";
 $html .= "</form>";
 
-$html .= "<form action='' method='GET' style='display:inline;'>";
+$html .= "<form action='' class='ml-2' method='GET' style='display:inline;'>";
 $html .= "<input type='hidden' name='decada' value='1990'>";
-$html .= "<button type='submit'>1999-1990</button>";
+$html .= "<button type='submit' class='btn btn-primary'>1999-1990</button>";
 $html .= "</form>";
 
 $html .= "</div>";
+$html .= "</div>";
 
-$html .= "<div class='decada'>";
-$html .= "<h2>$decada_fin - $decada_inicio</h2>";
+$html .= "<div>";
+$html .= "<h2 class='text-center mt-2 text-white'>$decada_fin - $decada_inicio</h2>";
 
 $juegos_por_anio = [];
 foreach ($juegos as $juego) {
@@ -62,20 +66,20 @@ foreach ($juegos as $juego) {
 }
 
 foreach ($juegos_por_anio as $anio => $juegos) {
-    $html .= "<div class='anio'>";
-    $html .= "<h3>$anio</h3>";
+    $html .= "<div class='container-fluid mv-80 mb-3 '>";
+    $html .= "<h3 class='text-center text-white mt-2 mb-5 '>$anio</h3>";
 
-    $html .= "<div class='contenedor-juegos'>";
+    $html .= "<div class='row'>";
     foreach ($juegos as $juego) {
-        $html .= "<div class='contenedor-juegos-content'>";
-        $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='enlace-juego'>";
-        $html .= "<div class='juego'>";
-        $html .= "<div class='contenido'>";
-        $html .= "<h3>{$juego['nombre']}</h3>";
-        $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
-        $html .= "</div>";
+        $html .= "<div class='col-md-3 mb-4 '>";
+        $html .= "<div class='card h-100 bg-dark text-white'>";
+        $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='text-decoration-none text-white'>";
+        $html .= "<img src='ImagenesJuegos/{$juego['imagen']}' class='card-img-top' alt='{$juego['nombre']}'>";
+        $html .= "<div class='card-body'>";
+        $html .= "<h5 class='card-title'>{$juego['nombre']}</h5>";
         $html .= "</div>";
         $html .= "</a>";
+        $html .= "</div>";
         $html .= "</div>";
     }
     $html .= "</div>";
@@ -83,6 +87,7 @@ foreach ($juegos_por_anio as $anio => $juegos) {
     $html .= "</div>";
 }
 
+$html .= "</div>";
 $html .= "</div>";
 
 echo $html;

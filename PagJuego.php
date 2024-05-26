@@ -148,7 +148,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                             } else {
                                 $htmlComentarios .= "<div class='card-body'>";
                                 foreach ($comentarios as $comentario) {
-                        $htmlComentarios .= "<div class='card comentarios-content bg-secondary'>";
+                        $htmlComentarios .= "<div class='card comentarios-content bg-secondary mt-4'>";
                         $htmlComentarios .= "<div class='card-body comentarios-content-info'>";
 
 // Consulta preparada para obtener los datos del usuario
