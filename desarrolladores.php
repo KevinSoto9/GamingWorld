@@ -1,41 +1,46 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Gaming World</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <?php require 'menu.php'; ?>
     <?php require 'bd.php'; ?>
 
-    <div class="contenedor-titulo">
-        <h1>Lista de Desarrolladores</h1>
-    </div>
+    <div class="container mb-5">
+        <h1 class="text-center mt-5 mb-4">Lista de Desarrolladores</h1>
 
-    <div class="contenedor-listados">
-        <?php
-        // Consulta SQL para obtener todos los géneros
-        $desarrolladores_query = "SELECT desarrolladorID, nombre FROM desarrolladores ORDER BY nombre ASC";
-        $statementDesarrolladores = $bd->prepare($desarrolladores_query);
-        $statementDesarrolladores->execute();
+        <div class="row">
+            <?php
+            // Consulta SQL para obtener todos los desarrolladores
+            $desarrolladores_query = "SELECT desarrolladorID, nombre FROM desarrolladores ORDER BY nombre ASC";
+            $statementDesarrolladores = $bd->prepare($desarrolladores_query);
+            $statementDesarrolladores->execute();
 
-        // Mostrar los géneros
-        $contador = 0;
-        echo "<div class='fila'>";
-        foreach ($statementDesarrolladores as $desarrollador) {
-            $desarrolladorID = $desarrollador['desarrolladorID'];
-            $nombreDesarrollador = $desarrollador['nombre'];
-            echo "<div class='listado'>";
-            echo "<a class='enlace-listado' href='PagDesarrollador.php?desarrolladorID=$desarrolladorID'>$nombreDesarrollador</a>";
-            echo "</div>";
-            $contador++;
-            // Cerrar la fila después de mostrar 4 géneros
-            if ($contador % 4 == 0) {
-                echo "</div><div class='fila'>";
+            // Mostrar los desarrolladores
+            $contador = 0;
+            foreach ($statementDesarrolladores as $desarrollador) {
+                $desarrolladorID = $desarrollador['desarrolladorID'];
+                $nombreDesarrollador = $desarrollador['nombre'];
+                ?>
+                <div class="col-md-3 mb-4 mt-4 hv-100">
+                    <div class="card bg-dark text-white  hv-100">
+                        <div class="card-body text-center hv-100">
+                            <h5 class="card-title hv-100"><a href="PagDesarrollador.php?desarrolladorID=<?php echo $desarrolladorID; ?>" class="text-white"><?php echo $nombreDesarrollador; ?></a></h5>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                $contador++;
+                // Cerrar la fila después de mostrar 4 desarrolladores
+                if ($contador % 4 == 0) {
+                    echo "</div><div class='row'>";
+                }
             }
-        }
-        echo "</div>";
-        ?>
+            ?>
+        </div>
     </div>
 
 </body>

@@ -25,14 +25,23 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             <title>Gaming World</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <link rel="stylesheet" href="css/styles.css">
-            <style>
-                body {
-                    background-color: #343a40;
-                    color: white;
-                }
-            </style>
         </head>
         <body>
+            <!-- Modal HTML -->
+            <div class='modal fade text-dark' id='mensajeModal' tabindex='-1' role='dialog' aria-labelledby='mensajeModalLabel' aria-hidden='true'>
+                <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='mensajeModalLabel'>Juego añadido</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div class='modal-body' id='mensajeModalBody'></div>
+                    </div>
+                </div>
+            </div>
+
             <?php
             session_abort();
             require 'menu.php';
@@ -101,9 +110,19 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                                         $fechaFormateada = 'Publicado el ' . date('j', $fecha_salida) . ' de ' . $meses[date('F', $fecha_salida)] . ' de ' . date('Y', $fecha_salida);
                                         ?>
                                         <p>Fecha de salida: <?php echo $fechaFormateada; ?></p>
-                                        <p>Géneros: <?php echo $juego['generos']; ?></p>
-                                        <p>Desarrollador: <a href="PagDesarrollador.php?desarrolladorID=<?php echo urlencode($juego['desarrolladorID']); ?>"><?php echo $juego['desarrollador']; ?></a></p>
-                                        <p>Editor: <a href="PagEditor.php?editorID=<?php echo urlencode($juego['editorID']); ?>"><?php echo $juego['editor']; ?></a></p>
+                                        <p>Géneros: <?php
+                                $generos = explode(",", $juego["generos"]);
+                                foreach ($generos as $genero) {
+                                    $query = "SELECT generoID FROM generos WHERE nombre = ?";
+                                    $statement = $bd->prepare($query);
+                                    $statement->execute([$genero]);
+                                    $resultado = $statement->fetch();
+                                    $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
+                                    echo "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
+                                }
+                                        ?></p>
+                                        <p>Desarrollador: <a class="text-white" href="PagDesarrollador.php?desarrolladorID=<?php echo urlencode($juego['desarrolladorID']); ?>"><?php echo $juego['desarrollador']; ?></a></p>
+                                        <p>Editor: <a class="text-white"  href="PagEditor.php?editorID=<?php echo urlencode($juego['editorID']); ?>"><?php echo $juego['editor']; ?></a></p>
                                         <?php
                                         $usuarioID = $_SESSION['UsuarioID'];
 
@@ -123,103 +142,103 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                                 </div>
                             </div>
                         </div>
+
+
                         <?php
                     }
-                    ?>
 
-                            <?php
-// Mostrar comentarios
-                            $htmlComentarios = "";
+                    // Mostrar comentarios
+                    $htmlComentarios = "";
 
-                            $htmlComentarios .= "<div class='bg-dark mt-5 rounded juegoSolo comentarios'>";
-                            $htmlComentarios .= "<h2 class='card-header'>Comentarios</h2>";
+                    $htmlComentarios .= "<div class='bg-dark mt-5 mb-5 rounded card comentarios'>";
+                    $htmlComentarios .= "<h2 class='card-header'>Comentarios</h2>";
 
-// Consulta SQL para obtener los comentarios del juego
-                            $sel2 = "SELECT * FROM `comentarios_juegos` WHERE `JuegoID` = '$juegoID'";
-                            $comentarios = $bd->query($sel2);
+                    // Consulta SQL para obtener los comentarios del juego
+                    $sel2 = "SELECT * FROM `comentarios_juegos` WHERE `JuegoID` = '$juegoID'";
+                    $comentarios = $bd->query($sel2);
 
-                            if ($comentarios->rowCount() < 1) {
-                                $htmlComentarios .= "<div class='card-body'>";
-                                $htmlComentarios .= "<div class='noComentarios'>";
-                                $htmlComentarios .= "<h2>No hay comentarios, sé el primero en decir algo</h2>";
-                                $htmlComentarios .= "<button class='mt-2 btn btn-primary' onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
-                                $htmlComentarios .= "</div>";
-                                $htmlComentarios .= "</div>";
-                            } else {
-                                $htmlComentarios .= "<div class='card-body'>";
-                                foreach ($comentarios as $comentario) {
-                        $htmlComentarios .= "<div class='card comentarios-content bg-secondary mt-4'>";
-                        $htmlComentarios .= "<div class='card-body comentarios-content-info'>";
+                    if ($comentarios->rowCount() < 1) {
+                        $htmlComentarios .= "<div class='card-body'>";
+                        $htmlComentarios .= "<div class='noComentarios'>";
+                        $htmlComentarios .= "<h2>No hay comentarios, sé el primero en decir algo</h2>";
+                        $htmlComentarios .= "<button class='mt-2 btn btn-primary' onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
+                        $htmlComentarios .= "</div>";
+                        $htmlComentarios .= "</div>";
+                    } else {
+                        $htmlComentarios .= "<div class='card-body'>";
+                        foreach ($comentarios as $comentario) {
+                            $htmlComentarios .= "<div class='card comentarios-content bg-secondary mt-4'>";
+                            $htmlComentarios .= "<div class='card-body comentarios-content-info'>";
 
-// Consulta preparada para obtener los datos del usuario
-                                    $sel3 = $bd->prepare("SELECT Alias FROM `usuarios` WHERE `UsuarioID` = :UsuarioID");
-                                    $sel3->execute(['UsuarioID' => $comentario['UsuarioID']]);
-                                    $usuario = $sel3->fetch();
+                            // Consulta preparada para obtener los datos del usuario
+                            $sel3 = $bd->prepare("SELECT Alias FROM `usuarios` WHERE `UsuarioID` = :UsuarioID");
+                            $sel3->execute(['UsuarioID' => $comentario['UsuarioID']]);
+                            $usuario = $sel3->fetch();
 
-                                    $htmlComentarios .= '<p class="card-text">' . $usuario['Alias'] . '</p>';
-                                    $htmlComentarios .= '<p class="card-text">' . $comentario['comentario'] . '</p>';
-                                    $fecha = strtotime($comentario['fecha']);
-                                    $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
-                                    $htmlComentarios .= '<p class="card-text">' . $fechaFormateada . '</p>';
-                                    $htmlComentarios .= "</div>";
-
-                                    $htmlComentarios .= "<div class='comentario-content-opciones card-body'>";
-                                    if ($usuario['Alias'] == $_SESSION['Alias']) {
-                                        $htmlComentarios .= "<button class='btn btn-primary mr-2' onclick=\"window.location.href='EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
-                                    }
-                                    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
-                                        $htmlComentarios .= "<button class='btn btn-primary' onclick=\"window.location.href='EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
-                                    }
-                                    $htmlComentarios .= "</div>";
-
-                                    $htmlComentarios .= "</div>";
-                                }
-                                $htmlComentarios .= "<div class='comentar mt-3'>";
-                                $htmlComentarios .= "<h2>¿Quieres comentar algo?</h2>";
-                                $htmlComentarios .= "<button class='btn btn-primary' onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
-                                $htmlComentarios .= "</div>";
-                                $htmlComentarios .= "</div>";
-                            }
-
+                            $htmlComentarios .= '<p class="card-text">' . $usuario['Alias'] . '</p>';
+                            $htmlComentarios .= '<p class="card-text">' . $comentario['comentario'] . '</p>';
+                            $fecha = strtotime($comentario['fecha']);
+                            $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);
+                            $htmlComentarios .= '<p class="card-text">' . $fechaFormateada . '</p>';
                             $htmlComentarios .= "</div>";
 
-                            echo $htmlComentarios;
-                            ?>
+                            $htmlComentarios .= "<div class='comentario-content-opciones card-body'>";
+                            if ($usuario['Alias'] == $_SESSION['Alias']) {
+                                $htmlComentarios .= "<button class='btn btn-primary mr-2' onclick=\"window.location.href='EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
+                            }
+                            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
+                                $htmlComentarios .= "<button class='btn btn-primary' onclick=\"window.location.href='EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
+                            }
+                            $htmlComentarios .= "</div>";
 
+                            $htmlComentarios .= "</div>";
+                        }
+                        $htmlComentarios .= "<div class='comentar mt-3'>";
+                        $htmlComentarios .= "<h2>¿Quieres comentar algo?</h2>";
+                        $htmlComentarios .= "<button class='btn btn-primary mt-3' onclick='window.location.href=\"CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
+                        $htmlComentarios .= "</div>";
+                        $htmlComentarios .= "</div>";
+                    }
+
+                    $htmlComentarios .= "</div>";
+
+                    echo $htmlComentarios;
+                    ?>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var agregarCarritoBtns = document.querySelectorAll('.agregar-carrito');
+                agregarCarritoBtns.forEach(function (btn) {
+                    btn.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var juegoID = btn.getAttribute('data-juego-id');
+                        var precio = btn.getAttribute('data-precio');
+                        var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
+                        fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
+                                .then(response => response.text())
+                                .then(text => {
+                                    document.getElementById('mensajeModalBody').textContent = text;
+                                    $('#mensajeModal').modal('show');
+                                });
+                    });
+                });
+
+                document.querySelectorAll('.asociar-tarjeta').forEach(function (btn) {
+                    btn.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('mensajeModalBody').textContent = 'Debes tener una tarjeta asociada a tu perfil para poder comprar productos';
+                        $('#mensajeModal').modal('show');
+                    });
+                });
+            });
+        </script>
     </body>
     </html>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            function attachEventListeners() {
-                $('.card').on('click', '.agregar-carrito', function (event) {
-                    event.preventDefault();
-                    var juegoID = $(this).data('juego-id');
-                    var precio = $(this).data('precio');
-                    var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
-                    fetch('AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
-                            .then(response => response.text())
-                            .then(text => $('#mensaje').text(text));
-                });
-
-                $('.card').on('click', '.asociar-tarjeta', function (event) {
-                    event.preventDefault();
-                    $('#mensaje').text('Debes tener una tarjeta asociada a tu perfil para poder comprar productos');
-                });
-            }
-
-            attachEventListeners();
-        });
-    </script>
-
     <?php
 }
 ?>
-

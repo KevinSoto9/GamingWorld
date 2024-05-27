@@ -7,14 +7,17 @@ if (isset($_GET["editorID"])) {
 ?>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <?php require 'menu.php'; ?>
-        <?php require 'bd.php'; ?>
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <?php require 'menu.php'; ?>
+    <?php require 'bd.php'; ?>
+
+    <div class="container-fluid">
 
         <div class="contenedor-titulo">
             <?php
@@ -27,11 +30,11 @@ if (isset($_GET["editorID"])) {
             $nombreDelEditor = isset($editor['nombre']) ? $editor['nombre'] : 'Desconocido';
 
             // Nombre del editor
-            echo "<div class='listado-titulo'>Editor: $nombreDelEditor</div>";
+            echo "<h1 class='text-center mt-5 text-white mb-5'>Editor: $nombreDelEditor</h1>";
             ?>
         </div>
 
-        <div class="contenedor-juegos">
+        <div class="row">
             <?php
             
             // Número de juegos por página
@@ -76,37 +79,35 @@ if (isset($_GET["editorID"])) {
             // Juegos
             foreach ($juegos as $juego) {
                 ?>
-                <a href='PagJuego.php?juegoID=<?= $juego['juegoID'] ?>' class='enlace-juego'>
-                    <div class='juego'>
-                        <div class='contenido'>
-                            
-                            <!-- Nombre -->
-                            <h2><?= $juego['nombre'] ?></h2>
-                            
-                            <!-- Imagen -->
-                            <img src='ImagenesJuegos/<?= $juego['imagen'] ?>' alt='<?= $juego['nombre'] ?>'>
-                            
-                            <!-- Precio -->
-                            <p>Precio: <?= $juego['precio'] ?></p>
-                        </div>
+                <div class="col-md-3">
+                    <div class="card mb-5 bg-dark text-white">
+                        <a href='PagJuego.php?juegoID=<?= $juego['juegoID'] ?>' class='enlace-juego text-white'>
+                            <img class='card-img-top' src='ImagenesJuegos/<?= $juego['imagen'] ?>' alt='<?= $juego['nombre'] ?>'>
+                            <div class='card-body'>
+                                <h5 class='card-title'><?= $juego['nombre'] ?></h5>
+                                <p class='card-text'>Precio: <?= $juego['precio'] ?></p>
+                                <p class='card-text'>Editores: <?= $juego["editores"] ?></p>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                </div>
                 <?php
             }
             ?>
-        </div> 
+        </div>
 
         <!-- Paginación -->
-        <div class='paginacion'>
-            <?php
-            for ($i = 1; $i <= $total_paginas; $i++) {
-                echo "<form action='' method='GET' style='display:inline;'>";
-                echo "<input type='hidden' name='pagina' value='$i'>";
-                echo "<input type='hidden' name='editorID' value='$editorID'>";
-                echo "<button type='submit'>$i</button>";
-                echo "</form>";
-            }
-            ?>
+        <div class="container">
+            <ul class="pagination justify-content-center">
+                <?php
+                for ($i = 1; $i <= $total_paginas; $i++) {
+                    echo "<li class='page-item bg-dark'><a class='page-link bg-dark text-white' href='?pagina=$i&editorID=$editorID'>$i</a></li>";
+                }
+                ?>
+            </ul>
         </div>
-    </body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

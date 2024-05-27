@@ -13,11 +13,25 @@
     <body>
         <div class="container-fluid mv-80">
             <div class="text-center mb-5">
-                <h1 class="display-4 mt-5">Juegos</h1>
+                <h1 class="display-4 mt-5 mb-5">Juegos</h1>
             </div>
 
-            <div class="container">
-                <div class="buscador mb-4 text-center">
+            <div class="container ">
+                
+                <div class="row mb-4">
+                    <div class="col-md-4 text-center mb-4">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'categorias.php';">Ver Juegos por Géneros</button>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'desarrolladores.php';">Ver Juegos por Desarrolladores</button>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'editores.php';">Ver Juegos por Editores</button>
+                    </div>
+                </div>
+
+                
+                <div class="buscador mb-4 mt-5 text-center">
                     <div id="form-buscar" class="input-group">
                         <input type="search" class="form-control" name="searchTerm" id="buscar-juego" placeholder="Buscar por nombre...">
                     </div>
@@ -43,9 +57,9 @@
                 echo $html;
                 ?>
 
-                <div class="row justify-content-center mb-4">
+                <div class="row justify-content-center mb-5">
                     <!-- Columna de Géneros -->
-                    <div class="col-md-6 mt-4 text-center">
+                    <div class="col-md-6 mt-5 text-center">
                         <button id="toggleGenero" class="btn btn-info mb-2">Mostrar/Ocultar Géneros</button>
                         <div class="filtros" id="filtroGenero">
                             <h3>Filtrar por Géneros:</h3>
@@ -66,7 +80,7 @@
                     </div>
 
                     <!-- Columna de Precios -->
-                    <div class="col-md-6 mt-4 text-center">
+                    <div class="col-md-6 mt-5 text-center">
                         <button id="togglePrecio" class="btn btn-info mb-2">Mostrar/Ocultar Precio</button>
                         <div class="filtros" id="filtroPrecio">
                             <h3>Filtrar por Precio:</h3>
@@ -90,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="row contenedor-juegos container-xxl">
+            <div class="row contenedor-juegos container-xxl mt-5">
                 <!-- Listado inicial de juegos se cargará aquí -->
             </div>
         </div>
