@@ -2,19 +2,18 @@
 session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $Email = $_POST["Email"];
-    $Password = $_POST["Password"];
+    $Email = $_POST["email"];
+    $Password = $_POST["password"];
 
     try {
         require 'bd.php';
         
-        $sel = "select * from usuarios;";
+        $sel = "SELECT * FROM usuarios;";
         $usuarios = $bd->query($sel);
 
         if ($usuarios) {
             foreach ($usuarios as $usuario) {
                 if ($Email == $usuario['Email'] && $Password == $usuario['Password']) {
-
                     $_SESSION['tipo_usuario'] = $usuario['Tipo'];
                     $_SESSION['Alias'] = $usuario['Alias'];
                     $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
@@ -30,59 +29,86 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
-    </head>
-    <body>
-        <div class="container d-flex align-items-center justify-content-center min-vh-100">
-            <div class="row w-100">
-                <div class="col-md-8 offset-md-2 col-lg-12 offset-lg-0">
-                    <div class="login-card p-4 rounded">
-                        <div class="text-center mb-4">
-                            <img src="Imagenes/LogoPng.png" alt="Gaming World Logo" class="img-fluid" style="max-width: 200px;">
-                        </div>
-                        <h3 class="card-title text-center mb-4">Inicia sesión</h3>
-                        <?php if (isset($error_message)): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo $error_message; ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
+    <style>
+        .login-card-img {
+            width: 100%;
+            height: 100%;
+            max-height: 100vw;
+            object-fit: cover;
+        }
+        .brand-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+        .logo {
+            height: 150px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="ImagenesJuegos/BioShock™.jpg" alt="login" class="login-card-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <div class="brand-wrapper mb-4">
+                                <img src="Imagenes/LogoPng.png" alt="logo" class="logo">
                             </div>
-                        <?php endif; ?>
-                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                            <div class="form-group">
-                                <label for="Email">Email</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" class="form-control" id="Email" name="Email" value="<?php if (isset($Email)) echo $Email; ?>" required>
+                            <h3 class="card-title text-center mb-4">Inicia sesión</h3>
+                            <?php if (isset($error_message)): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $error_message; ?>
                                 </div>
-                            </div>
-                            <div class="form-group pb-2">
-                                <label for="Password">Password</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <?php endif; ?>
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        </div>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?php if (isset($Email)) echo $Email; ?>" required>
                                     </div>
-                                    <input type="password" class="form-control" id="Password" name="Password" required>
                                 </div>
+                                <div class="form-group pb-3 mb-4">
+                                    <label for="password">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-warning btn-block">Login</button>
+                            </form>
+                            <div class="register text-center mt-5">
+                            <a href="" class="forgot-password-link text-warning">Has olvidado tu contraseña?</a>
+                            <p class="login-card-footer-text mt-3">No tienes una cuenta? <a href="registroCliente.php" class="text-reset">Registrate aquí</a></p>
+                            <nav class="login-card-footer-nav ">
+                                <a class="text-warning" href="TerminosDeUso.php" >Terminos de uso.</a>
+                                <a class="text-warning" href="PoliticaPrivacidad.php">Politica de privacidad</a>
+                            </nav>
                             </div>
-                            <button type="submit" class="btn btn-warning btn-block">Login</button>
-                        </form>
-                        <div class="register text-center mt-3">
-                            <p>¿No te has registrado?</p>
-                            <button class="btn btn-link text-warning" onclick="window.location.href='registroCliente.php'">Hazlo aquí</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
