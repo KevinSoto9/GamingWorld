@@ -158,7 +158,7 @@
                     <div class='container mt-5'>
                         <div class='alert alert-danger text-center' role='alert'>
                             No has iniciado sesión como administrador.
-                            <button class='btn btn-dark ml-4' onclick='window.location.href="../index.php"'>Iniciar sesión</button>
+                            <button class='btn btn-dark ml-4' onclick='window.location.href="index.php"'>Iniciar sesión</button>
                         </div>
                         <div class='text-center'> 
                             <img src='Imagenes/PersonalAutorizado.jpg' class='img-fluid mt-2' alt='Imagen'>
