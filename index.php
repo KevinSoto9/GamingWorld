@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <img src="ImagenesJuegos/BioShock™.jpg" alt="login" class="login-card-img">
                     </div>
                     <div class="col-md-7">
-                        <div class="card-body">
+                        <div class="card-body ml-4 mr-4">
                             <div class="brand-wrapper mb-4">
                                 <img src="Imagenes/LogoPng.png" alt="logo" class="logo">
                             </div>
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button type="submit" class="btn btn-warning btn-block">Login</button>
                             </form>
                             <div class="register text-center mt-5">
-                            <a href="" class="forgot-password-link text-warning">Has olvidado tu contraseña?</a>
+                            <a href="ContraNueva.php" class="forgot-password-link text-warning">Has olvidado tu contraseña?</a>
                             <p class="login-card-footer-text mt-3">No tienes una cuenta? <a href="registroCliente.php" class="text-reset">Registrate aquí</a></p>
                             <nav class="login-card-footer-nav ">
                                 <a class="text-warning" href="TerminosDeUso.php" >Terminos de uso.</a>

@@ -33,7 +33,7 @@
         // Inicio lista de novedades
         foreach ($novedades as $novedad) {
             $html = "";
-            $html .= "<div class='card bg-dark text-white mb-4'>";
+            $html .= "<div class='card bg-dark text-white mb-5'>";
             $html .= "<img src='ImagenesNoticiasDetalles/{$novedad['imagen']}' class='card-img-top' alt='{$novedad['titulo']}'>";
             $html .= "<div class='card-body'>";
             $html .= "<h5 class='card-title'>{$novedad['titulo']}</h5>";
@@ -48,10 +48,10 @@
         ?>
         
         <div class="card bg-dark text-white mb-4">
+            <h2 class="card-header">Comentarios</h2>
             <div class="card-body">
-                <h5 class="card-title">Comentarios</h5>
-
                 <?php
+// Consulta SQL
                 $sel2 = "SELECT * FROM `comentarios_noticias` WHERE `noticiaDetalleID` = '$noticiaID'";
                 $comentarios = $bd->query($sel2);
 
@@ -59,7 +59,7 @@
                     echo "<p class='card-text'>No hay comentarios, sé el primero en decir algo</p>";
                 } else {
                     foreach ($comentarios as $comentario) {
-                        echo "<div class='card bg-secondary text-white mb-3'>";
+                        echo "<div class='card bg-secondary text-white mb-4'>";
                         echo "<div class='card-body'>";
                         $NombreUsuario = $comentario['usuarioID'];
                         $sel3 = "SELECT * FROM `usuarios` WHERE `UsuarioID` = '$NombreUsuario'";
@@ -68,7 +68,23 @@
                             echo "<h5 class='card-title'>{$usuario['Alias']}</h5>";
                         }
                         echo "<p class='card-text'>{$comentario['comentario']}</p>";
-                        echo "<p class='card-text'><small class='text-muted'>Publicado el ". date('j \d\e F \d\e Y \a \l\a\s H:i', strtotime($comentario['fecha'])) ."</small></p>";
+                        echo "<p class='card-text'>Publicado el " . date('j \d\e F \d\e Y \a \l\a\s H:i', strtotime($comentario['fecha'])) . "</p>";
+
+                        // Botones de editar y eliminar comentarios
+                        echo "<div class='btn-group' role='group'>";
+
+                        // Botón de editar: solo visible si el usuario es el autor del comentario
+                        if ($_SESSION['UsuarioID'] == $comentario['usuarioID']) {
+                            echo "<button type='button' class='btn btn-primary mr-2' onclick=\"window.location.href='EditarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . urlencode($noticiaID) . "'\">Editar</button>";
+                        }
+
+                        // Botón de eliminar: solo visible para administradores
+                        if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
+                            echo "<button type='button' class='btn btn-primary' onclick=\"window.location.href='EliminarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . urlencode($noticiaID) . "'\">Eliminar</button>";
+                        }
+
+                        echo "</div>";
+
                         echo "</div>";
                         echo "</div>";
                     }

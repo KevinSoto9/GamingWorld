@@ -175,7 +175,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                             $sel3->execute(['UsuarioID' => $comentario['UsuarioID']]);
                             $usuario = $sel3->fetch();
 
-                            $htmlComentarios .= '<p class="card-text">' . $usuario['Alias'] . '</p>';
+                            $htmlComentarios .= '<h5 class="card-title">' . $usuario['Alias'] . '</h5>';
                             $htmlComentarios .= '<p class="card-text">' . $comentario['comentario'] . '</p>';
                             $fecha = strtotime($comentario['fecha']);
                             $fechaFormateada = 'Publicado el ' . date('j', $fecha) . ' de ' . $meses[date('F', $fecha)] . ' de ' . date('Y', $fecha) . ' a las ' . date('H:i', $fecha);

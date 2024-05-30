@@ -25,30 +25,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
+</head>
+<body>
 
-        <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            <h1 class="formularioCrear-tituloPrincipal">Introduzca el comentario</h1>
-            <div class="formularioCrear-container">
-                <input type="hidden" name="comentarioNoticiaID" value="<?php echo htmlspecialchars($comentarioNoticiaID); ?>">
-                <input type="hidden" name="noticiaID" value="<?php echo htmlspecialchars($noticiaID); ?>">
-                <div class="formularioCrear-container-datos">
-                    <p class="formularioCrear-container-datos-comentario">Comentario</p>
-                    <textarea name="comentario" rows="9" cols="90"></textarea>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-dark">
+                <div class="card-body bg-dark">
+                    <h5 class="card-title text-center">Introduzca el comentario</h5>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                        <input type="hidden" name="comentarioNoticiaID" value="<?php echo htmlspecialchars($comentarioNoticiaID); ?>">
+                        <input type="hidden" name="noticiaID" value="<?php echo htmlspecialchars($noticiaID); ?>">
+                        <div class="form-group">
+                            <label for="comentario">Comentario</label>
+                            <textarea class="form-control" id="comentario" name="comentario" rows="6"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                    </form>
+                    <div class="mt-3 text-center">
+                         <?php
+                        require 'bd.php';
+                        $se = "SELECT * FROM `noticias_detalles` WHERE `noticiaID` = ?";
+                        $stmt = $bd->prepare($se);
+                        $stmt->execute([$noticiaID]);
+                        $noticias = $stmt->fetchAll();
+
+                        foreach ($noticias as $noticia) {
+                            echo "<a class='btn btn-secondary' href='PagNoticia.php?noticiaID=" . htmlspecialchars($noticia['noticiaID']) . "'>Volver</a>";
+                        }
+                        ?>
+                    </div>
                 </div>
-                <input type="submit" value="Enviar">
             </div>
-        </form>
-
-        <div>
-            <a href='PagNoticia.php?noticiaID=<?php echo urlencode($noticiaID); ?>'>Volver</a>
         </div>
+    </div>
+</div>
 
-    </body>
+</body>
 </html>

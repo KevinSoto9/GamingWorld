@@ -46,56 +46,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Gaming World</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
 </head>
 <body>
 
-    <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <div class="container mt-5">
+        <form class="card bg-dark text-white p-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            <h1 class="card-title text-center mb-4">Introduzca sus datos de la Tarjeta</h1>
 
-        <h1 class="formularioCrear-tituloPrincipal">Introduzca sus datos de la Tarjeta</h1>
-
-        <!-- Contenedor de los datos -->
-        <div class="formularioCrear-container">
-
-            <!-- Numero de la Tarjeta -->
-            <div class="formularioCrear-container-datos">
-                <p class="formularioCrear-container-datos-numTarjeta">Numero de la Tarjeta</p>
-                <input type="text" name="numTarjeta" pattern="\d{16}" title="Debe contener 16 dígitos" required>
+            <div class="form-group">
+                <label for="numTarjeta">Numero de la Tarjeta</label>
+                <input type="text" class="form-control" id="numTarjeta" name="numTarjeta" pattern="\d{16}" title="Debe contener 16 dígitos" required>
             </div>
 
-            <!-- Nombre y Apellidos del Propietario -->
-            <div class="formularioCrear-container-datos">
-                <p class="formularioCrear-container-datos-nomPropie">Nombre y Apellidos del Propietario</p>
-                <input type="text" name="nombreApellidosPropie" required>
+            <div class="form-group">
+                <label for="nombreApellidosPropie">Nombre y Apellidos del Propietario</label>
+                <input type="text" class="form-control" id="nombreApellidosPropie" name="nombreApellidosPropie" required>
             </div>
 
-            <!-- Fecha de Expiracion -->
-            <div class="formularioCrear-container-datos">
-                <p class="formularioCrear-container-datos-fechaExp">Fecha de Expiracion (MM/AA)</p>
-                <input type="text" name="fechaExp" pattern="\d{2}/\d{2}" title="Debe ser en el formato MM/AA" required>
+            <div class="form-group">
+                <label for="fechaExp">Fecha de Expiracion (MM/AA)</label>
+                <input type="text" class="form-control" id="fechaExp" name="fechaExp" pattern="\d{2}/\d{2}" title="Debe ser en el formato MM/AA" required>
             </div>
 
-            <!-- CVC -->
-            <div class="formularioCrear-container-datos">
-                <p class="formularioCrear-container-datos-CVC">CVC</p>
-                <input type="password" name="CVC" pattern="\d{3}" title="Debe contener 3 dígitos" required>
+            <div class="form-group">
+                <label for="CVC">CVC</label>
+                <input type="password" class="form-control" id="CVC" name="CVC" pattern="\d{3}" title="Debe contener 3 dígitos" required>
             </div>
 
-            <!-- Confirmar CVC -->
-            <div class="formularioCrear-container-datos">
-                <p class="formularioCrear-container-datos-confirmarCVC">Confirmar CVC</p>
-                <input type="password" name="confirmarCVC" pattern="\d{3}" title="Debe contener 3 dígitos" required>
+            <div class="form-group">
+                <label for="confirmarCVC">Confirmar CVC</label>
+                <input type="password" class="form-control" id="confirmarCVC" name="confirmarCVC" pattern="\d{3}" title="Debe contener 3 dígitos" required>
             </div>
 
-            <br>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
 
-            <input type="submit" value="Enviar">
-        </div>
-    </form>
-
-    <div>
-        <a href="perfil.php">Volver</a>
-    </div>        
+        <div class="mt-3">
+            <a href="perfil.php" class="btn btn-secondary">Volver</a>
+        </div>    
+    </div>
 
 </body>
 </html>

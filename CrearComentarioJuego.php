@@ -26,43 +26,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gaming World</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaming World</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
+</head>
+<body>
 
-        <form class="formularioCrear" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            <h1 class="formularioCrear-tituloPrincipal">Introduzca el comentario</h1>
-            <div class="formularioCrear-container">
-                <input type="hidden" name="usuarioID" value="<?php echo htmlspecialchars($usuarioID ?? ""); ?>">
-                <input type="hidden" name="juegoID" value="<?php echo htmlspecialchars($juegoID ?? ""); ?>">
-                <input type="hidden" name="fechaActual" value="<?php echo htmlspecialchars($fechaActual ?? ""); ?>">
-                <div class="formularioCrear-container-datos">
-                    <p class="formularioCrear-container-datos-comentario">Comentario</p>
-                    <textarea name="comentario" rows="9" cols="90"></textarea>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-dark">
+                <div class="card-body bg-dark">
+                    <h5 class="card-title text-center">Introduzca el comentario</h5>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                        <input type="hidden" name="usuarioID" value="<?php echo htmlspecialchars($usuarioID ?? ""); ?>">
+                        <input type="hidden" name="juegoID" value="<?php echo htmlspecialchars($juegoID ?? ""); ?>">
+                        <input type="hidden" name="fechaActual" value="<?php echo htmlspecialchars($fechaActual ?? ""); ?>">
+                        <div class="form-group">
+                            <label for="comentario">Comentario</label>
+                            <textarea class="form-control" id="comentario" name="comentario" rows="6"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <a class="btn btn-secondary" href="PagJuego.php?juegoID=<?php echo urlencode($juegoID); ?>">Volver</a>
+                    </div>
                 </div>
-                <input type="submit" value="Enviar">
             </div>
-        </form>
+        </div>
+    </div>
+</div>
 
-        <?php
-        if (!empty($juegoID)) {
-            require 'bd.php';
-            $se = "SELECT * FROM `juegos` WHERE `JuegoID` = ?";
-            $stmt = $bd->prepare($se);
-            $stmt->execute([$juegoID]);
-            $juegos = $stmt->fetchAll();
-
-            foreach ($juegos as $juego) {
-                echo "<div>";
-                echo "<a href='PagJuego.php?juegoID=" . ($juego['JuegoID']) . "'>Volver</a>";
-                echo "</div>";
-            }
-        }
-        ?>
-
-    </body>
+</body>
 </html>
+
