@@ -26,6 +26,7 @@
                     <li class="nav-item"><a class="nav-link" href="noticias.php">Noticias</a></li>
                     <li class="nav-item"><a class="nav-link" href="carrito.php">Carrito</a></li>
                     <?php
+                    session_abort();
                     session_start();
                     if(isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
                         echo '<li class="nav-item"><a class="nav-link" href="Admin.php">Admin</a></li>';
