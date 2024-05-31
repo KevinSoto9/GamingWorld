@@ -13,7 +13,7 @@
     <body>
         <div class="container-fluid mv-80">
             <div class="text-center mb-5">
-                <h1 class="display-4 mt-5 mb-5">Juegos</h1>
+                <h1 class="text-center mt-5 text-white mb-5">Juegos</h1>
             </div>
 
             <div class="container ">
@@ -108,6 +108,10 @@
                 <!-- Listado inicial de juegos se cargará aquí -->
             </div>
         </div>
+        
+        <?php
+        require 'footer.php';
+        ?>
 
         <!-- Script AJAX para buscar juegos -->
         <script>

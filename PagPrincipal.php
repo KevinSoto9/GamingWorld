@@ -2,7 +2,7 @@
 require 'menu.php';
 require 'bd.php';
 
-echo "<link rel='stylesheet' href='css/styles.css'>";
+echo "<link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>";
 echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>"; // Agregamos Bootstrap
 
 // Num de juegos por pagina
@@ -70,25 +70,26 @@ $html .= "<div id='mensaje'></div>"; // Movemos el div del mensaje al final
 $html .= "<div class='row'>"; // Creamos una fila de Bootstrap
 
 foreach ($juegos as $juego) {
-    $html .= "<div class='col-md-3'>"; // Dividimos en columnas de Bootstrap
-    $html .= "<div class='card mb-5 bg-dark text-white'>";
-    $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='enlace-juego text-white'>";
+    $html .= "<div class='col-md-3 mb-4'>"; // Dividimos en columnas de Bootstrap
+    $html .= "<div class='card bg-dark text-white h-100'>";
+    $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='enlace-juego text-white d-block'>";
     $html .= "<img class='card-img-top' src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
-    $html .= "<div class='card-body'>";
-    $html .= "<h5 class='card-title'>{$juego['nombre']}</h5>";
-    $html .= "<p class='card-text'>Precio: {$juego['precio']}</p>";
-    $html .= "<p class='card-text'>Géneros: ";
+    $html .= "<div class='card-body d-flex flex-column'>";
+    $html .= "<h5 class='card-title mb-0'>{$juego['nombre']}</h5>";
+    $html .= "<p class='card-text mb-auto'>Precio: {$juego['precio']}</p>";
+    $html .= "<p class='card-text mb-2'>Géneros: ";
     $generos = explode(",", $juego["generos"]);
     foreach ($generos as $genero) {
         $html .= "<a class='generos text-white' href='#'>$genero</a>, ";
     }
     $html .= "</p>";
-    $html .= "<button class='btn btn-primary agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>"; // Botón de agregar al carrito con modal
-    $html .= "</div>";
+    $html .= "<button class='btn btn-primary mt-auto agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>"; // Botón de agregar al carrito con modal
     $html .= "</div>";
     $html .= "</a>";
     $html .= "</div>";
+    $html .= "</div>";
 }
+
 
 $html .= "</div>"; // Cerramos la fila de Bootstrap
 $html .= "</div>"; // Cerramos el contenedor de Bootstrap
@@ -119,6 +120,12 @@ $html .= "});";
 $html .= "</script>";
 
 echo $html;
+
+require 'footer.php';
+
 ?>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -10,16 +10,30 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <img src="Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
-            
+            <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo 'PagPrincipal.php'; } else { echo 'index.php';}; ?>">
+                <img src="Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
+            </a>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Iniciar Sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="registroCliente.php">Registrarse</a>
-                    </li>
+            
+            <?php
+            if(isset($_GET["ini"]) && $_GET["ini"] == "ok")
+            {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='PagPrincipal.php'>Ir al Inicio</a>";
+                echo "</li>";
+            }
+            else {
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link" href="index.php">Iniciar Sesión</a>';
+                echo '</li>';
+                echo '<li class="nav-item">';
+                echo '<a class="nav-link" href="registroCliente.php">Registrarse</a>';
+                echo '</li>';
+            }
+            ?>
+
                 </ul>
             </div>
         </div>

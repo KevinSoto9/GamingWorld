@@ -9,6 +9,20 @@ require 'vendor/phpmailer/phpmailer/src/Exception.php';
 require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
+function randomString($length = 4) {
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+function generarClave() {
+    return randomString() . '-' . randomString() . '-' . randomString() . '-' . randomString();
+}
+
 function procesarCompra($usuarioID, $pdf) {
     $output = "";
 
@@ -44,6 +58,9 @@ function procesarCompra($usuarioID, $pdf) {
 
     $totalPrecioJuegos = 0; // Inicializar total de precios de juegos
 
+    // Array para almacenar las claves de los juegos
+    $clavesJuegos = [];
+
     foreach ($carrito as $item) {
         $nombreJuego = $item['nombre'];
         $precio = $item['precio'];
@@ -62,6 +79,14 @@ function procesarCompra($usuarioID, $pdf) {
 
         $totalPorJuego = $precio * $cantidad;
         $totalPrecioJuegos += $totalPorJuego; // Sumar al total de precios de juegos
+
+        // Generar claves únicas para cada juego según la cantidad
+        for ($i = 0; $i < $cantidad; $i++) {
+            $clavesJuegos[] = [
+                'nombre' => $nombreJuego,
+                'clave' => generarClave()
+            ];
+        }
     }
 
     // Calcular el total de la compra en euros
@@ -72,6 +97,25 @@ function procesarCompra($usuarioID, $pdf) {
     // Mostrar el total de todos los juegos comprados
     $pdf->SetFont('helvetica', 'B', 12);
     $pdf->Cell(0, 10, 'Total de todos los juegos comprados: ' . number_format($totalPrecioJuegos, 2, ',', '.') . ' Euros', 0, 1);
+
+    // Añadir tabla con las claves de los juegos
+    $pdf->Ln(10); // Añadir espacio
+    $pdf->SetFont('helvetica', '', 10);
+    $pdf->Cell(0, 10, 'Claves de los juegos:', 0, 1);
+
+    // Encabezado de la tabla de claves
+    $pdf->Cell(90, 10, 'Nombre del Juego', 1, 0, 'C');
+    $pdf->Cell(90, 10, 'Clave', 1, 1, 'C');
+
+    // Llenar la tabla con las claves de los juegos
+    foreach ($clavesJuegos as $item) {
+        $nombreJuego = $item['nombre'];
+        $clave = $item['clave'];
+
+        $alturaCelda = ceil((strlen($nombreJuego) / 30) * 10) + 5;
+        $pdf->Cell(90, $alturaCelda, $nombreJuego, 1, 0);
+        $pdf->Cell(90, $alturaCelda, $clave, 1, 1);
+    }
 
     // Eliminar los elementos del carrito de la base de datos
     $delCarrito = "DELETE FROM carrito_juegos WHERE carritoID IN (SELECT carritoID FROM carrito WHERE usuarioID = :usuarioID)";
