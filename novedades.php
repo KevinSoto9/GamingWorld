@@ -20,12 +20,8 @@
         $novedades = $bd->query($sel);
         ?>
 <div class="container mt-5">
-        <div class="titulo text-center mb-2">
+        <div class="titulo text-center mb-5">
             <h1>Novedades</h1>
-        </div>
-
-        <div class="calendario-link text-center mb-3">
-            <button class="btn btn-primary mt-4 mb-4" onclick="location.href = 'calendario.php'">Ver Calendario</button>
         </div>
 
         <div class="row">
