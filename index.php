@@ -36,22 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
-    <style>
-        .login-card-img {
-            width: 100%;
-            height: 100%;
-            max-height: 100vw;
-            object-fit: cover;
-        }
-        .brand-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-        .logo {
-            height: 150px;
-            width: auto;
-        }
-    </style>
 </head>
 <body>
     <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">

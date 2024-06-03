@@ -66,14 +66,18 @@ function renderizarJuegos($juegos)
         $html .= "<p class='card-text text-white'>Precio: {$juego['precio']}</p>";
         $html .= "<p class='card-text text-white'>Géneros: ";
         $generos = explode(",", $juego["generos"]);
-        foreach ($generos as $genero) {
+        foreach ($generos as $index => $genero) {
             $query = "SELECT generoID FROM generos WHERE nombre = ?";
             $statement = $bd->prepare($query);
             $statement->execute([$genero]);
             $resultado = $statement->fetch();
             $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-            $html .= "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
+            $html .= "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>";
+            if ($index < count($generos) - 1) {
+                $html .= ", ";
+            }
         }
+
         $html .= "</p>";
         $html .= "</div>";
         $html .= "</a>";

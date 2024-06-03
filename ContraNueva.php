@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->setFrom('zoidel97@gmail.com');
             $mail->addAddress($email);
 
-            $mail->Subject = 'Nueva Clave';
+            $mail->Subject = 'Correo de Nueva Clave de tu cuenta de GamingWorld';
             $mail->Body = "Tu nueva clave es: $newPassword";
 
             $mail->send();

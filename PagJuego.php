@@ -87,7 +87,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 'December' => 'Diciembre'
             );
 
-            echo "<div class='container'>";
+            echo "<div class='container-xxl'>";
 
             foreach ($juegos as $juego) {
                 ?>
@@ -111,16 +111,18 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                                         ?>
                                         <p>Fecha de salida: <?php echo $fechaFormateada; ?></p>
                                         <p>Géneros: <?php
-                                $generos = explode(",", $juego["generos"]);
-                                foreach ($generos as $genero) {
-                                    $query = "SELECT generoID FROM generos WHERE nombre = ?";
-                                    $statement = $bd->prepare($query);
-                                    $statement->execute([$genero]);
-                                    $resultado = $statement->fetch();
-                                    $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-                                    echo "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
-                                }
-                                        ?></p>
+                                                    $generos = explode(",", $juego["generos"]);
+                                                    $generosOutput = [];
+                                                    foreach ($generos as $genero) {
+                                                        $query = "SELECT generoID FROM generos WHERE nombre = ?";
+                                                        $statement = $bd->prepare($query);
+                                                        $statement->execute([$genero]);
+                                                        $resultado = $statement->fetch();
+                                                        $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
+                                                        $generosOutput[] = "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>";
+                                                    }
+                                                    echo implode(", ", $generosOutput);
+                                                    ?></p>
                                         <p>Desarrollador: <a class="text-white" href="PagDesarrollador.php?desarrolladorID=<?php echo urlencode($juego['desarrolladorID']); ?>"><?php echo $juego['desarrollador']; ?></a></p>
                                         <p>Editor: <a class="text-white"  href="PagEditor.php?editorID=<?php echo urlencode($juego['editorID']); ?>"><?php echo $juego['editor']; ?></a></p>
                                         <?php

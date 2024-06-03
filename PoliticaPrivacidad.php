@@ -48,7 +48,6 @@
                         <p>Podemos recopilar la siguiente información:</p>
                         <div class="container">
                             <p>- Nombre y datos de contacto, incluyendo dirección de correo electrónico.</p>
-                            <p>- Información demográfica como código postal, preferencias e intereses.</p>
                             <p>- Otra información relevante para encuestas y/o ofertas.</p>
                         </div>
 
@@ -63,21 +62,15 @@
                         <h2 class="mt-4">3. Seguridad</h2>
                         <p>Estamos comprometidos a garantizar que tu información esté segura. Para prevenir el acceso no autorizado o divulgación, hemos implementado procedimientos físicos, electrónicos y administrativos apropiados para salvaguardar y asegurar la información que recopilamos en línea.</                        </p>
 
-                        <h2 class="mt-4">4. Cómo Utilizamos las Cookies</h2>
-                        <p>Una cookie es un pequeño archivo que solicita permiso para ser colocado en el disco duro de tu computadora. Una vez que aceptas, el archivo se agrega y la cookie ayuda a analizar el tráfico web o te permite saber cuando visitas un sitio en particular.</p>
-
-                        <h2 class="mt-4">5. Enlaces a Otros Sitios Web</h2>
-                        <p>Nuestro sitio web puede contener enlaces a otros sitios de interés. Sin embargo, una vez que hayas utilizado estos enlaces para salir de nuestro sitio, debes tener en cuenta que no tenemos control sobre ese otro sitio web. Por lo tanto, no podemos ser responsables de la protección y privacidad de cualquier información que proporciones mientras visitas tales sitios.</p>
-
-                        <h2 class="mt-4">6. Control de tu Información Personal</h2>
+                        <h2 class="mt-4">4. Control de tu Información Personal</h2>
                         <p>Puedes optar por restringir la recopilación o el uso de tu información personal de las siguientes maneras:</p>
                         <div>
                             <p>- Siempre que se te pida rellenar un formulario en el sitio web, busca la casilla en la que puedes hacer clic para indicar que no deseas que la información sea utilizada por nadie para fines de marketing directo.</p>
                             <p>- Si previamente has aceptado que usemos tu información personal para fines de marketing directo, puedes cambiar de opinión en cualquier momento escribiéndonos o enviándonos un correo electrónico a [correo electrónico de contacto].</p>
                         </div>
 
-                        <h2 class="mt-4">7. Contacto</h2>
-                        <p>Si tienes alguna pregunta sobre esta Política de Privacidad, por favor contáctanos a través de [correo electrónico de contacto] o [número de teléfono].</p>
+                        <h2 class="mt-4">5. Contacto</h2>
+                        <p>Si tienes alguna pregunta sobre esta Política de Privacidad, por favor contáctanos a través de nuestro formulario de contacto. <?php echo "<a class='text-white' href='Contactanos.php'>Contactanos</a>";?></p>
                     </div>
                 </div>
             </div>

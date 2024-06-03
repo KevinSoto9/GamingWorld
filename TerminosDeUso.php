@@ -63,17 +63,14 @@
                         <h2 class="mt-4">5. Propiedad Intelectual</h2>
                         <p>Este sitio web contiene material que es de nuestra propiedad o con licencia para nosotros. Este material incluye, pero no se limita a, el diseño, la disposición, la apariencia y los gráficos. La reproducción está prohibida salvo de acuerdo con el aviso de derechos de autor, que forma parte de estos términos y condiciones.</p>
 
-                        <h2 class="mt-4">6. Enlaces a Otros Sitios Web</h2>
-                        <p>Nuestro sitio web puede contener enlaces a otros sitios web de interés. Sin embargo, una vez que hayas utilizado estos enlaces para salir de nuestro sitio, debes tener en cuenta que no tenemos control sobre ese otro sitio web. Por lo tanto, no podemos responsabilizarnos de la protección y privacidad de cualquier información que proporciones mientras visitas dichos sitios.</p>
-
-                        <h2 class="mt-4">7. Limitación de Responsabilidad</h2>
+                        <h2 class="mt-4">6. Limitación de Responsabilidad</h2>
                         <p>En ningún caso seremos responsables por cualquier pérdida o daño, incluyendo sin limitación, pérdidas o daños indirectos o consecuentes, o cualquier pérdida o daño que surja de la pérdida de datos o beneficios que surja de, o en conexión con, el uso de este sitio web.</p>
 
-                        <h2 class="mt-4">8. Ley Aplicable</h2>
+                        <h2 class="mt-4">7. Ley Aplicable</h2>
                         <p>El uso de este sitio web y cualquier disputa que surja de dicho uso del sitio está sujeto a las leyes de [tu país/estado].</p>
 
-                        <h2 class="mt-4">9. Contacto</h2>
-                        <p>Si tienes alguna pregunta sobre estos Términos de Uso, por favor contáctanos a través de [correo electrónico de contacto] o [número de teléfono].</p>
+                        <h2 class="mt-4">8. Contacto</h2>
+                        <p>Si tienes alguna pregunta sobre estos Términos de Uso, por favor contáctanos a través de nuestro formulario de contacto. <?php echo "<a class='text-white' href='Contactanos.php'>Contactanos</a>";?></p>
                     </div>
                 </div>
             </div>

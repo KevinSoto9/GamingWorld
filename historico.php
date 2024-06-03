@@ -91,4 +91,7 @@ $html .= "</div>";
 $html .= "</div>";
 
 echo $html;
+
+require 'footer.php';
+
 ?>

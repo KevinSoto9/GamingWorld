@@ -18,22 +18,21 @@
 
             <div class="container ">
                 
-                <div class="row mb-4">
+                <div class="row mb-4 justify-content-center">
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'categorias.php';">Ver Juegos por Géneros</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'categorias.php';">Ver Juegos por Géneros</button>
                     </div>
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'desarrolladores.php';">Ver Juegos por Desarrolladores</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'desarrolladores.php';">Ver Juegos por Desarrolladores</button>
                     </div>
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'editores.php';">Ver Juegos por Editores</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'editores.php';">Ver Juegos por Editores</button>
                     </div>
                 </div>
 
-                
                 <div class="buscador mb-4 mt-5 text-center">
-                    <div id="form-buscar" class="input-group">
-                        <input type="search" class="form-control" name="searchTerm" id="buscar-juego" placeholder="Buscar por nombre...">
+                    <div class="input-group">
+                        <input type="search" class="form-control form-control-lg" name="searchTerm" id="buscar-juego" placeholder="Buscar por nombre...">
                     </div>
                 </div>
 
@@ -60,10 +59,10 @@
                 <div class="row justify-content-center mb-5">
                     <!-- Columna de Géneros -->
                     <div class="col-md-6 mt-5 text-center">
-                        <button id="toggleGenero" class="btn btn-info mb-2">Mostrar/Ocultar Géneros</button>
-                        <div class="filtros" id="filtroGenero">
-                            <h3>Filtrar por Géneros:</h3>
-                            <div class="generos-container">
+                        <button id="toggleGenero" class="btn btn-info mb-4">Mostrar/Ocultar Géneros</button>
+                        <div class="filtros" id="filtroGenero" style="display:none;">
+                            <h3 class="mb-4">Filtrar por Géneros:</h3>
+                            <div class="generos-container d-flex flex-wrap mb-4">
                                 <?php
                                 require 'bd.php';
 
@@ -73,7 +72,14 @@
 
                                 foreach ($generos as $genero) :
                                     ?>
-                                    <label><input type="checkbox" class="filtro-genero" value="<?= $genero['generoID'] ?>"> <?= $genero['nombre'] ?></label>
+                                    <div class="col-6 col-md-4 col-lg-4 d-flex align-items-center">
+                                        <div class="form-check w-100">
+                                            <input class="form-check-input filtro-genero" type="checkbox" value="<?= $genero['generoID'] ?>" id="genero<?= $genero['generoID'] ?>">
+                                            <label class="form-check-label w-100 text-left" for="genero<?= $genero['generoID'] ?>">
+                                                <?= $genero['nombre'] ?>
+                                            </label>
+                                        </div>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>  
@@ -81,10 +87,10 @@
 
                     <!-- Columna de Precios -->
                     <div class="col-md-6 mt-5 text-center">
-                        <button id="togglePrecio" class="btn btn-info mb-2">Mostrar/Ocultar Precio</button>
+                        <button id="togglePrecio" class="btn btn-info mb-4">Mostrar/Ocultar Precio</button>
                         <div class="filtros" id="filtroPrecio">
-                            <h3>Filtrar por Precio:</h3>
-                            <div class="filtros-container">
+                            <h3 class="mb-4" >Filtrar por Precio:</h3>
+                            <div class="d-flex justify-content-center align-items-center flex-column mb-4">
                                 <?php
                                 require 'bd.php';
 
@@ -94,14 +100,16 @@
                                 $precios = $statementPrecios->fetch(PDO::FETCH_ASSOC);
                                 $valor_defecto = $precios['precio_maximo'];
                                 ?>
-                                <span><?php echo $precios['precio_minimo']; ?></span>
-                                <input type="range" class="form-range" id="precios" name="precio" min="<?php echo $precios['precio_minimo']; ?>" max="<?php echo $precios['precio_maximo']; ?>" step="1" value="<?php echo $valor_defecto; ?>">
-                                <span><?php echo $precios['precio_maximo']; ?></span>
+                                <div class="w-100 mb-3">
+                                    <span><?php echo $precios['precio_minimo']; ?></span>
+                                    <input type="range" class="form-range" id="precios" name="precio" min="<?php echo $precios['precio_minimo']; ?>" max="<?php echo $precios['precio_maximo']; ?>" step="1" value="<?php echo $valor_defecto; ?>">
+                                    <span><?php echo $precios['precio_maximo']; ?></span>
+                                </div>
+                                <p>Precio seleccionado: <span id="precioSeleccionado"><?php echo $valor_defecto; ?></span></p>
                             </div>
-                            <p>Precio seleccionado: <span id="precioSeleccionado"><?php echo $valor_defecto; ?></span></p>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
 
             <div class="row contenedor-juegos container-xxl mt-5">

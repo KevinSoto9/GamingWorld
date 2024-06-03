@@ -48,7 +48,7 @@ $html .= "<h1 class='text-center mt-5 text-white mb-5'>GamingWorld</h1>";
 
 // Botón del historial
 $html .= "<div class='mb-5 container d-flex justify-content-center align-items-center'>";
-$html .= "<button class='btn btn-secondary' onclick=\"window.location.href='historico.php'\">Ver Historial</button>";
+$html .= "<button class='btn btn-secondary' onclick=\"window.location.href='historico.php'\">Ver Juegos por año</button>";
 $html .= "</div>";
 
 $html .= "<div class='modal fade' id='mensajeModal' tabindex='-1' role='dialog' aria-labelledby='mensajeModalLabel' aria-hidden='true'>";
@@ -71,24 +71,35 @@ $html .= "<div class='row'>"; // Creamos una fila de Bootstrap
 
 foreach ($juegos as $juego) {
     $html .= "<div class='col-md-3 mb-4'>"; // Dividimos en columnas de Bootstrap
-    $html .= "<div class='card bg-dark text-white h-100'>";
-    $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='enlace-juego text-white d-block'>";
-    $html .= "<img class='card-img-top' src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
+    $html .= "<div class='bg-dark card h-100'>"; // Clase h-100 para que todas las cartas tengan la misma altura
+    $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='text-white enlace-juego'>";
+    $html .= "<img class='card-img-top text-white' src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
     $html .= "<div class='card-body d-flex flex-column'>";
-    $html .= "<h5 class='card-title mb-0'>{$juego['nombre']}</h5>";
-    $html .= "<p class='card-text mb-auto'>Precio: {$juego['precio']}</p>";
-    $html .= "<p class='card-text mb-2'>Géneros: ";
+    $html .= "<h5 class='card-title text-white'>{$juego['nombre']}</h5>";
+    $html .= "<p class='card-text text-white'>Precio: {$juego['precio']}</p>";
+    $html .= "<p class='card-text text-white'>Géneros: ";
+
+    $generosHtml = "";
     $generos = explode(",", $juego["generos"]);
     foreach ($generos as $genero) {
-        $html .= "<a class='generos text-white' href='#'>$genero</a>, ";
+        $query = "SELECT generoID FROM generos WHERE nombre = ?";
+        $statement = $bd->prepare($query);
+        $statement->execute([$genero]);
+        $resultado = $statement->fetch();
+        $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
+        $generosHtml .= "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
     }
+
+    $html .= rtrim($generosHtml, ", "); // Eliminar la última coma y espacio
+
     $html .= "</p>";
     $html .= "<button class='btn btn-primary mt-auto agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>"; // Botón de agregar al carrito con modal
-    $html .= "</div>";
+    $html .= "</div>"; // Cierre de div para card-body
     $html .= "</a>";
-    $html .= "</div>";
-    $html .= "</div>";
+    $html .= "</div>"; // Cierre de div para card
+    $html .= "</div>"; // Cierre de div para columna de Bootstrap
 }
+
 
 
 $html .= "</div>"; // Cerramos la fila de Bootstrap

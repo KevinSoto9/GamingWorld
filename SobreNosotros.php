@@ -34,16 +34,15 @@
                         <p>En Gaming World, somos apasionados por los videojuegos y nos dedicamos a ofrecer a nuestros clientes las mejores claves de videojuegos online. Nuestra misión es proporcionar un acceso rápido y seguro a los juegos más populares y de moda, asegurando una experiencia de compra excepcional.</p>
 
                         <h2 class="mt-4">Nuestra Misión</h2>
-                        <p>En Gaming World, nos esforzamos por ser tu proveedor de confianza para todas tus necesidades de videojuegos. Ofrecemos una amplia selección de claves de juegos para PC, consolas y más, a precios competitivos y con un servicio al cliente de primera calidad.</p>
+                        <p>En Gaming World, nos esforzamos por ser tu proveedor de confianza para todas tus necesidades de videojuegos. Ofrecemos una amplia selección de claves de juegos para PC, a precios competitivos y con un servicio al cliente de primera calidad.</p>
 
                         <h2 class="mt-4">Nuestra Historia</h2>
-                        <p>Fundada en [Año de Fundación], Gaming World ha crecido hasta convertirse en un líder en la industria de la distribución digital de videojuegos. Con un equipo dedicado de expertos en videojuegos, trabajamos incansablemente para ofrecerte las mejores ofertas y un catálogo en constante expansión.</p>
+                        <p>Fundada en 2024, Gaming World ha crecido hasta convertirse en un líder en la industria de la distribución digital de videojuegos. Con un equipo dedicado de expertos en videojuegos, trabajamos incansablemente para ofrecerte las mejores ofertas y un catálogo en constante expansión.</p>
 
                         <h2 class="mt-4">Lo que Ofrecemos</h2>
                         <div class="container">
                             <p>- Claves de juegos originales y verificadas.</p>
                             <p>- Entrega inmediata por correo electrónico.</p>
-                            <p>- Ofertas y promociones exclusivas.</p>
                             <p>- Soporte al cliente 24/7.</p>
                         </div>
 
@@ -51,7 +50,7 @@
                         <p>En Gaming World, la seguridad de tu información es nuestra prioridad. Implementamos medidas de seguridad avanzadas para proteger tus datos personales y asegurarnos de que tu experiencia de compra sea segura y confiable.</p>
 
                         <h2 class="mt-4">Política de Privacidad</h2>
-                        <p>Nos comprometemos a proteger tu privacidad. Esta política de privacidad explica cómo recopilamos, usamos y protegemos la información personal que nos proporcionas a través de nuestro sitio web.</p>
+                        <p>Nos comprometemos a proteger tu privacidad. Esta política de privacidad explica cómo recopilamos, usamos y protegemos la información personal que nos proporcionas a través de nuestro sitio web. <?php echo "<a class='text-white' href='PoliticaPrivacidad.php'>Miralo aqui</a>";?></p>
 
                         <h2 class="mt-4">Información que Recopilamos</h2>
                         <p>Podemos recopilar la siguiente información:</p>
@@ -72,21 +71,9 @@
                         <h2 class="mt-4">Seguridad</h2>
                         <p>Estamos comprometidos a garantizar que tu información esté segura. Para prevenir el acceso no autorizado o divulgación, hemos implementado procedimientos físicos, electrónicos y administrativos apropiados para salvaguardar y asegurar la información que recopilamos en línea.</p>
 
-                        <h2 class="mt-4">Cómo Utilizamos las Cookies</h2>
-                        <p>Una cookie es un pequeño archivo que solicita permiso para ser colocado en el disco duro de tu computadora. Una vez que aceptas, el archivo se agrega y la cookie ayuda a analizar el tráfico web o te permite saber cuando visitas un sitio en particular.</p>
-
-                        <h2 class="mt-4">Enlaces a Otros Sitios Web</h2>
-                        <p>Nuestro sitio web puede contener enlaces a otros sitios de interés. Sin embargo, una vez que hayas utilizado estos enlaces para salir de nuestro sitio, debes tener en cuenta que no tenemos control sobre ese otro sitio web. Por lo tanto, no podemos ser responsables de la protección y privacidad de cualquier información que proporciones mientras visitas tales sitios.</p>
-
-                        <h2 class="mt-4">Control de tu Información Personal</h2>
-                        <p>Puedes optar por restringir la recopilación o el uso de tu información personal de las siguientes maneras:</p>
-                        <div class="container">
-                            <p>- Siempre que se te pida rellenar un formulario en el sitio web, busca la casilla en la que puedes hacer clic para indicar que no deseas que la información sea utilizada por nadie para fines de marketing directo.</p>
-                            <p>- Si previamente has aceptado que usemos tu información personal para fines de marketing directo, puedes cambiar de opinión en cualquier momento escribiéndonos o enviándonos un correo electrónico a [correo electrónico de contacto].</p>
-                        </div>
-
+                        
                         <h2 class="mt-4">Contacto</h2>
-                        <p>Si tienes alguna pregunta sobre esta Política de Privacidad, por favor contáctanos a través de [correo electrónico de contacto] o [número de teléfono].</p>
+                        <p>Si tienes alguna pregunta sobre esta Política de Privacidad o culquier otro asunto, por favor contáctanos a través de nuestro formulario de contacto. <?php echo "<a class='text-white' href='Contactanos.php'>Contactanos</a>";?></p>
                     </div>
                 </div>
             </div>

@@ -173,16 +173,9 @@ function enviarCorreoCompra($usuarioID) {
 // Procesar la compra y agregar detalles al PDF
     $contenidoPDF = procesarCompra($usuarioID, $pdf);
 
-// Guardar el PDF en una variable
-    ob_start();
-    $pdf->Output('F', 'detalles_compra.pdf'); // Guardar el PDF en un archivo
-    ob_end_clean();
-    $pdfContent = file_get_contents('detalles_compra.pdf');
-
-// Adjuntar el PDF al correo electrónico
-    $mail->addStringAttachment($pdfContent, 'detalles_compra.pdf');
-
-    // Adjuntar el PDF al correo electrónico
+// Guardar el PDF en una variable en memoria
+    $pdfContent = $pdf->Output('S'); // Generar el PDF en memoria y obtener el contenido
+// Adjuntar el PDF al correo electrónico desde la memoria
     $mail->addStringAttachment($pdfContent, 'detalles_compra.pdf');
 
     try {

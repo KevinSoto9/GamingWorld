@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Gaming World</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>
 </head>
 <body class="text-white">
     <?php require 'menu.php'; ?>
@@ -40,6 +41,10 @@
         echo "</div>";
         ?>
     </div>
+    
+    <?php
+    require 'footer.php';
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

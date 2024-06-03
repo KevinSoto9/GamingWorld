@@ -32,10 +32,10 @@
                     <div class="card-body bg-dark">
                         <h1 class="text-center mb-4">Preguntas Frecuentes</h1>
                         <h3>¿Qué es Gaming World?</h3>
-                        <p>Gaming World es una tienda en línea especializada en la venta de claves de videojuegos para diversas plataformas, incluyendo PC, consolas y dispositivos móviles.</p>
+                        <p>Gaming World es una tienda en línea especializada en la venta de claves de videojuegos para PC.</p>
 
                         <h3>¿Cómo puedo comprar una clave de juego?</h3>
-                        <p>Para comprar una clave de juego en Gaming World, simplemente busca el juego que deseas en nuestra tienda en línea, selecciona la plataforma y sigue los pasos para realizar el pago. Una vez completado el pago, recibirás la clave del juego por correo electrónico.</p>
+                        <p>Para comprar una clave de juego en Gaming World, simplemente busca el juego que deseas en nuestra tienda en línea, selecciona el juego sigue los pasos para realizar el pago, para poder hacerlo antes debes tener vinculada tu tarjeta de credito a tu perfil. Una vez completado el pago, recibirás la clave del juego por correo electrónico.</p>
 
                         <h3>¿Son legítimas las claves de juegos vendidas en Gaming World?</h3>
                         <p>Sí, todas las claves de juegos vendidas en Gaming World son legítimas y provienen de distribuidores autorizados. Garantizamos la autenticidad de todos nuestros productos.</p>
@@ -45,6 +45,9 @@
 
                         <h3>¿Qué debo hacer si tengo algún problema con mi clave de juego?</h3>
                         <p>Si tienes algún problema con tu clave de juego, no dudes en ponerte en contacto con nuestro equipo de soporte al cliente. Estaremos encantados de ayudarte a resolver cualquier problema que puedas tener.</p>
+                        
+                        <h3>¿Puedo devolver mi clave de juego si no estoy satisfecho?</h3>
+                        <p>Una vez canjeada la clave, nosotros no podemos hacer nada , deberia hablar de la situacion con la plataforma correspondiente, si no es el caso puede contactarnos para ver su situacion</p>
                     </div>
                 </div>
             </div>

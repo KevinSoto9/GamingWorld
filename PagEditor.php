@@ -10,7 +10,7 @@ if (isset($_GET["editorID"])) {
 <head>
     <meta charset="UTF-8">
     <title>Gaming World</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>

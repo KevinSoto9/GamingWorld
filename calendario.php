@@ -7,47 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .calendar {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #343a40; /* Fondo oscuro */
-            color: white; /* Texto blanco */
-        }
-        
-        .calendar-row {
-            border: 1px solid #ddd;
-        }
-        
-        .calendar-day {
-            padding: 10px;
-            border: 1px solid #ddd;
-            vertical-align: top;
-            text-align: center; /* Centrar contenido */
-            width: 14.28%; /* Todas las celdas tienen el mismo tamaño */
-        }
-        
-        .calendar-day-head {
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #1e1e1e;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .day-number {
-            font-weight: bold;
-        }
-        
-        .not-work {
-            background-color: #f8d7da; /* Color de fondo para fines de semana */
-        }
-        
-        .novedad {
-            background-color: #ffc107; /* Color de fondo para días con novedades */
-        }
-    </style>
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
 </head>
 <body>
 
