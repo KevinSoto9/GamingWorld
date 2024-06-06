@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 
 $html = "";
@@ -49,26 +49,27 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
             // Consulta SQL para el juego
             $sel = "SELECT
-                    juegos.juegoID,
-                    juegos.nombre,
-                    juegos.imagen,
-                    juegos.descripcion,
-                    juegos.fecha_salida,
-                    juegos.precio,
-                    desarrolladores.desarrolladorID,
-                    editores.editorID,
-                    GROUP_CONCAT(DISTINCT generos.nombre) AS generos,
-                    desarrolladores.nombre AS desarrollador,
-                    editores.nombre AS editor
-                    FROM juegos
-                    INNER JOIN juegos_generos ON juegos_generos.juegoID = juegos.juegoID
-                    INNER JOIN generos ON generos.generoID = juegos_generos.generoID
-                    INNER JOIN juegos_desarrolladores ON juegos_desarrolladores.juegoID = juegos.juegoID
-                    INNER JOIN desarrolladores ON desarrolladores.desarrolladorID = juegos_desarrolladores.desarrolladorID
-                    INNER JOIN juegos_editores ON juegos_editores.juegoID = juegos.juegoID
-                    INNER JOIN editores ON editores.editorID = juegos_editores.editorID
-                    WHERE juegos.juegoID = '$juegoID'
-                    GROUP BY juegos.juegoID";
+    juegos.juegoID,
+    juegos.nombre,
+    juegos.imagen,
+    juegos.descripcion,
+    juegos.fecha_salida,
+    juegos.precio,
+    GROUP_CONCAT(DISTINCT generos.nombre) AS generos,
+    desarrolladores.desarrolladorID,
+    desarrolladores.nombre AS desarrollador,
+    editores.editorID,
+    editores.nombre AS editor
+FROM juegos
+INNER JOIN juegos_generos ON juegos_generos.juegoID = juegos.juegoID
+INNER JOIN generos ON generos.generoID = juegos_generos.generoID
+INNER JOIN juegos_desarrolladores ON juegos_desarrolladores.juegoID = juegos.juegoID
+INNER JOIN desarrolladores ON desarrolladores.desarrolladorID = juegos_desarrolladores.desarrolladorID
+INNER JOIN juegos_editores ON juegos_editores.juegoID = juegos.juegoID
+INNER JOIN editores ON editores.editorID = juegos_editores.editorID
+WHERE juegos.juegoID = '$juegoID'
+GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID;
+";
 
             $juegos = $bd->query($sel);
 
