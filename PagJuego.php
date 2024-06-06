@@ -68,7 +68,7 @@ INNER JOIN desarrolladores ON desarrolladores.desarrolladorID = juegos_desarroll
 INNER JOIN juegos_editores ON juegos_editores.juegoID = juegos.juegoID
 INNER JOIN editores ON editores.editorID = juegos_editores.editorID
 WHERE juegos.juegoID = '$juegoID'
-GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID;
+GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID
 ";
 
             $juegos = $bd->query($sel);
