@@ -4,13 +4,9 @@ session_start();
 $html = "";
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
-    $html .= "<div class='container'>";
-    $html .= "<div class='NoSesion'>";
-    $html .= "<h2>No has iniciado sesión</h2>";
-    $html .= "<button class='btn btn-primary' onclick='window.location.href=\"index.php\"'>Iniciar sesión</button>";
-    $html .= "</div>";
-    $html .= "</div>";
-    echo $html;
+    
+    require 'NoInicioSesion.php';
+    
 } else {
     // Conseguir el ID del Juego
     $juegoID = "";
