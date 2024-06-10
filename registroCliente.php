@@ -1,27 +1,38 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los datos del formulario
     $email = $_POST["email"];
     $alias = $_POST["alias"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmPassword"];
 
-    // Validar 
+    // Validar el formato del correo electrónico
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<script>alert('El correo electrónico ingresado no tiene un formato válido.');</script>";
-    } elseif (strlen($password) < 8) {
+    } 
+    // Validar la longitud de la contraseña
+    elseif (strlen($password) < 8) {
         echo "<script>alert('La contraseña debe tener al menos 8 caracteres.');</script>";
-    } elseif ($password !== $confirmPassword) {
+    } 
+    // Verificar si las contraseñas coinciden
+    elseif ($password !== $confirmPassword) {
         echo "<script>alert('Las contraseñas no coinciden.');</script>";
-    } else {
-         try {
-            require 'bd.php';
+    } 
+    else {
+        // Intentar insertar los datos en la base de datos
+        try {
+            require 'bd.php'; // Conectar a la base de datos
+            // Consulta SQL para insertar un nuevo usuario
             $ins = "INSERT INTO `usuarios` (`UsuarioID`, `Email`, `Password`, `Alias`, `Tipo`) VALUES (NULL, '$email', '$password', '$alias', 'Cliente')";
+            // Ejecutar la consulta
             $resul = $bd->query($ins);
             if ($resul) {
+                // Redirigir al usuario a la página de inicio
                 header("Location:index.php");
             }
         } catch (PDOException $e) {
+            // Mostrar mensaje de error si ocurre una excepción
             echo "Error: Comprueba que los datos que has puesto no han sido puestos antes";
         }
     }

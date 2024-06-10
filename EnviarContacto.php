@@ -1,5 +1,6 @@
 <?php
 
+//Archivos de PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

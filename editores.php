@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Gaming World</title>
@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
 </head>
 <body>
-    <?php require 'menu.php'; ?>
-    <?php require 'bd.php'; ?>
+    <?php 
+        // Incluye el menú y la base de datos
+        require 'menu.php'; 
+        require 'bd.php'; 
+    ?>
 
     <div class="container mb-5">
         <h1 class="text-center mt-5 mb-4">Lista de Editores</h1>
 
         <div class="row">
             <?php
-            // Consulta SQL para obtener todos los editores
+            // Consultar todos los editores ordenados por nombre
             $editores_query = "SELECT editorID, nombre FROM editores ORDER BY nombre ASC";
             $statementEditores = $bd->prepare($editores_query);
             $statementEditores->execute();
@@ -25,15 +28,16 @@
             foreach ($statementEditores as $editor) {
                 $editorID = $editor['editorID'];
                 $nombreEditor = $editor['nombre'];
-                ?>
+            ?>
                 <div class="col-md-3 mb-4 mt-4">
                     <div class="card bg-dark text-white">
                         <div class="card-body text-center">
+                            <!-- Enlace al editor con su ID -->
                             <h5 class="card-title"><a href="PagEditor.php?editorID=<?php echo $editorID; ?>" class="text-white"><?php echo $nombreEditor; ?></a></h5>
                         </div>
                     </div>
                 </div>
-                <?php
+            <?php
                 $contador++;
                 // Cerrar la fila después de mostrar 4 editores
                 if ($contador % 4 == 0) {
@@ -43,6 +47,5 @@
             ?>
         </div>
     </div>
-
 </body>
 </html>

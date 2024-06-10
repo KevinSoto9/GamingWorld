@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Contacto - Gaming World</title>
+    <!-- Estilos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Estilos adicionales -->
     <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
+</head>
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="PagPrincipal.php">
-                <img src="Imagenes/Titulo.png" href="PagPrincipal.php" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
+                <!-- Logo -->
+                <img src="Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
-            
+            <!-- Botones de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class='nav-item'>
@@ -31,6 +35,7 @@
                     <div class="col-lg-12">
                         <div class="card shadow-sm">
                             <div class="card-body bg-dark">
+                                <!-- Formulario de contacto -->
                                 <h1 class="text-center mb-4">Contáctanos</h1>
                                 <form action="EnviarContacto.php" method="post">
                                     <div class="form-group">
@@ -66,6 +71,7 @@
         </footer>
     </div>
 
+    <!-- Scripts JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

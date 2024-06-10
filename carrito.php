@@ -1,12 +1,16 @@
 <?php
+// Incluir archivos necesarios
 require 'menu.php';
 require 'bd.php';
 
+// Incluir estilos CSS
 echo "<link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>";
 echo "<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'>";
 
+// Obtener el ID del usuario de la sesión
 $usuarioID = $_SESSION['UsuarioID'];
 
+// Consultar el ID del carrito del usuario
 $selCarrito = "SELECT carritoID FROM `carrito` WHERE `usuarioID` = :usuarioID";
 $stmtCarrito = $bd->prepare($selCarrito);
 $stmtCarrito->bindParam(':usuarioID', $usuarioID);
@@ -16,20 +20,25 @@ $carritoID = $stmtCarrito->fetchColumn();
 $html = "<body>";
 $html .= "<div class='container mt-5'>";
 
+// Verificar si el carrito del usuario no está vacío
 if ($carritoID) {
+    // Consultar los juegos en el carrito
     $selCarritoJuegos = "SELECT cj.juegoID, j.nombre, cj.precio, cj.cantidad FROM `carrito_juegos` cj INNER JOIN `juegos` j ON cj.juegoID = j.juegoID WHERE `carritoID` = :carritoID";
     $stmtCarritoJuegos = $bd->prepare($selCarritoJuegos);
     $stmtCarritoJuegos->bindParam(':carritoID', $carritoID);
     $stmtCarritoJuegos->execute();
 
+    // Verificar si hay juegos en el carrito
     if ($stmtCarritoJuegos->rowCount() > 0) {
-        $html .= "<h2 class='text-center text-white'>Lista de la compra</h2>";
-        $html .= "<table class='table table-dark table-striped'>";
+        // Construir la tabla de la lista de la compra
+        $html .= "<h2 class='text-center text-white mb-5'>Lista de la compra</h2>";
+        $html .= "<table class='table table-dark table-striped mb-5'>";
         $html .= "<thead><tr><th>Nombre del Juego</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Acciones</th></tr></thead>";
         $html .= "<tbody>";
 
         $totalGeneral = 0;
 
+        // Iterar sobre los juegos en el carrito
         while ($row = $stmtCarritoJuegos->fetch(PDO::FETCH_ASSOC)) {
             $nombreJuego = $row['nombre'];
             $precio = $row['precio'];
@@ -50,12 +59,15 @@ if ($carritoID) {
 
         $html .= "</tbody></table>";
 
-        $html .= "<h3 class='text-center text-white total-general'>Total General: $$totalGeneral</h3>";
+        // Mostrar el total general
+        $html .= "<h3 class='text-center text-white total-general mb-4'>Total General: $$totalGeneral</h3>";
 
+        // Formulario para finalizar la compra
         $html .= "<form action='Email.php' method='post' class='text-center'>";
         $html .= "<input type='submit' value='Finalizar la compra' class='btn btn-success'>";
         $html .= "</form>";
     } else {
+        // Mensaje si el carrito está vacío
         $html .= "<div class='text-center'>";
         $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
         $html .= "<img src='Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
@@ -65,6 +77,7 @@ if ($carritoID) {
         $html .= "</div>";
     }
 } else {
+    // Mensaje si el carrito está vacío
     $html .= "<div class='text-center'>";
     $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
     $html .= "<img src='Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
@@ -77,12 +90,15 @@ if ($carritoID) {
 $html .= "</div>";
 $html .= "</body>";
 
+// Imprimir HTML generado
 echo $html;
 ?>
 
+<!-- Scripts JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+// Script para eliminar un juego del carrito
 $(document).ready(function() {
     $('.eliminar-juego').on('click', function() {
         var juegoID = $(this).data('juego-id');
@@ -107,7 +123,7 @@ $(document).ready(function() {
                     } else {
                         row.remove();
                     }
-                    // Update total general and check if it's zero
+                    // Actualizar el total general y verificar si es cero
                     updateTotalGeneral();
                 } else {
                     alert(res.message);
@@ -116,6 +132,7 @@ $(document).ready(function() {
         });
     });
 
+    // Función para actualizar el total general
     function updateTotalGeneral() {
         var totalGeneral = 0;
         $('.table tbody tr').each(function() {
@@ -123,11 +140,10 @@ $(document).ready(function() {
             totalGeneral += total;
         });
         if (totalGeneral === 0) {
-            location.reload(); // Reload page to show empty cart
+            location.reload(); // Recargar la página para mostrar el carrito vacío
         } else {
             $('.total-general').text('Total General: $' + totalGeneral.toFixed(2));
         }
     }
-
 });
 </script>

@@ -10,30 +10,32 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
+            <!-- Logo -->
             <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo 'PagPrincipal.php'; } else { echo 'index.php';}; ?>">
                 <img src="Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
 
+            <!-- Menú de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-            
-            <?php
-            if(isset($_GET["ini"]) && $_GET["ini"] == "ok")
-            {
-                echo "<li class='nav-item'>";
-                echo "<a class='nav-link' href='PagPrincipal.php'>Ir al Inicio</a>";
-                echo "</li>";
-            }
-            else {
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link" href="index.php">Iniciar Sesión</a>';
-                echo '</li>';
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link" href="registroCliente.php">Registrarse</a>';
-                echo '</li>';
-            }
-            ?>
-
+                    <?php
+                    // Verificar si se ha iniciado sesión
+                    if(isset($_GET["ini"]) && $_GET["ini"] == "ok")
+                    {
+                        echo "<li class='nav-item'>";
+                        echo "<a class='nav-link' href='PagPrincipal.php'>Ir al Inicio</a>";
+                        echo "</li>";
+                    }
+                    else {
+                        // Mostrar opciones de inicio de sesión y registro
+                        echo '<li class="nav-item">';
+                        echo '<a class="nav-link" href="index.php">Iniciar Sesión</a>';
+                        echo '</li>';
+                        echo '<li class="nav-item">';
+                        echo '<a class="nav-link" href="registroCliente.php">Registrarse</a>';
+                        echo '</li>';
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -45,9 +47,11 @@
             <div class="col-lg-12">
                 <div class="card shadow-sm">
                     <div class="card-body bg-dark">
+                        <!-- Títulos y contenido -->
                         <h1 class="text-center mb-4">Términos de Uso</h1>
                         <p>Bienvenido a Gaming World, tu tienda en línea de claves de videojuegos. Al acceder y utilizar nuestro sitio web, aceptas cumplir con los siguientes términos y condiciones. Te recomendamos leer estos términos detenidamente.</p>
 
+                        <!-- Secciones de términos -->
                         <h2 class="mt-4">1. Aceptación de los Términos</h2>
                         <p>Al utilizar este sitio web, aceptas estos términos de uso en su totalidad. Si no estás de acuerdo con alguna parte de estos términos, no deberías usar nuestro sitio web.</p>
 
@@ -84,6 +88,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,23 +1,29 @@
 <?php
-
+// Verificar si se ha recibido el ID del comentario del juego
 if(isset($_GET['comentarioJuegoID'])) {
     $comentarioJuegoID = $_GET['comentarioJuegoID'];
 }
-    
+
+// Verificar si se ha recibido el ID del juego
 if(isset($_GET['JuegoID'])) {
     $JuegoID= $_GET['JuegoID'];
 }
     
-    try {
-        require 'bd.php';
-        $delete_query = "DELETE FROM comentarios_juegos WHERE comentarioJuegoID = :comentarioJuegoID";
-        $stmt = $bd->prepare($delete_query);
-        $stmt->bindParam(':comentarioJuegoID', $comentarioJuegoID);
-        $stmt->execute();
+try {
+    // Requerir el archivo de conexión a la base de datos
+    require 'bd.php';
+    
+    // Preparar y ejecutar la consulta para eliminar el comentario del juego
+    $delete_query = "DELETE FROM comentarios_juegos WHERE comentarioJuegoID = :comentarioJuegoID";
+    $stmt = $bd->prepare($delete_query);
+    $stmt->bindParam(':comentarioJuegoID', $comentarioJuegoID);
+    $stmt->execute();
 
-        header("Location:PagJuego.php?juegoID=".$JuegoID);
-        exit();
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+    // Redirigir de vuelta a la página del juego después de eliminar el comentario
+    header("Location:PagJuego.php?juegoID=".$JuegoID);
+    exit();
+} catch (PDOException $e) {
+    // En caso de error, mostrar el mensaje de error
+    echo $e->getMessage();
+}
 ?>

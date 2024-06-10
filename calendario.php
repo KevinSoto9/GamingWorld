@@ -8,13 +8,15 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
+
 </head>
 <body>
 
 <?php
+// Incluir el menú
 require 'menu.php';
 
-// Obtener las novedades del mes actual desde la base de datos
+// Función para obtener las novedades del mes actual desde la base de datos
 function obtenerNovedadesMesActual($month, $year) {
     require 'bd.php';
 
@@ -31,7 +33,6 @@ function obtenerNovedadesMesActual($month, $year) {
         return;
     }
 
-
     if ($stmt->rowCount() > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $novedades[date('j', strtotime($row["fecha"]))] = $row["titulo"]; // Usamos 'j' para obtener el día del mes sin ceros iniciales
@@ -41,23 +42,15 @@ function obtenerNovedadesMesActual($month, $year) {
     return $novedades;
 }
 
-// Generar el calendario 
+// Función para generar el calendario 
 function generar_calendario($month, $year, $lang, $holidays = null) {
     $novedades = obtenerNovedadesMesActual($month, $year);
 
-    $calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
+    $calendar = '<table cellpadding="0" cellspacing="0" class="calendar table table-bordered table-striped">';
 
-    if ($lang == 'en') {
-        $headings = array('M', 'T', 'W', 'T', 'F', 'S', 'S');
-    }
-    if ($lang == 'es') {
-        $headings = array('L', 'M', 'M', 'J', 'V', 'S', 'D');
-    }
-    if ($lang == 'ca') {
-        $headings = array('DI', 'Dm', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg');
-    }
+    $headings = ($lang == 'es') ? array('L', 'M', 'M', 'J', 'V', 'S', 'D') : array('M', 'T', 'W', 'T', 'F', 'S', 'S');
 
-    $calendar .= '<tr class="calendar-row"><td class="calendar-day-head">' . implode('</td><td class="calendar-day-head">', $headings) . '</td></tr>';
+    $calendar .= '<tr class="calendar-row"><th class="calendar-day-head">' . implode('</th><th class="calendar-day-head">', $headings) . '</th></tr>';
 
     $first_day_timestamp = mktime(0, 0, 0, $month, 1, $year);
     $first_day_weekday = date('N', $first_day_timestamp); // Obtener el día de la semana del primer día del mes
@@ -77,7 +70,6 @@ function generar_calendario($month, $year, $lang, $holidays = null) {
         $class = "day-number ";
         $current_day_timestamp = mktime(0, 0, 0, $month, $list_day, $year);
         $current_day_weekday = date('N', $current_day_timestamp); // Obtener el día de la semana actual
-
 
         // Comprobar si hay novedades 
         if (isset($novedades[$list_day])) {
@@ -103,36 +95,24 @@ function generar_calendario($month, $year, $lang, $holidays = null) {
     return $calendar;
 }
 
-
+// Obtener el mes y el año actual
 $currentMonth = min(isset($_GET['month']) ? $_GET['month'] : date('n'), 12);
 $currentYear = isset($_GET['year']) ? $_GET['year'] : date('Y');
-
 
 $currentMonth = max($currentMonth, date('n'));
 
 echo '<div class="container">';
-echo "<div class='titulo'><h1 class='text-center  mt-4'>Calendario de Juegos del 2024</h1></div>";
+echo "<div class='titulo'><h1 class='text-center mt-4'>Calendario de Juegos del 2024</h1></div>";
 
 $meses = array(
-    1 => 'Enero',
-    2 => 'Febrero',
-    3 => 'Marzo',
-    4 => 'Abril',
-    5 => 'Mayo',
-    6 => 'Junio',
-    7 => 'Julio',
-    8 => 'Agosto',
-    9 => 'Septiembre',
-    10 => 'Octubre',
-    11 => 'Noviembre',
-    12 => 'Diciembre'
+    1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'Mayo', 6 => 'Junio',
+    7 => 'Julio', 8 => 'Agosto', 9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
 );
 
 $nombre_mes = $meses[$currentMonth];
 
 echo "<h2 class='calendario-titulo text-center mb-4'>" . $nombre_mes . ' ' . $currentYear . "</h2>";
 echo '</div>';
-
 ?>
 
 <div class="container">
@@ -161,12 +141,13 @@ echo '</div>';
     </div>
 </div>
 
-<!-- jQuery and Bootstrap Bundle (includes Popper) -->
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
+    // Función para cambiar el mes
     function changeMonth(delta) {
         var currentMonth = parseInt('<?php echo $currentMonth; ?>') + delta;
         var currentYear = parseInt('<?php echo $currentYear; ?>');
@@ -175,6 +156,7 @@ echo '</div>';
         window.location.href = '?month=' + currentMonth + '&year=' + currentYear;
     }
 
+    // Cambiar el color de fondo de los días con novedades
     document.addEventListener("DOMContentLoaded", function() {
         var calendarDays = document.querySelectorAll('.calendar-day');
         calendarDays.forEach(function(day) {
@@ -185,5 +167,3 @@ echo '</div>';
     });
 </script>
 
-</body>
-</html>

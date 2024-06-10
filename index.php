@@ -1,29 +1,42 @@
 <?php
-session_start(); 
+// Inicia la sesión
+session_start();
 
+// Verifica si el método de solicitud es POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtiene los valores de email y password desde el formulario
     $Email = $_POST["email"];
     $Password = $_POST["password"];
 
     try {
+        // Incluye el archivo de conexión a la base de datos
         require 'bd.php';
         
+        // Consulta para seleccionar todos los usuarios
         $sel = "SELECT * FROM usuarios;";
         $usuarios = $bd->query($sel);
 
+        // Verifica si la consulta fue exitosa
         if ($usuarios) {
+            // Recorre todos los usuarios
             foreach ($usuarios as $usuario) {
+                // Comprueba si el email y el password coinciden
                 if ($Email == $usuario['Email'] && $Password == $usuario['Password']) {
+                    // Establece las variables de sesión
                     $_SESSION['tipo_usuario'] = $usuario['Tipo'];
                     $_SESSION['Alias'] = $usuario['Alias'];
                     $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
+                    
+                    // Redirige a la página principal
                     header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     exit();
                 }
             }
+            // Mensaje de error si el email o la password no coinciden
             $error_message = "El email o la password están mal";
         }
     } catch (Exception $ex) {
+        // Mensaje de error en caso de excepción
         $error_message = "Error: " . $ex->getMessage();
     }
 }
@@ -78,12 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button type="submit" class="btn btn-warning btn-block">Login</button>
                             </form>
                             <div class="register text-center mt-5">
-                            <a href="ContraNueva.php" class="forgot-password-link text-warning">Has olvidado tu contraseña?</a>
-                            <p class="login-card-footer-text mt-3">No tienes una cuenta? <a href="registroCliente.php" class="text-reset">Registrate aquí</a></p>
-                            <nav class="login-card-footer-nav ">
-                                <a class="text-warning" href="TerminosDeUso.php" >Terminos de uso.</a>
-                                <a class="text-warning" href="PoliticaPrivacidad.php">Politica de privacidad</a>
-                            </nav>
+                                <a href="ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
+                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="registroCliente.php" class="text-reset">Regístrate aquí</a></p>
+                                <nav class="login-card-footer-nav">
+                                    <a class="text-warning" href="TerminosDeUso.php">Términos de uso</a>
+                                    <a class="text-warning" href="PoliticaPrivacidad.php">Política de privacidad</a>
+                                </nav>
                             </div>
                         </div>
                     </div>

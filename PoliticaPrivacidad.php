@@ -10,13 +10,15 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
+            <!-- Logo -->
             <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo 'PagPrincipal.php';}else{echo 'index.php';};?>">
                 <img src="Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
+            <!-- Menú de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                     <?php
+                    <?php
                     if (isset($_GET["ini"]) && $_GET["ini"] == "ok") {
                         echo "<li class='nav-item'>";
                         echo "<a class='nav-link' href='PagPrincipal.php'>Ir al Inicio</a>";
@@ -42,8 +44,10 @@
                 <div class="card shadow-sm">
                     <div class="card-body bg-dark">
                         <h1 class="text-center mb-4">Política de Privacidad</h1>
+                        <!-- Introducción -->
                         <p>En Gaming World, nos comprometemos a proteger tu privacidad. Esta política de privacidad explica cómo recopilamos, usamos y protegemos la información personal que nos proporcionas a través de nuestro sitio web.</p>
 
+                        <!-- Sección 1 -->
                         <h2 class="mt-4">1. Información que Recopilamos</h2>
                         <p>Podemos recopilar la siguiente información:</p>
                         <div class="container">
@@ -51,6 +55,7 @@
                             <p>- Otra información relevante para encuestas y/o ofertas.</p>
                         </div>
 
+                        <!-- Sección 2 -->
                         <h2 class="mt-4">2. Uso de la Información</h2>
                         <p>Utilizamos esta información para entender tus necesidades y ofrecerte un mejor servicio, y en particular por las siguientes razones:</p>
                         <div class="container">
@@ -59,9 +64,11 @@
                             <p>- Envío de correos electrónicos promocionales sobre nuevos productos, ofertas especiales u otra información que pensamos que puede resultarte interesante.</p>
                         </div>
 
+                        <!-- Sección 3 -->
                         <h2 class="mt-4">3. Seguridad</h2>
-                        <p>Estamos comprometidos a garantizar que tu información esté segura. Para prevenir el acceso no autorizado o divulgación, hemos implementado procedimientos físicos, electrónicos y administrativos apropiados para salvaguardar y asegurar la información que recopilamos en línea.</                        </p>
+                        <p>Estamos comprometidos a garantizar que tu información esté segura. Para prevenir el acceso no autorizado o divulgación, hemos implementado procedimientos físicos, electrónicos y administrativos apropiados para salvaguardar y asegurar la información que recopilamos en línea.</p>
 
+                        <!-- Sección 4 -->
                         <h2 class="mt-4">4. Control de tu Información Personal</h2>
                         <p>Puedes optar por restringir la recopilación o el uso de tu información personal de las siguientes maneras:</p>
                         <div>
@@ -69,6 +76,7 @@
                             <p>- Si previamente has aceptado que usemos tu información personal para fines de marketing directo, puedes cambiar de opinión en cualquier momento escribiéndonos o enviándonos un correo electrónico a [correo electrónico de contacto].</p>
                         </div>
 
+                        <!-- Sección 5 -->
                         <h2 class="mt-4">5. Contacto</h2>
                         <p>Si tienes alguna pregunta sobre esta Política de Privacidad, por favor contáctanos a través de nuestro formulario de contacto. <?php echo "<a class='text-white' href='Contactanos.php'>Contactanos</a>";?></p>
                     </div>
@@ -79,11 +87,12 @@
 
     <!-- Pie de página -->
     <footer class="footer mt-5 py-3 bg-dark text-white">
-        <div class="container text-center ">
+        <div class="container text-center">
             <span>&copy; 2024 Gaming World. Todos los derechos reservados.</span>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

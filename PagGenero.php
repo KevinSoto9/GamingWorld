@@ -3,11 +3,12 @@ session_start();
 
 $html = "";
 
+// Verificar si el usuario está iniciado sesión
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
-
+    // Incluir el archivo para mostrar cuando el usuario no ha iniciado sesión
     require 'NoInicioSesion.php';
 } else {
-// Obtener el ID del género
+    // Obtener el ID del género
     $generoID = "";
     if (isset($_GET["generoID"])) {
         $generoID = $_GET["generoID"];
@@ -36,7 +37,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                     $genero = $statementGenero->fetch();
                     $nombreDelGenero = isset($genero['nombre']) ? $genero['nombre'] : 'Desconocido';
 
-                    // Nombre del género
+                    // Mostrar el nombre del género
                     echo "<h1 class='text-center mt-5 text-white mb-5'>Género: $nombreDelGenero</h1>";
                     ?>
                 </div>
@@ -66,7 +67,6 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                     $sel = "SELECT
                         juegos.juegoID,
                         juegos.nombre,
-                        juegos.imagen,
                         juegos.descripcion,
                         juegos.fecha_salida,
                         juegos.precio,
@@ -88,7 +88,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                         <div class="col-md-3">
                             <div class="card mb-5 bg-dark text-white">
                                 <a href='PagJuego.php?juegoID=<?= $juego['juegoID'] ?>' class='enlace-juego text-white'>
-                                    <img class='card-img-top' src='ImagenesJuegos/<?= $juego['imagen'] ?>' alt='<?= $juego['nombre'] ?>'>
+                                    <img class='card-img-top' src='ImagenesJuegos/<?= $juego['nombre'].".jpg" ?>' alt='<?= $juego['nombre'] ?>'>
                                     <div class='card-body'>
                                         <h5 class='card-title'><?= $juego['nombre'] ?></h5>
                                         <p class='card-text'>Precio: <?= $juego['precio'] ?></p>
@@ -106,6 +106,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 <div class="container">
                     <ul class="pagination justify-content-center">
                         <?php
+                        // Mostrar enlaces de paginación
                         for ($i = 1; $i <= $total_paginas; $i++) {
                             echo "<li class='page-item bg-dark'><a class='page-link bg-dark text-white' href='?pagina=$i&generoID=$generoID'>$i</a></li>";
                         }

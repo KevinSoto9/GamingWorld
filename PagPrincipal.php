@@ -1,40 +1,43 @@
 <?php
 
+// Iniciar sesión
 session_start();
 
 $html = "";
 
+// Comprobar si el usuario no ha iniciado sesión
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
-
+    // Requerir archivo para usuario no logueado
     require 'NoInicioSesion.php';
 } else {
-
+    // Requerir archivos necesarios
     require 'menu.php';
     require 'bd.php';
 
+    // Agregar estilos CSS
     echo "<link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>";
-    echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>"; // Agregamos Bootstrap
-// Num de juegos por pagina
+    echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>";
+
+    // Número de juegos por página
     $registros_por_pagina = 16;
 
-// Obtener la página actual
+    // Obtener la página actual
     $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
-// Offset por donde empezar a coger datos
+    // Offset por donde empezar a coger datos
     $offset = ($pagina_actual - 1) * $registros_por_pagina;
 
-// Numero total de juegos
+    // Número total de juegos
     $total_registros_query = "SELECT COUNT(*) AS total FROM juegos";
     $total_registros_result = $bd->query($total_registros_query);
     $total_registros = $total_registros_result->fetch()['total'];
 
     $total_paginas = ceil($total_registros / $registros_por_pagina);
 
-// Consulta SQL (para que coja 16 por cada pagina)
+    // Consulta SQL (para que coja 16 por cada página)
     $sel = "SELECT
             juegos.juegoID,
             juegos.nombre,
-            juegos.imagen,
             juegos.descripcion,
             juegos.fecha_salida,
             juegos.precio,
@@ -48,17 +51,16 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
     $juegos = $bd->query($sel);
 
-// Lista de juegos
-    $html = "";
+    // Inicio de estructura HTML
     $html .= "<div class='container-fluid mv-80'>"; // Cambiamos a container-fluid para que ocupe todo el ancho disponible
-// Título
     $html .= "<h1 class='text-center mt-5 text-white mb-5'>GamingWorld</h1>";
 
-// Botón del historial
+    // Botón del historial
     $html .= "<div class='mb-5 container d-flex justify-content-center align-items-center'>";
     $html .= "<button class='btn btn-secondary' onclick=\"window.location.href='historico.php'\">Ver Juegos por año</button>";
     $html .= "</div>";
 
+    // Modal para mensaje
     $html .= "<div class='modal fade' id='mensajeModal' tabindex='-1' role='dialog' aria-labelledby='mensajeModalLabel' aria-hidden='true'>";
     $html .= "<div class='modal-dialog' role='document'>";
     $html .= "<div class='modal-content'>";
@@ -73,20 +75,24 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     $html .= "</div>";
     $html .= "</div>";
 
-    $html .= "<div id='mensaje'></div>"; // Movemos el div del mensaje al final
+    // Div para mensaje
+    $html .= "<div id='mensaje'></div>";
 
-    $html .= "<div class='row'>"; // Creamos una fila de Bootstrap
+    // Div para juegos
+    $html .= "<div class='row'>";
 
+    // Iterar sobre los juegos
     foreach ($juegos as $juego) {
-        $html .= "<div class='col-md-3 mb-4'>"; // Dividimos en columnas de Bootstrap
-        $html .= "<div class='bg-dark card h-100'>"; // Clase h-100 para que todas las cartas tengan la misma altura
+        $html .= "<div class='col-md-3 mb-4'>";
+        $html .= "<div class='bg-dark card h-100'>";
         $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='text-white enlace-juego'>";
-        $html .= "<img class='card-img-top text-white' src='ImagenesJuegos/{$juego['imagen']}' alt='{$juego['nombre']}'>";
+        $html .= "<img class='card-img-top text-white' src='ImagenesJuegos/{$juego['nombre']}.jpg' alt='{$juego['nombre']}'>";
         $html .= "<div class='card-body d-flex flex-column'>";
         $html .= "<h5 class='card-title text-white'>{$juego['nombre']}</h5>";
         $html .= "<p class='card-text text-white'>Precio: {$juego['precio']}</p>";
         $html .= "<p class='card-text text-white'>Géneros: ";
 
+        // Generar HTML de géneros
         $generosHtml = "";
         $generos = explode(",", $juego["generos"]);
         foreach ($generos as $genero) {
@@ -98,29 +104,31 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             $generosHtml .= "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
         }
 
-        $html .= rtrim($generosHtml, ", "); // Eliminar la última coma y espacio
+        $html .= rtrim($generosHtml, ", ");
 
         $html .= "</p>";
-        $html .= "<button class='btn btn-primary mt-auto agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>"; // Botón de agregar al carrito con modal
-        $html .= "</div>"; // Cierre de div para card-body
+        // Botón de agregar al carrito con modal
+        $html .= "<button class='btn btn-primary mt-auto agregar-carrito' data-toggle='modal' data-target='#mensajeModal' data-juego-id='{$juego['juegoID']}' data-precio='{$juego['precio']}'>Agregar al carrito</button>";
+        $html .= "</div>";
         $html .= "</a>";
-        $html .= "</div>"; // Cierre de div para card
-        $html .= "</div>"; // Cierre de div para columna de Bootstrap
+        $html .= "</div>";
+        $html .= "</div>";
     }
 
+    // Cierre de la estructura HTML
+    $html .= "</div>";
+    $html .= "</div>";
 
-
-    $html .= "</div>"; // Cerramos la fila de Bootstrap
-    $html .= "</div>"; // Cerramos el contenedor de Bootstrap
-// Paginación botones
+    // Paginación botones
     $html .= "<div class='container'>";
-    $html .= "<ul class='pagination justify-content-center'>"; // Cambiamos a paginación de Bootstrap
+    $html .= "<ul class='pagination justify-content-center'>";
     for ($i = 1; $i <= $total_paginas; $i++) {
         $html .= "<li class='page-item bg-dark'><a class='page-link bg-dark text-white' href='?pagina=$i'>$i</a></li>";
     }
     $html .= "</ul>";
     $html .= "</div>";
 
+    // Script para agregar al carrito
     $html .= "<script>";
     $html .= "document.addEventListener('DOMContentLoaded', function() {";
     $html .= "    var agregarCarritoBtns = document.querySelectorAll('.agregar-carrito');";
@@ -136,7 +144,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     $html .= "    });";
     $html .= "});";
     $html .= "</script>";
-
+    
     echo $html;
 
     require 'footer.php';
