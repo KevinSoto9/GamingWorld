@@ -21,7 +21,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <?php 
     // Incluir menú de navegación y conexión a la base de datos
     require '../Menus/menu.php';
-    require '/..bd.php';
+    require '../bd.php';
 
     // Obtener la fecha actual
     $fechaActual = date('Y-m-d');
