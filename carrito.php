@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // Incluir archivos necesarios
 require 'menu.php';
 require 'bd.php';
@@ -72,7 +72,7 @@ if ($carritoID) {
         $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
         $html .= "<img src='Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
         $html .= "<div class='mt-4'>";
-        $html .= "<a href='Pagprincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+        $html .= "<a href='PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
         $html .= "</div>";
         $html .= "</div>";
     }
@@ -82,7 +82,7 @@ if ($carritoID) {
     $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
     $html .= "<img src='Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
     $html .= "<div class='mt-4'>";
-    $html .= "<a href='Pagprincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+    $html .= "<a href='PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
     $html .= "</div>";
     $html .= "</div>";
 }
