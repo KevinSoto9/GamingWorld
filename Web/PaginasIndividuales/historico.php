@@ -1,4 +1,10 @@
 <?php
+
+if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    // Requerir archivo para usuario no logueado
+    require '../PaginasAdicionales/NoInicioSesion.php';
+} else {
+
 // Incluye el menú y la base de datos
 require '../Menus/menuIndividual.php';
 require '../bd.php';
@@ -104,4 +110,5 @@ $html .= "</div>";
 echo $html;
 
 require 'footer.php';
+}
 ?>

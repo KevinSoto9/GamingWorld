@@ -1,4 +1,9 @@
 ﻿<?php
+
+if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    // Requerir archivo para usuario no logueado
+    require '../PaginasAdicionales/NoInicioSesion.php';
+} else {
 // Incluir archivos necesarios
 require '../Menus/menu.php';
 require '../bd.php';
@@ -147,3 +152,7 @@ $(document).ready(function() {
     }
 });
 </script>
+
+<?php
+    }
+    ?>

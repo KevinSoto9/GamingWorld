@@ -1,3 +1,10 @@
+<?php
+
+if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    // Requerir archivo para usuario no logueado
+    require '../PaginasAdicionales/NoInicioSesion.php';
+} else {
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,3 +57,5 @@
     </div>
 </body>
 </html>
+
+<?php } ?>

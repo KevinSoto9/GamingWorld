@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    // Requerir archivo para usuario no logueado
+    require '../PaginasAdicionales/NoInicioSesion.php';
+} else {
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +21,7 @@
     <?php 
     // Incluir menú de navegación y conexión a la base de datos
     require '../Menus/menu.php';
-    require '../bd.php';
+    require '/..bd.php';
 
     // Obtener la fecha actual
     $fechaActual = date('Y-m-d');
@@ -61,3 +69,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+    }
+    ?>

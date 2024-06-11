@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
+    // Requerir archivo para usuario no logueado
+    require '../PaginasAdicionales/NoInicioSesion.php';
+} else {
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +17,7 @@
 </head>
 
 <body>
-    <?php require '../Menus/menu.php'; ?>
+    <?php require '/Web/Menus/menu.php'; ?>
 
     <div class="container mt-5">
         <div class="perfil">
@@ -56,7 +64,7 @@
 
                     <div class="perfil-cambiarContrasena mt-3">
                         <h2>¿Quieres cambiar la contraseña?</h2>
-                        <?php echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"../Funciones/CambiarContra.php?UsuarioID=" . urlencode($usuario_id) . "\"'>Hazlo Aquí</button>"; ?>
+                        <?php echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"/Web/Funciones/CambiarContra.php?UsuarioID=" . urlencode($usuario_id) . "\"'>Hazlo Aquí</button>"; ?>
                     </div>
                 </div>
 
@@ -73,7 +81,7 @@
                         if (!$tarjeta_res || $tarjeta_res->rowCount() === 0) {
                             echo "<div class='alert alert-warning'>";
                             echo "<h2>No tienes ninguna tarjeta asociada a tu perfil</h2>";
-                            echo "<button class='btn btn-primary' onclick='window.location.href=\"../Funciones/CrearTarjeta.php\"'>Hazlo aquí</button>";
+                            echo "<button class='btn btn-primary' onclick='window.location.href=\"/Web/Funciones/CrearTarjeta.php\"'>Hazlo aquí</button>";
                             echo "</div>";
                         } else {
                             echo "<div class='perfil-tarjeta-vinculada p-3 mb-3 bg-secondary rounded'>";
@@ -107,7 +115,7 @@
                                 foreach ($tarjeta_res as $tar) {
                                     echo "<div class='perfil-quitarTarjeta-content'>";
                                     echo "<h2>¿Quieres desvincular la tarjeta?</h2>";
-                                    echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"../Funciones/QuitarTarjeta.php?tarjetaID=" . urlencode($tar['tarjetaID']) . "\"'>Hazlo Aquí</button>";
+                                    echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"/Web/Funciones/QuitarTarjeta.php?tarjetaID=" . urlencode($tar['tarjetaID']) . "\"'>Hazlo Aquí</button>";
                                     echo "</div>";
                                 }
                             }
@@ -150,3 +158,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+    }
+    ?>
