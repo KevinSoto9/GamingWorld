@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2024 a las 22:40:20
+-- Tiempo de generación: 11-06-2024 a las 22:48:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.1.25
 
@@ -40,7 +40,7 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`carritoID`, `usuarioID`, `tarjetaID`) VALUES
-(3, 2, 12);
+(4, 2, 13);
 
 -- --------------------------------------------------------
 
@@ -74,8 +74,7 @@ CREATE TABLE `comentarios_juegos` (
 --
 
 INSERT INTO `comentarios_juegos` (`comentarioJuegoID`, `UsuarioID`, `JuegoID`, `comentario`, `fecha`) VALUES
-(4, 2, 20, 'Juegalo por favor Obra Maestra', '2024-04-18 23:46:00'),
-(6, 2, 20, 'juegalo', '2024-05-26 17:43:00');
+(4, 2, 20, 'Juegalo por favor Obra Maestra', '2024-04-18 23:46:00');
 
 -- --------------------------------------------------------
 
@@ -97,8 +96,7 @@ CREATE TABLE `comentarios_noticias` (
 
 INSERT INTO `comentarios_noticias` (`comentarioNoticiaID`, `noticiaDetalleID`, `usuarioID`, `comentario`, `fecha`) VALUES
 (9, 1, 2, 'ejemplo', '2024-04-16 20:59:00'),
-(11, 1, 2, 'comentario final', '2024-04-16 21:20:00'),
-(14, 1, 2, 'x', '2024-05-25 14:10:00');
+(11, 1, 2, 'comentario final', '2024-04-16 21:20:00');
 
 -- --------------------------------------------------------
 
@@ -223,7 +221,8 @@ INSERT INTO `desarrolladores` (`desarrolladorID`, `nombre`) VALUES
 (105, 'QLOC'),
 (107, 'Supergiant Games'),
 (108, 'Studio MDHR'),
-(109, 'Creative Assembly');
+(109, 'Creative Assembly'),
+(110, 'Perfuse Entertainment');
 
 -- --------------------------------------------------------
 
@@ -314,7 +313,8 @@ INSERT INTO `editores` (`editorID`, `nombre`) VALUES
 (74, 'Bandai Namco Entertainment'),
 (75, 'Supergiant Games'),
 (76, 'Studio MDHR'),
-(77, 'Creative Assembly');
+(77, 'Creative Assembly'),
+(78, 'Perfuse Entertainment');
 
 -- --------------------------------------------------------
 
@@ -649,7 +649,8 @@ INSERT INTO `juegos` (`JuegoID`, `nombre`, `descripcion`, `fecha_salida`, `preci
 (247, 'Hades', 'Hades es un juego roguelike de exploración de mazmorras que combina los mejores aspectos de los aclamados títulos anteriores de Supergiant, como la acción rápida de Bastion, la atmósfera y la profundidad de Transistor y la narrativa centrada en los personajes de Pyre.\r\n\r\nCOMBATE PARA ESCAPAR DEL INFIERNO\r\nComo el príncipe inmortal del Inframundo, tendrás a tu disposición los poderes y las armas míticas del Olimpo para liberarte de las garras del mismísimo dios de los muertos, al tiempo que te vas haciendo más fuerte y descubres más piezas de la historia con cada intento de fuga.\r\n\r\nDESATA LA IRA DEL OLIMPO\r\n¡Los dioses del Olimpo están de tu lado! Conoce a Zeus, Atenea, Poseidón y muchos más, y elige entre decenas de poderosas bendiciones que potenciarán tus habilidades. Hay miles de arquetipos de personaje viables que irás descubriendo a medida que juegues.', '2020-09-17', 24.50),
 (248, 'Hades II', 'La primera continuación de Supergiant Games se basa en los mejores aspectos del juego de mazmorras divino de tipo rogue-like y ofrece una experiencia de juego totalmente nueva, llena de acción y con una rejugabilidad ilimitada, con el Inframundo de los mitos griegos y su conexión con los albores de la brujería como telón de fondo.\r\n\r\nÁBRETE PASO MÁS ALLÁ DEL INFRAMUNDO\r\nEncarnarás a la Princesa inmortal del Inframundo, y explorarás un mundo más extenso y elaborado. Tendrás que derrotar a las fuerzas del Titán del Tiempo con la ayuda del Olimpo, en una historia desgarradora que se irá desgranando poco a poco con cada uno de tus logros o reveses.\r\n\r\nDOMINA LA BRUJERÍA Y LAS ARTES OSCURAS\r\nImbuye de magia ancestral tus legendarias Armas de la Noche para que nadie pueda interponerse en tu camino. Poténciate con las bendiciones de más de una docena de dioses del Olimpo, desde Apolo hasta Zeus. Tendrás a tu disposición un sinfín de opciones para mejorar tus habilidades.', '2024-05-06', 28.99),
 (249, 'Cuphead', 'Cuphead es un juego de acción clásico estilo \"dispara y corre\" que se centra en combates contra el jefe. Inspirado en los dibujos animados de los años 30, los aspectos visual y sonoro están diseñados con esmero empleando las mismas técnicas de la época, es decir, animación tradicional a mano, fondos de acuarela y grabaciones originales de jazz.\r\n\r\nJuega como Cuphead o Mugman (en modo de un jugador o cooperativo) y cruza mundos extraños, adquiere nuevas armas, aprende poderosos supermovimientos y descubre secretos ocultos mientras procuras saldar tu deuda con el diablo.', '2017-09-29', 19.99),
-(250, 'Alien Isolation', 'Descubre el verdadero significado del terror en Alien: Isolation, un juego de horror y supervivencia que transcurre en un ambiente de constante tensión y peligro. Han pasado quince años desde los sucesos de Alien™. La hija de Ellen Ripley, Amanda, se ve involucrada en una desesperada batalla por sobrevivir cuando se embarca en una misión que le permitirá averiguar qué sucedió realmente a su madre.\r\n\r\nAmanda tendrá que explorar un mundo cada vez más volátil y hacer frente a los constantes ataques tanto de una población sumida en la desesperación como de un alien despiadado e impredecible.\r\n\r\nIndefensa y poco preparada, tendrá que arreglárselas para conseguir recursos, improvisar soluciones y usar su cerebro, no solo para cumplir con su misión, sino para seguir con vida.\r\n', '2014-10-06', 39.99);
+(250, 'Alien Isolation', 'Descubre el verdadero significado del terror en Alien: Isolation, un juego de horror y supervivencia que transcurre en un ambiente de constante tensión y peligro. Han pasado quince años desde los sucesos de Alien™. La hija de Ellen Ripley, Amanda, se ve involucrada en una desesperada batalla por sobrevivir cuando se embarca en una misión que le permitirá averiguar qué sucedió realmente a su madre.\r\n\r\nAmanda tendrá que explorar un mundo cada vez más volátil y hacer frente a los constantes ataques tanto de una población sumida en la desesperación como de un alien despiadado e impredecible.\r\n\r\nIndefensa y poco preparada, tendrá que arreglárselas para conseguir recursos, improvisar soluciones y usar su cerebro, no solo para cumplir con su misión, sino para seguir con vida.\r\n', '2014-10-06', 39.99),
+(251, 'Golf It', '¡Embárcate en un viaje emocionante con Golf It! Toma tu putter, reúne a tus amigos y sumérgete en una aventura épica de minigolf. Conquista innumerables campos, crea recuerdos duraderos y perfecciona tus habilidades para convertirte en el máximo campeón de minigolf. ¡Tu emocionante odisea en el golf comienza aquí!\r\n\r\nExplora ocho campos oficiales, cada uno diseñado con un tema único, hoyos desafiantes y mecánicas completamente nuevas. ¿Quieres llevar tu juego al siguiente nivel? En nuestro taller están disponibles miles de cursos creados por la comunidad y creados con una creatividad increíble.\r\n\r\nUn editor de niveles detallado te brinda todo lo que necesitas para expresar y compartir tu creatividad. Con miles de objetos únicos, un paisaje dinámico y sistemas de eventos complejos, las posibilidades son infinitas. ¿Aún te falta algo? Haznos saber. Estaremos encantados de implementar aún más funciones para usted.', '2023-08-18', 8.99);
 
 -- --------------------------------------------------------
 
@@ -766,7 +767,6 @@ INSERT INTO `juegos_desarrolladores` (`JuegoID`, `desarrolladorID`) VALUES
 (99, 50),
 (100, 69),
 (77, 70),
-(81, 71),
 (102, 71),
 (103, 72),
 (104, 72),
@@ -914,7 +914,8 @@ INSERT INTO `juegos_desarrolladores` (`JuegoID`, `desarrolladorID`) VALUES
 (247, 107),
 (248, 107),
 (249, 108),
-(250, 109);
+(250, 109),
+(251, 110);
 
 -- --------------------------------------------------------
 
@@ -1179,7 +1180,8 @@ INSERT INTO `juegos_editores` (`juegoID`, `editorID`) VALUES
 (247, 75),
 (248, 75),
 (249, 76),
-(250, 55);
+(250, 55),
+(251, 78);
 
 -- --------------------------------------------------------
 
@@ -1945,7 +1947,10 @@ INSERT INTO `juegos_generos` (`JuegoID`, `generoID`) VALUES
 (249, 1),
 (250, 7),
 (250, 8),
-(250, 6);
+(250, 6),
+(251, 38),
+(251, 15),
+(251, 40);
 
 -- --------------------------------------------------------
 
@@ -1972,7 +1977,8 @@ INSERT INTO `noticias` (`noticiaID`, `titulo`, `resumen`) VALUES
 (6, 'Se rumorea el desarrollo de un nuevo Just Cause tras declaraciones de Avalanche Studios', 'Avalanche Studios está trabajando en un proyecto de mundo abierto AAA no anunciado, según ofertas de trabajo. Aunque tienen Contraband como un proyecto anunciado para Xbox Game Studios, no parece que el nuevo juego esté relacionado con él. Se especula que podría ser una pista sobre Just Cause 5, ya que Avalanche ha trabajado en la saga Just Cause antes. La oferta de trabajo busca un animador de gameplay para unirse al proyecto en Estocolmo o Liverpool.'),
 (7, 'PlayStation anuncia el cierre definitivo de los servidores de LittleBigPlanet 3', 'PlayStation ha cerrado de manera indefinida los servidores de LittleBigPlanet 3 debido a problemas técnicos. Esto implica que ya no se puede acceder a las creaciones de la comunidad ni a otros servicios en línea. La decisión se tomó después de desconexiones temporales de los servidores en enero de 2024. Aunque algunos jugadores están decepcionados por perder acceso a mucho contenido, todavía se pueden jugar los niveles descargados y la campaña principal del juego en la PS4.'),
 (8, 'Still Wakes the Deep tendrá una edición física en España para PS5', 'El 18 de junio, Meridiem Games lanzará en formato físico para PS5 \"Still Wakes the Deep\", una aventura narrativa de terror situada en una plataforma petrolífera en el mar del Norte. Desarrollado por The Chinese Room, el juego también estará disponible en PC y Xbox Series X/S, incluido en Xbox Game Pass y PC Game Pass desde su estreno. La versión física costará 29,99 €, mientras que el precio digital aún no se ha anunciado.'),
-(9, 'Un rumor afirma que Helldivers 2  llegará a  Xbox Series X S', 'Hay rumores de que Helldivers 2 podría llegar a Xbox Series X|S, con Sony y Microsoft en conversaciones iniciales según XboxEra. Aunque Arrowhead desarrolla el juego para PS5 y PC en colaboración con Sony, no hay confirmación oficial de su llegada a Xbox. Johan Pilested de Arrowhead ha mencionado que su objetivo es crear el mejor juego como servicio en colaboración con Sony.');
+(9, 'Un rumor afirma que Helldivers 2  llegará a  Xbox Series X S', 'Hay rumores de que Helldivers 2 podría llegar a Xbox Series X|S, con Sony y Microsoft en conversaciones iniciales según XboxEra. Aunque Arrowhead desarrolla el juego para PS5 y PC en colaboración con Sony, no hay confirmación oficial de su llegada a Xbox. Johan Pilested de Arrowhead ha mencionado que su objetivo es crear el mejor juego como servicio en colaboración con Sony.'),
+(10, 'Opiniones sobre el remake de Metal Gear Solid 3', 'Konami ha aumentado la expectación por el próximo lanzamiento de Metal Gear Solid Delta: Snake Eater, presentando el juego como un remake completo del original de 2004. En una reciente aparición en el podcast oficial de Xbox, el productor Noriaki Okamura destacó que, aunque la trama y el mundo del juego se mantienen intactos, el equipo de desarrollo se ha centrado en mejorar significativamente los gráficos y el audio para ofrecer una experiencia de última generación.');
 
 -- --------------------------------------------------------
 
@@ -2002,7 +2008,8 @@ INSERT INTO `noticias_detalles` (`noticiaDetalleID`, `noticiaID`, `titulo`, `des
 (6, 6, 'Posible nuevo Just Cause en camino, Avalanche Studios contrata para un nuevo mundo abierto triple A', 'Avalanche Studios está trabajando en un proyecto no anunciado, según ofertas de trabajo que hacen referencia a un mundo abierto AAA. No es una gran sorpresa que el equipo desarrolle este tipo de juegos tras varios Just Cause, Mad Max o Rage 2, pero sí parece que no tiene relación con su juego anunciado, Contraband para Xbox Game Studios. El estudio ficha para Contraband y es un proyecto anunciado oficialmente, por lo que no parece lógico que Avalanche evite mencionar el juego. Es por eso que algunos jugadores creen que es una primera pista de Just Cause 5, la saga que publica Square Enix y que estrenó su último juego en 2018. \"Avalanche Studios Group y su división Avalanche Studios están creando nuestro próximo mundo abierto AAA puntero, y buscamos un animador de gameplay muy habilidoso y motivado para unirse a uno de nuestros emocionantes proyectos AAA en los estudios en Estocolmo o Liverpool\", se lee en su oferta. ', '2024-04-19', 'https://vandal.elespanol.com/noticia/1350770686/nuevo-just-cause-en-camino-avalanche-studios-contrata-para-un-nuevo-mundo-abierto-triple-a/'),
 (7, 7, 'Adiós a LittleBigPlanet 3 y a las creaciones de los jugadores. PlayStation confirma el cierre indefinido de los servidores del juego de plataformas', '¿Te acuerdas de LittleBigPlanet 3? Seguramente la respuesta sea sí, pues se trataba de un divertido juego de plataformas que ofrecía bastante contenido gracias al compromiso de los jugadores en crear niveles continuamente. Sin embargo, eso ya es cosa del pasado porque muchos jugadores no volverán a disfrutar de las creaciones de la comunidad ni de sus servidores. Es hora de decir adiós a LittleBigPlanet 3 casi 10 años después de su lanzamiento.\r\n\r\nPuede que a muchos jugadores no les afecte esta noticia, pero siempre hay algún usuario afectado con este tipo de comunicados. Resulta que LittleBigPlanet 3 ha cerrado los servidores de manera indefinida, lo que significa que las creaciones de la comunidad ya no son accesibles a menos que las hayas descargado previamente en tu PS4. Esto lo ha confirmado la cuenta de X/Twitter oficial en un mensaje dirigido a la comunidad sobre su título de plataformas.\r\n\r\n\"Debido a problemas técnicos continuos que provocaron que los servidores de LittleBigPlanet 3 para PS4 se desconectaran temporalmente en enero de 2024, se tomó la decisión de mantener los servidores fuera de línea indefinidamente. Todos los servicios en línea, incluido el acceso a las creaciones de otros jugadores, ya no están disponibles\", explican (vía VGC). Un pequeño sector no se ha tomado demasiado bien esta noticia porque supone perder mucho contenido, pero al menos los niveles descargados y la campaña se podrán jugar sin problemas.', '2024-04-20', 'https://www.3djuegos.com/juegos/littlebigplanet-3/noticias/adios-a-littlebigplanet-3-a-creaciones-jugadores-playstation-confirma-cierre-indefinido-servidores-juego-plataformas'),
 (9, 9, 'Sony y Microsoft estarían trabajando para llevar Helldivers 2 a Xbox Series X S, afirma un rumor de XboxEra', 'Helldivers 2 en Xbox Series X|S podría ser una realidad dentro de poco, este rumor iniciado por XboxEra afirma que ambas compañías están en conversaciones iniciales para hacerlo posible.\r\n\r\nHelldivers 2 para PC, Steam Deck y PS5 está desarrollado por Arrowhead y su CEO sigue cómodo, pero un rumor de XboxEra podría haber anticipado que Sony y Microsoft buscan llevar el shooter a Xbox Series X|S. Según fuentes de Nick \"Shpeshal Nick\" Baker en el mismo podcast, parece ser que ambas compañías estarían en conversaciones para llevar el juego más allá de PlayStation 5 en consolas.\r\n\r\nDesde el principio comenta que no hay nada confirmado y son cosas que sabido, pero desde el pasado febrero hay abierta una petición para lanzar Helldivers 2 en Xbox. Empieza comentando la situación con el nuevo CEO de PlayStation y de que sería más abierto con ciertas cosas, como por ejemplo la de estrenar juegos en PC y PlayStation el mismo día.Tras esto y unas conversaciones sobre el asunto, Nick deja claro que esto no es una confirmación de que vaya a ocurrir y solamente son \"conversaciones iniciales\"; aunque podría no suceder.Mientras tanto, Johan Pilested confirmaba que Arrowhead y Sony colaboran juntas en el desarrollo de Helldivers 2 y el estudio quiere crear el mejor juego como servicio que se pueda jugar. ', '2024-04-21', 'https://www.hobbyconsolas.com/noticias/port-helldivers-2-xbox-series-xs-proceso-rumor-1381075'),
-(10, 8, 'El terror de Still Wakes the Deep tendrá edición física para PS5', 'Meridiem Games editará en España el 18 de junio una versión en formato físico\r\npara PlayStation 5 de Still Wakes the Deep, la aventura narrativa de terror que\r\nestará disponible ese mismo día también para PC (Steam y Epic Games Store) y\r\nXbox Series X/S. Desde el estreno se incluirá en Xbox Game Pass y PC Game\r\nPass. El título, que aún no tiene precio en formato digital, costará 29,99 € en la\r\nversión física de PS5.\r\nStill Wakes the Deep es una aventura de terror narrativa para un jugador que lleva\r\na los jugadores a una plataforma petrolífera en el mar del Norte. Como un\r\nempleado más del lugar, los jugadores tendrán que sobrevivir y rescatar a los\r\ncompañeros tras un colapso provocado por una fuerte tormenta y por una\r\ncriatura incognoscible que está sembrando el terror en esta claustrofóbica\r\nambientación.El título está desarrollado por The Chinese Room, el equipo que revolucionó el\r\ngénero de las aventuras narrativas con Dear Esther y profundizó en esa\r\npropuesta, centrada en la exploración en primera persona y en la\r\nambientación, con sus siguientes obras: Amnesia: A Machine for Pigs,\r\nEverybody\'s Gone to the Rapture y Little Orpheus.', '2024-04-21', 'https://vandal.elespanol.com/noticia/1350770719/el-terror-de-still-wakes-the-deep-tendra-en-espana-edicion-fisica-para-ps5/');
+(10, 8, 'El terror de Still Wakes the Deep tendrá edición física para PS5', 'Meridiem Games editará en España el 18 de junio una versión en formato físico\r\npara PlayStation 5 de Still Wakes the Deep, la aventura narrativa de terror que\r\nestará disponible ese mismo día también para PC (Steam y Epic Games Store) y\r\nXbox Series X/S. Desde el estreno se incluirá en Xbox Game Pass y PC Game\r\nPass. El título, que aún no tiene precio en formato digital, costará 29,99 € en la\r\nversión física de PS5.\r\nStill Wakes the Deep es una aventura de terror narrativa para un jugador que lleva\r\na los jugadores a una plataforma petrolífera en el mar del Norte. Como un\r\nempleado más del lugar, los jugadores tendrán que sobrevivir y rescatar a los\r\ncompañeros tras un colapso provocado por una fuerte tormenta y por una\r\ncriatura incognoscible que está sembrando el terror en esta claustrofóbica\r\nambientación.El título está desarrollado por The Chinese Room, el equipo que revolucionó el\r\ngénero de las aventuras narrativas con Dear Esther y profundizó en esa\r\npropuesta, centrada en la exploración en primera persona y en la\r\nambientación, con sus siguientes obras: Amnesia: A Machine for Pigs,\r\nEverybody\'s Gone to the Rapture y Little Orpheus.', '2024-04-21', 'https://vandal.elespanol.com/noticia/1350770719/el-terror-de-still-wakes-the-deep-tendra-en-espana-edicion-fisica-para-ps5/'),
+(11, 10, 'El remake de Metal Gear Solid 3 será la mejor experiencia de supervivencia, acción y sigilo, Konami detalla las mejoras gráficas del juego', 'Aunque sigue sin fecha de lanzamiento, Konami se ha decidido a ponernos los dientes largos con el esperado Metal Gear Solid Delta: Snake Eater. Tras emocionar a la comunidad en el pasado Xbox Games Showcase 2024 con un tráiler, los de Redmond han hecho un hueco a Noriaki Okamura, productor de la juego, en su podcast oficial para profundizar en las vicisitudes de la experiencia. Y esto nos ha dado la oportunidad de ver la ambición del equipo de desarrollo en lo referente a la mejora de gráficos.\r\n\r\nPorque, en palabras del profesional, \"Metal Gear Solid Delta: Snake Eater es más que un simple remaster. Esto es un remake de Metal Gear Solid 3: Snake Eater, que se lanzó inicialmente en 2004\". Por lo tanto, Konami se ha encargado de mejorar la experiencia sin tocar la trama original: \"Mantenemos todo sobre la historia y el mundo del juego, pero lo estamos reconstruyendo con gráficos de última generación y audio 3D\", sigue Okamura. \"Lo que realmente mejora el ambiente de la jungla y hace que esta sea la mejor experiencia de supervivencia, acción y sigilo\".\r\n\r\n\"Estamos invirtiendo mucho esfuerzo en el aspecto visual de la jungla, que está presente en buena parte del juego\", continúa el productor en la charla. \"Queremos que los escenarios se vean y se sientan totalmente descuidados, húmedos. También hemos creado modelos mucho más realistas para las plantas y animales que encuentras ahí, que pueden ser consumidos por Snake, y hemos intensificado el realismo de las heridas que puedes tener o el barro en el que te verás cubierto. Así que realmente sentirás la dureza de este ambiente y de tu misión ahí\".', '2024-06-11', 'https://www.3djuegos.com/juegos/metal-gear-solid-delta-snake-eater/noticias/remake-metal-gear-solid-3-sera-mejor-experiencia-supervivencia-accion-sigilo-konami-detalla-mejoras-graficas-juego');
 
 -- --------------------------------------------------------
 
@@ -2028,7 +2035,8 @@ INSERT INTO `novedades` (`novedadID`, `titulo`, `descripcion`, `fecha`) VALUES
 (4, 'Cataclismo', 'Cataclismo, obra de los creadores de Moonlighter, combina estrategia en tiempo real y defensa de torres. Protege el último bastión de la humanidad en un mundo en ruinas edificando fortalezas ladrillo a ladrillo para rechazar oleadas de horrores. Resiste el asedio y álzate sobre la niebla en una historia de esperanza, resistencia y comunidad.\r\n\r\nArquitecto durante el día, general durante la noche: tendrás que reunir recursos y usar mecánicas inspiradas en LEGO® para dotar a tu fortaleza de un diseño táctico, teniendo en cuenta el clima, las trampas y el posicionamiento de tus tropas. Al caer la noche, las hordas de horrores llegarán para intentar arrasarlo todo. Gracias al sistema de física realista, ¡los bloques aplastarán a amigos y enemigos al caer!\r\n\r\nTras las murallas hay un auténtico hervidero. Tu ciudadela será más eficaz al erigir edificios clave y alcanzar nuevos niveles de prosperidad. Cada novedad traerá consigo más construcciones, soldados más poderosos y armas contra el asedio, incluyendo flechas incendiarias con las que incinerar a los horrores. Cuanto más prosperes, más fácil será resistir el asedio.', '2024-07-16'),
 (5, 'Warhammer 40,000 Space Marine 2', 'La galaxia corre peligro. Es el fin numerosos planetas. El Imperio te necesita.\r\n\r\nDespliega las habilidades sobrehumanas y la brutalidad de un Marine Espacial, el mejor cuerpo de guerreros del Emperador. Aprovecha tus capacidades mortíferas y un arsenal devastador para acabar con las implacables hordas del enemigo.\r\n\r\nAplaca los horrores de la galaxia en épicas batallas sobre planetas remotos. Descubre misterios oscuros y pon freno a la noche eterna para demostrar tu fidelidad.\r\n\r\nAcude a la llamada.\r\nPrepárate para la guerra.', '2024-09-09'),
 (6, 'Star Wars Outlaws', 'Star Wars Outlaws, el juego de Star Wars de mundo abierto, se lanzará a finales de este año\", decía la publicación. \"El juego te permite explorar distintos planetas en toda la galaxia, tanto icónicos como nuevos. Puedes arriesgarlo todo como Kay Vess, una sinvergüenza emergente que busca la libertad y los medios para comenzar una nueva vida, junto con su compañero Nix. Si estás dispuesto a correr el riesgo, la galaxia está llena de oportunidades.', '2024-08-30'),
-(7, 'Dustborn', 'Dustborn es un videojuego de acción y aventura para un jugador sobre la esperanza, el amor, la amistad, los robots... y el poder de las palabras.\r\n\r\nTe pones en la piel de Pax, una «anómala» exiliada y estafadora con la habilidad de usar las palabras como arma. Con la intención de dejar atrás su pasado y empezar de cero, ha aceptado un trabajo que consiste en llevar un valioso paquete desde Pacifica a Nova Scotia, por lo que tendrá que cruzar todo el territorio de la República de América, que está bajo el control de Justice. Es razón suficiente como para emprender un viaje por carretera, ¿no?\r\n\r\n¡Pues haz las maletas, reúne a una pandilla con habilidades extraordinarias y que comience la aventura por todo el país!\r\n\r\nExplora los impresionantes paisajes de una versión alternativa de los Estados Unidos mientras viajas en un autobús conducido por un robot. Haz altos en el camino para reclutar a más miembros para la pandilla, mejorar tus relaciones, completar encargos y enfrentarte a retos cada vez más desafiantes. Ahora bien, las personas a las que les has robado el paquete quieren recuperarlo, y Justice no piensa ponértelo fácil, así que mejor que no te olvides de tu bate de béisbol.', '2024-08-20');
+(7, 'Dustborn', 'Dustborn es un videojuego de acción y aventura para un jugador sobre la esperanza, el amor, la amistad, los robots... y el poder de las palabras.\r\n\r\nTe pones en la piel de Pax, una «anómala» exiliada y estafadora con la habilidad de usar las palabras como arma. Con la intención de dejar atrás su pasado y empezar de cero, ha aceptado un trabajo que consiste en llevar un valioso paquete desde Pacifica a Nova Scotia, por lo que tendrá que cruzar todo el territorio de la República de América, que está bajo el control de Justice. Es razón suficiente como para emprender un viaje por carretera, ¿no?\r\n\r\n¡Pues haz las maletas, reúne a una pandilla con habilidades extraordinarias y que comience la aventura por todo el país!\r\n\r\nExplora los impresionantes paisajes de una versión alternativa de los Estados Unidos mientras viajas en un autobús conducido por un robot. Haz altos en el camino para reclutar a más miembros para la pandilla, mejorar tus relaciones, completar encargos y enfrentarte a retos cada vez más desafiantes. Ahora bien, las personas a las que les has robado el paquete quieren recuperarlo, y Justice no piensa ponértelo fácil, así que mejor que no te olvides de tu bate de béisbol.', '2024-08-20'),
+(8, 'Vampire The Masquerade Bloodlines 2', 'Eres una vampira ancestral que lucha para abrirse paso en la Seattle actual al borde de una guerra. Conoce a los que controlan todo, forma alianzas y decide quién gobierna y cómo será la ciudad.\r\n\r\nUn asedio de tres frentes en Seattle, un vacío de poder en la corte vampírica y una vampira ancestral despertada en desacuerdo con la voz de su cabeza. Todo esto es obra del estudio premiado por los BAFTA, The Chinese Room.\r\nTú eres el monstruo\r\nLa sangre te alimenta y da poder a tus disciplinas vampíricas. Acechas a la población de la ciudad y te alimentas de ella. Usa los poderes sobrenaturales o la persuasión con los civiles y atráelos hacia los callejones oscuros para saciar tu hambre. Pero ten cuidado de no romper la Mascarada. No reveles lo que eres o habrá represalias. Al principio de la ley y luego, bueno... recuerda que no eres la única criatura de la noche.\r\n\r\nExplora un combate inmersivo y visceral que recompensa estilos de juego y enfoques diferentes según tu elección de clan. ¿Entrarás en combate con puños sobrenaturales, atacarás desde lejos o achicarás al rebaño desde lejos como la depredadora que eres? Las elecciones de clan admiten estos estilos de juego y más.', '2024-07-09');
 
 -- --------------------------------------------------------
 
@@ -2050,7 +2058,7 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`tarjetaID`, `NumTarjeta`, `Nombre`, `FechaExp`, `CVC`, `UsuarioID`) VALUES
-(12, '1234567812345678', 'Kevin Soto', '02/28', 123, 2);
+(13, '1234567812345678', 'Kevin Soto', '02/28', 123, 2);
 
 -- --------------------------------------------------------
 
@@ -2076,7 +2084,8 @@ INSERT INTO `usuarios` (`UsuarioID`, `Email`, `Password`, `Alias`, `Tipo`) VALUE
 (3, 'example@example.com', '12345678', 'example', 'Cliente'),
 (4, 'example2@example.com', '12345678', 'example2', 'Cliente'),
 (5, 'Admin2@gamingworld.com', '12345678', 'Admin2', 'administrador'),
-(6, 'KevinS9sotob@hotmail.com', 'Seidel9k', 'Seidel9', 'Cliente');
+(6, 'KevinS9sotob@hotmail.com', 'Seidel9k', 'Seidel9', 'Cliente'),
+(7, 'Zoidel97@gamingworld.com', '12345678', 'XX', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -2198,31 +2207,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `carritoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `carritoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_juegos`
 --
 ALTER TABLE `comentarios_juegos`
-  MODIFY `comentarioJuegoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `comentarioJuegoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios_noticias`
 --
 ALTER TABLE `comentarios_noticias`
-  MODIFY `comentarioNoticiaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `comentarioNoticiaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `desarrolladores`
 --
 ALTER TABLE `desarrolladores`
-  MODIFY `desarrolladorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `desarrolladorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT de la tabla `editores`
 --
 ALTER TABLE `editores`
-  MODIFY `editorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `editorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `generos`
@@ -2234,37 +2243,37 @@ ALTER TABLE `generos`
 -- AUTO_INCREMENT de la tabla `juegos`
 --
 ALTER TABLE `juegos`
-  MODIFY `JuegoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `JuegoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `noticiaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `noticiaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias_detalles`
 --
 ALTER TABLE `noticias_detalles`
-  MODIFY `noticiaDetalleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `noticiaDetalleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `novedades`
 --
 ALTER TABLE `novedades`
-  MODIFY `novedadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `novedadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  MODIFY `tarjetaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `tarjetaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
