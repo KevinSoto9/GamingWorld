@@ -111,7 +111,7 @@ $(document).ready(function() {
         var row = $('#juego-' + juegoID);
 
         $.ajax({
-            url: '../Funciones/Eliminarjuego.php',
+            url: 'Web/Funciones/Eliminarjuego.php',
             type: 'GET',
             data: {
                 juegoID: juegoID,
