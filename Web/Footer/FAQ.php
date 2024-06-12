@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <title>Preguntas Frecuentes - Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="PagPrincipal.php">
-                <img src="../../Imagenes/Imagenes/Titulo.png" href="PagPrincipal.php" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
+                <img src="/Imagenes/Imagenes/Titulo.png" href="PagPrincipal.php" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class='nav-item'>
-                        <a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>
+                        <a class='nav-link' href='/Web/PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>
                     </li>
                 </ul>
             </div>

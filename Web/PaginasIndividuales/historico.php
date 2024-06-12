@@ -2,11 +2,11 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '../PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 
 // Incluye el menú y la base de datos
-require '../Menus/menuIndividual.php';
+require '/Web/Menus/menuIndividual.php';
 require '../bd.php';
 
 // Enlace a la hoja de estilo de Bootstrap
@@ -89,8 +89,8 @@ foreach ($juegos_por_anio as $anio => $juegos) {
     foreach ($juegos as $juego) {
         $html .= "<div class='col-md-3 mb-4'>";
         $html .= "<div class='card h-100 bg-dark text-white'>";
-        $html .= "<a href='PagJuego.php?juegoID={$juego['juegoID']}' class='text-decoration-none text-white'>";
-        $html .= "<img src='../../Imagenes/ImagenesJuegos/{$juego['nombre']}.jpg' class='card-img-top' alt='{$juego['nombre']}'>";
+        $html .= "<a href='/Web/PagJuego.php?juegoID={$juego['juegoID']}' class='text-decoration-none text-white'>";
+        $html .= "<img src='/Imagenes/ImagenesJuegos/{$juego['nombre']}.jpg' class='card-img-top' alt='{$juego['nombre']}'>";
         $html .= "<div class='card-body'>";
         $html .= "<h5 class='card-title'>{$juego['nombre']}</h5>";
         $html .= "</div>";
@@ -109,6 +109,6 @@ $html .= "</div>";
 // Imprimir el HTML generado
 echo $html;
 
-require 'footer.php';
+require '/Web/Funciones/footer.php';
 }
 ?>

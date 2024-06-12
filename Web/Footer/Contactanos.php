@@ -6,7 +6,7 @@
     <!-- Estilos Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Estilos adicionales -->
-    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -14,13 +14,13 @@
         <div class="container">
             <a href="../PaginasPrincipales/PagPrincipal.php">
                 <!-- Logo -->
-                <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
+                <img src="/Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             <!-- Botones de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class='nav-item'>
-                        <a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>
+                        <a class='nav-link' href='/Web/PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                             <div class="card-body bg-dark">
                                 <!-- Formulario de contacto -->
                                 <h1 class="text-center mb-4">Contáctanos</h1>
-                                <form action="../Funciones/EnviarContacto.php" method="post">
+                                <form action="/Web/Funciones/EnviarContacto.php" method="post">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" required>

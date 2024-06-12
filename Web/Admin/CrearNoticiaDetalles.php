@@ -4,7 +4,7 @@ session_start();
 $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
-    require '../PaginasPrincipales/PersonalAutorizado.php';
+    require '/Web/PaginasPrincipales/PersonalAutorizado.php';
 } else {
     session_abort();
 
@@ -21,7 +21,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
         $urlNoticia = $_POST["urlNoticia"];
 
 // Carpeta de destino para las imágenes subidas
-        $carpeta_destino = "../../Imagenes/ImagenesNoticiasDetalles/";
+        $carpeta_destino = "/Imagenes/ImagenesNoticiasDetalles/";
 
         try {
             require '../bd.php';
@@ -39,7 +39,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
-                    header("Location:../PaginasPrincipales/Admin.php");
+                    header("Location:/Web/PaginasPrincipales/Admin.php");
                 } else {
                     echo "Error: No se pudo insertar el detalle de la noticia.";
                 }
@@ -66,7 +66,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
         <meta charset="UTF-8">
         <title>Gaming World - Crear Noticia Detalle</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <?php require '../Menus/menu2.php'; ?>
+        <?php require '/Web/Menus/menu2.php'; ?>
     </head>
     <body>
         <!-- Formulario de creación de Detalle de Noticias -->

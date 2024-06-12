@@ -9,31 +9,31 @@
                 <div class="row text-center d-flex justify-content-center pt-5">
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/SobreNosotros.php" class="text-white">Sobre Nosotros</a>
+                            <a href="/Web/Footer/SobreNosotros.php" class="text-white">Sobre Nosotros</a>
                         </h6>
                     </div>
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/TerminosDeUso.php?ini=ok" class="text-white">Términos de uso</a>
+                            <a href="/Web/Footer/TerminosDeUso.php?ini=ok" class="text-white">Términos de uso</a>
                         </h6>
                     </div>
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/PoliticaPrivacidad.php?ini=ok" class="text-white">Política de privacidad</a>
+                            <a href="/Web/Footer/PoliticaPrivacidad.php?ini=ok" class="text-white">Política de privacidad</a>
                         </h6>
                     </div>
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/FAQ.php" class="text-white">FAQ</a>
+                            <a href="/Web/Footer/FAQ.php" class="text-white">FAQ</a>
                         </h6>
                     </div>
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/Contactanos.php" class="text-white">Contáctanos</a>
+                            <a href="/Web/Footer/Contactanos.php" class="text-white">Contáctanos</a>
                         </h6>
                     </div>
                 </div>

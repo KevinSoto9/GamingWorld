@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '../PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -15,14 +15,14 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 
 </head>
 <body>
 
 <?php
 // Incluir el menú
-require '../Menus/menuIndividual.php';
+require '/Web/Menus/menuIndividual.php';
 
 // Función para obtener las novedades del mes actual desde la base de datos
 function obtenerNovedadesMesActual($month, $year) {

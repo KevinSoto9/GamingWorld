@@ -3,7 +3,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '../PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -15,11 +15,11 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <!-- Enlace a la hoja de estilos de Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la hoja de estilos personalizada -->
-    <link rel='stylesheet' href='../../assets/cssPlus/cssPlus.css'>
+    <link rel='stylesheet' href='/assets/cssPlus/cssPlus.css'>
 </head>
 <body class="text-white">
     <!-- Incluye el menú -->
-    <?php require '../Menus/menu.php'; ?>
+    <?php require '/Web/Menus/menu.php'; ?>
 
     <div class="container mt-5">
         <?php
@@ -47,8 +47,8 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             // Tarjeta para cada noticia
             echo "<div class='col-md-4 mb-4'>";
             echo "<div class='card bg-dark text-white h-100'>";
-            echo "<a href='../PaginasIndividuales/PagNoticia.php?noticiaID={$novedad['noticiaID']}' class='enlace-juego text-white'>";
-            echo "<img src='../../Imagenes/ImagenesNoticias/{$novedad['titulo']}.jpg' class='card-img-top' alt='{$novedad['titulo']}'>";
+            echo "<a href='/Web/PaginasIndividuales/PagNoticia.php?noticiaID={$novedad['noticiaID']}' class='enlace-juego text-white'>";
+            echo "<img src='/Imagenes/ImagenesNoticias/{$novedad['titulo']}.jpg' class='card-img-top' alt='{$novedad['titulo']}'>";
             echo "<div class='card-body'>";
             echo "<h5 class='card-title'>{$novedad['titulo']}</h5>";
             echo "<p class='card-text'>{$novedad['resumen']}</p>";
@@ -62,7 +62,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     </div>
     
     <!-- Incluye el pie de página -->
-    <?php require '../Funciones/footer.php'; ?>
+    <?php require '/Web/Funciones/footer.php'; ?>
 
     <!-- Scripts de JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

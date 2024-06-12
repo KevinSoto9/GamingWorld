@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Términos de Uso - Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Logo -->
-            <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo 'PagPrincipal.php'; } else { echo 'index.php';}; ?>">
-                <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
+            <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo '/Web/PaginasPrincipales/PagPrincipal.php'; } else { echo '/Web/PaginasPrincipales/index.php';}; ?>">
+                <img src="/Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
 
             <!-- Menú de navegación -->
@@ -23,16 +23,16 @@
                     if(isset($_GET["ini"]) && $_GET["ini"] == "ok")
                     {
                         echo "<li class='nav-item'>";
-                        echo "<a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>";
+                        echo "<a class='nav-link' href='/Web/PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>";
                         echo "</li>";
                     }
                     else {
                         // Mostrar opciones de inicio de sesión y registro
                         echo '<li class="nav-item">';
-                        echo '<a class="nav-link" href="../PaginasPrincipales/index.php">Iniciar Sesión</a>';
+                        echo '<a class="nav-link" href="/Web/PaginasPrincipales/index.php">Iniciar Sesión</a>';
                         echo '</li>';
                         echo '<li class="nav-item">';
-                        echo '<a class="nav-link" href="../Funciones/registroCliente.php">Registrarse</a>';
+                        echo '<a class="nav-link" href="/Web/Funciones/registroCliente.php">Registrarse</a>';
                         echo '</li>';
                     }
                     ?>
@@ -74,7 +74,7 @@
                         <p>El uso de este sitio web y cualquier disputa que surja de dicho uso del sitio está sujeto a las leyes de [tu país/estado].</p>
 
                         <h2 class="mt-4">8. Contacto</h2>
-                        <p>Si tienes alguna pregunta sobre estos Términos de Uso, por favor contáctanos a través de nuestro formulario de contacto. <?php echo "<a class='text-white' href='Contactanos.php'>Contactanos</a>";?></p>
+                        <p>Si tienes alguna pregunta sobre estos Términos de Uso, por favor contáctanos a través de nuestro formulario de contacto. <?php echo "<a class='text-white' href='/Web/Footer/Contactanos.php'>Contactanos</a>";?></p>
                     </div>
                 </div>
             </div>

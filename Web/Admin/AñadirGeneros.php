@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '../PaginasPrincipales/PersonalAutorizado.php';
+    require '/Web/PaginasPrincipales/PersonalAutorizado.php';
 }
 
 else{
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmtInsertarAsociaciones->execute();
             
-            header("Location:../PaginasPrincipales/Admin.php");
+            header("Location:/Web/PaginasPrincipales/Admin.php");
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Gaming World - Añadir Géneros</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
-    <?php require '../Menus/menu2.php'; ?>
+    <?php require '/Web/Menus/menu2.php'; ?>
     
 </head>
 <body>

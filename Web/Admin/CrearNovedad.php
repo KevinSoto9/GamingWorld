@@ -5,7 +5,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
 
-    require '../PaginasAdicionales/PersonalAutorizado.php';
+    require '/Web/PaginasAdicionales/PersonalAutorizado.php';
 } else {
 
     session_abort();
@@ -20,7 +20,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
         $imagen_temp = $_FILES["imagen"]["tmp_name"];
 
         // Carpeta de destino para las imágenes subidas
-        $carpeta_destino = "../../Imagenes/ImagenesNovedades/";
+        $carpeta_destino = "/Imagenes/ImagenesNovedades/";
 
         try {
             require '../bd.php';
@@ -31,7 +31,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
                 $ins = "INSERT INTO `novedades` (`novedadID`, `titulo`, `descripcion`, `fecha`) VALUES (NULL, '$titulo', '$descripcion', '$fecha')";
                 $resul = $bd->query($ins);
                 if ($resul) {
-                    header("Location:../PaginasPrincipales/Admin.php");
+                    header("Location:/Web/PaginasPrincipales/Admin.php");
                 }
             } else {
                 echo "Error al subir la imagen.";
@@ -47,7 +47,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
             <meta charset="UTF-8">
             <title>Gaming World - Crear Novedad</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <?php require '../Menus/menu2.php'; ?>
+    <?php require '/Web/Menus/menu2.php'; ?>
         </head>
         <body>
             <div class="container mt-5">

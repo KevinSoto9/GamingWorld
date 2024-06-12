@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$juegoID, $usuarioID, $comentario, $fechaActual]);
 
         // Redirigir a la página del juego después de insertar el comentario
-        header("Location: ../PaginasIndividuales/PagJuego.php?juegoID=" . urlencode($juegoID));
+        header("Location: /Web/PaginasIndividuales/PagJuego.php?juegoID=" . urlencode($juegoID));
         exit;
     } catch (PDOException $e) {
         // En caso de error, mostrar el mensaje de error
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 </head>
 <body>
 
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </form>
                     <div class="mt-3 text-center">
                         <!-- Enlace para volver a la página del juego -->
-                        <a class="btn btn-secondary" href="../PaginasIndividuales/PagJuego.php?juegoID=<?php echo urlencode($juegoID); ?>">Volver</a>
+                        <a class="btn btn-secondary" href="/Web/PaginasIndividuales/PagJuego.php?juegoID=<?php echo urlencode($juegoID); ?>">Volver</a>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ $html = "";
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
-    require '../PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
     // Conseguir el ID del Juego
     $juegoID = "";
@@ -19,7 +19,6 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             <meta charset="UTF-8">
             <title>Gaming World</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-            <link rel="stylesheet" href="css/styles.css">
         </head>
         <body>
             <!-- Modal HTML -->
@@ -39,7 +38,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
             <?php
             session_abort();
-            require '../Menus/menuIndividual.php';
+            require '/Web/Menus/menuIndividual.php';
             require '../bd.php';
 
             // Consulta SQL para el juego
@@ -96,7 +95,7 @@ GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID";
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="../../Imagenes/ImagenesJuegos/<?php echo $juego['nombre'] . ".jpg"; ?>" alt="<?php echo $juego['nombre']; ?>" class="img-fluid">
+                                        <img src="/Imagenes/ImagenesJuegos/<?php echo $juego['nombre'] . ".jpg"; ?>" alt="<?php echo $juego['nombre']; ?>" class="img-fluid">
                                     </div>
                                     <div class="col-md-8">
                                         <p><?php echo $juego['descripcion']; ?></p>
@@ -119,8 +118,8 @@ GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID";
                                 }
                                 echo implode(", ", $generosOutput);
                                         ?></p>
-                                        <p>Desarrollador: <a class="text-white" href="PagDesarrollador.php?desarrolladorID=<?php echo urlencode($juego['desarrolladorID']); ?>"><?php echo $juego['desarrollador']; ?></a></p>
-                                        <p>Editor: <a class="text-white"  href="PagEditor.php?editorID=<?php echo urlencode($juego['editorID']); ?>"><?php echo $juego['editor']; ?></a></p>
+                                        <p>Desarrollador: <a class="text-white" href="/Web/PaginasIndividuales/PagDesarrollador.php?desarrolladorID=<?php echo urlencode($juego['desarrolladorID']); ?>"><?php echo $juego['desarrollador']; ?></a></p>
+                                        <p>Editor: <a class="text-white"  href="/Web/PaginasIndividuales/PagEditor.php?editorID=<?php echo urlencode($juego['editorID']); ?>"><?php echo $juego['editor']; ?></a></p>
                                         <?php
                                         $usuarioID = $_SESSION['UsuarioID'];
 
@@ -160,7 +159,7 @@ GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID";
                         $htmlComentarios .= "<div class='card-body'>";
                         $htmlComentarios .= "<div class='noComentarios'>";
                         $htmlComentarios .= "<h2>No hay comentarios, sé el primero en decir algo</h2>";
-                        $htmlComentarios .= "<button class='mt-2 btn btn-primary' onclick='window.location.href=\"../Funciones/CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
+                        $htmlComentarios .= "<button class='mt-2 btn btn-primary' onclick='window.location.href=\"/Web/Funciones/CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
                         $htmlComentarios .= "</div>";
                         $htmlComentarios .= "</div>";
                     } else {
@@ -183,10 +182,10 @@ GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID";
 
                             $htmlComentarios .= "<div class='comentario-content-opciones card-body'>";
                             if ($usuario['Alias'] == $_SESSION['Alias']) {
-                                $htmlComentarios .= "<button class='btn btn-primary mr-2' onclick=\"window.location.href='../Funciones/EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
+                                $htmlComentarios .= "<button class='btn btn-primary mr-2' onclick=\"window.location.href='/Web/Funciones/EditarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Editar</button>";
                             }
                             if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
-                                $htmlComentarios .= "<button class='btn btn-primary' onclick=\"window.location.href='../Funciones/EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
+                                $htmlComentarios .= "<button class='btn btn-primary' onclick=\"window.location.href='/Web/Funciones/EliminarComentarioJuego.php?comentarioJuegoID=" . urlencode($comentario['comentarioJuegoID']) . "&JuegoID=" . $juegoID . "'\">Eliminar</button>";
                             }
                             $htmlComentarios .= "</div>";
 
@@ -194,7 +193,7 @@ GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID";
                         }
                         $htmlComentarios .= "<div class='comentar mt-3'>";
                         $htmlComentarios .= "<h2>¿Quieres comentar algo?</h2>";
-                        $htmlComentarios .= "<button class='btn btn-primary mt-3' onclick='window.location.href=\"../Funciones/CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
+                        $htmlComentarios .= "<button class='btn btn-primary mt-3' onclick='window.location.href=\"/Web/Funciones/CrearComentarioJuego.php?juegoID=" . urlencode($juegoID) . "&usuarioID=" . urldecode($_SESSION['UsuarioID']) . "\"'>Hazlo Aquí</button>";
                         $htmlComentarios .= "</div>";
                         $htmlComentarios .= "</div>";
                     }
@@ -219,7 +218,7 @@ GROUP BY juegos.juegoID, desarrolladores.desarrolladorID, editores.editorID";
                         var juegoID = btn.getAttribute('data-juego-id');
                         var precio = btn.getAttribute('data-precio');
                         var usuarioID = '<?php echo $_SESSION['UsuarioID']; ?>';
-                        fetch('../Funciones/AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
+                        fetch('/Web/Funciones/AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID=' + usuarioID)
                                 .then(response => response.text())
                                 .then(text => {
                                     document.getElementById('mensajeModalBody').textContent = text;

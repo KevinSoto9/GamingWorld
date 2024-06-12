@@ -20,7 +20,7 @@ try {
     $stmt->execute();
 
     // Redirigir de vuelta a la página de la noticia después de eliminar el comentario
-    header("Location:../PaginasIndividuales/PagNoticia.php?noticiaID=".$noticiaID);
+    header("Location:/Web/PaginasIndividuales/PagNoticia.php?noticiaID=".$noticiaID);
     exit();
 } catch (PDOException $e) {
     // En caso de error, mostrar el mensaje de error

@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '../PaginasAdicionales/PersonalAutorizado.php';
+    require '/Web/PaginasAdicionales/PersonalAutorizado.php';
 }
 
 else{
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $ins = "INSERT INTO `usuarios` (`UsuarioID`, `Email`, `Password`, `Alias`, `Tipo`) VALUES (NULL, '$email', '$password', '$alias', 'administrador')";
             $resul = $bd->query($ins);
             if ($resul) {
-                header("Location:../PaginasPrincipales/Admin.php");
+                header("Location:/Web/PaginasPrincipales/Admin.php");
             }
         } catch (PDOException $e) {
             echo "Error: Comprueba que los datos que has puesto no han sido puestos antes";
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Gaming World - Crear Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
-    <?php require '../Menus/menu2.php'; ?>
+    <?php require '/Web/Menus/menu2.php'; ?>
     
 </head>
 <body>

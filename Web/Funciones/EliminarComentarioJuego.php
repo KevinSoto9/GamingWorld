@@ -20,7 +20,7 @@ try {
     $stmt->execute();
 
     // Redirigir de vuelta a la página del juego después de eliminar el comentario
-    header("Location:../PaginasIndividuales/PagJuego.php?juegoID=".$JuegoID);
+    header("Location:/Web/PaginasIndividuales/PagJuego.php?juegoID=".$JuegoID);
     exit();
 } catch (PDOException $e) {
     // En caso de error, mostrar el mensaje de error

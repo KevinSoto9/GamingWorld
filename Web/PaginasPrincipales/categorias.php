@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '../PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 <!DOCTYPE html>
@@ -12,12 +12,12 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <?php 
         // Incluye el menú y la base de datos
-        require '../Menus/menu.php'; 
+        require '/Web/Menus/menu.php'; 
         require '../bd.php'; 
     ?>
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                     <div class="card bg-dark text-white">
                         <div class="card-body text-center">
                             <!-- Enlace al género con su ID -->
-                            <h5 class="card-title"><a href="../PaginasIndividuales/PagGenero.php?generoID=<?php echo $generoID; ?>" class="text-white"><?php echo $nombreGenero; ?></a></h5>
+                            <h5 class="card-title"><a href="/Web/PaginasIndividuales/PagGenero.php?generoID=<?php echo $generoID; ?>" class="text-white"><?php echo $nombreGenero; ?></a></h5>
                         </div>
                     </div>
                 </div>

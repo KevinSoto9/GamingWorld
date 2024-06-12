@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '../PaginasAdicionales/PersonalAutorizado.php';
+    require '/Web/PaginasAdicionales/PersonalAutorizado.php';
 }
 
 else{
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmtInsertarAsociacion->execute();
         
-        header("Location:../PaginasPrincipales/Admin.php");
+        header("Location:/Web/PaginasPrincipales/Admin.php");
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Gaming World - Añadir Editor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
-    <?php require '../Menus/menu2.php'; ?>
+    <?php require '/Web/Menus/menu2.php'; ?>
     
 </head>
 <body>

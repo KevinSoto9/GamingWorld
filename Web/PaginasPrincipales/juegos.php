@@ -3,7 +3,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '../PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -13,13 +13,13 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
         <meta charset="UTF-8">
         <title>Gaming World</title>
         <!-- Enlace a los archivos CSS -->
-        <link rel='stylesheet' href='../../assets/cssPlus/cssPlus.css'>
+        <link rel='stylesheet' href='/assets/cssPlus/cssPlus.css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <!-- Cargar Bootstrap CSS -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <?php
         // Incluye el menú 
-        require '../Menus/menu.php';
+        require '/Web/Menus/menu.php';
         ?>
     </head>
     <body>
@@ -32,13 +32,13 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 <!-- Botones para ver juegos por diferentes categorías -->
                 <div class="row mb-4 justify-content-center">
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'categorias.php';">Ver Juegos por Géneros</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '/Web/PaginasPrincipales/categorias.php';">Ver Juegos por Géneros</button>
                     </div>
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'desarrolladores.php';">Ver Juegos por Desarrolladores</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '/Web/PaginasPrincipales/desarrolladores.php';">Ver Juegos por Desarrolladores</button>
                     </div>
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'editores.php';">Ver Juegos por Editores</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '/Web/PaginasPrincipales/editores.php';">Ver Juegos por Editores</button>
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
         
         <?php
         // Incluir el pie de página
-        require '../Funciones/footer.php';
+        require '/Web/Funciones/footer.php';
         ?>
 
         <!-- Script AJAX para buscar juegos -->
@@ -144,7 +144,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 // Función para cargar juegos con filtros aplicados
                 function cargarJuegos(searchTerm, generosSeleccionados, precioSeleccionado) {
                     $.ajax({
-                        url: "../Funciones/buscar_juego.php",
+                        url: "/Web/Funciones/buscar_juego.php",
                         method: "POST",
                         data: {searchTerm: searchTerm, generos: generosSeleccionados, precio: precioSeleccionado},
                         success: function (response) {

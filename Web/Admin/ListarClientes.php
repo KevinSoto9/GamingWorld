@@ -9,13 +9,13 @@
 <body class="text-white"> 
 
 <?php
-require '../Menus/menu2.php';
+require '/Web/Menus/menu2.php';
 
 $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '../PaginasAdicionales/PersonalAutorizado.php';
+    require '/Web/PaginasAdicionales/PersonalAutorizado.php';
 } else {
 
 ?>
