@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $resul = $bd->query($ins);
             if ($resul) {
                 // Redirigir al usuario a la página de inicio
-                header("Location:/Web/PaginasPrincipales/index.php");
+                header("Location:index.php");
             }
         } catch (PDOException $e) {
             // Mostrar mensaje de error si ocurre una excepción
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <div class="container mt-5">
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" class="btn btn-primary btn-block">Enviar</button>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="/Web/PaginasPrincipales/index.php" class="btn btn-link">Volver</a>
+                            <a href="index.php" class="btn btn-link">Volver</a>
                         </div>
                     </div>
                 </div>

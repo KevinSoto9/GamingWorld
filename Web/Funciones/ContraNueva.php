@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '/vendor/autoload.php';
+require 'vendor/autoload.php';
 require 'bd.php'; // Conexión a la base de datos
 
 $message = '';
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
 </head>
 <body>
 <div class="container mt-5">
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-                <a href="/Web/PaginasPrincipales/index.php" class="btn btn-secondary btn-block">Volver</a>
+                <a href="index.php" class="btn btn-secondary btn-block">Volver</a>
             </form>
         </div>
     </div>

@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
    
-    require '/Web/PaginasAdicionales//PersonalAutorizado.php';
+    require '../PaginasAdicionales//PersonalAutorizado.php';
 }
 
 else{
@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $ins = "INSERT INTO `desarrolladores` (`desarrolladorID`, `nombre`) VALUES (NULL, '$nombre')";
         $resul = $bd->query($ins);
         if ($resul) {
-            header("Location:/Web/PaginasPrincipales/Admin.php");
+            header("Location:../PaginasPrincipales/Admin.php");
         }
     } catch (PDOException $e) {
         echo "Error: Comprueba que los datos introducidos no estan ya en la base de datos";
@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <title>Gaming World - Crear Desarrollador</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
-    <?php require '/Web/Menus/menu2.php'; ?>
+    <?php require '../Menus/menu2.php'; ?>
     
 </head>
 <body>

@@ -5,7 +5,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '/Web/PaginasAdicionales/PersonalAutorizado.php';
+    require '../PaginasAdicionales/PersonalAutorizado.php';
     
 } else {
     session_abort();
@@ -20,7 +20,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
         $precio = floatval($_POST["precio"]);
         
         // Carpeta de destino para las imágenes subidas
-        $carpeta_destino = "/Imagenes/ImagenesJuegos/";
+        $carpeta_destino = "../../Imagenes/ImagenesJuegos/";
 
         try {
             require '../bd.php';
@@ -31,7 +31,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
                 $ins = "INSERT INTO `juegos` (`JuegoID`, `nombre`, `descripcion`, `fecha_salida`, `precio`) VALUES (NULL, '$nombre','$descripcion', '$fecha', '$precio')";
                 $resul = $bd->query($ins);
                 if ($resul) {
-                    header("Location:/Web/PaginasPrincipales/Admin.php");
+                    header("Location:../PaginasPrincipales/Admin.php");
                 }
             } else {
                 echo "Error al subir la imagen.";
@@ -50,7 +50,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming World - Crear Juego</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <?php require '/Web/Menus/menu2.php'; ?>
+    <?php require '../Menus/menu2.php'; ?>
 </head>
 <body>
     <div class="container mt-5">

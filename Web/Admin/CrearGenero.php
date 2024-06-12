@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '/Web/PersonalAutorizado.php';
+    require '../PersonalAutorizado.php';
 }
 
 else{
@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $ins = "INSERT INTO `generos` (`generoID`, `nombre`) VALUES (NULL, '$nombre')";
         $resul = $bd->query($ins);
         if ($resul) {
-            header("Location:/Web/PaginasPrincipales/Admin.php");
+            header("Location:../Admin.php");
         }
     } catch (PDOException $e) {
         echo "Error: Comprueba que los datos introducidos no estan ya en la base de datos";
@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     
-    <?php require '/Web/Menus/menu2.php'; ?>
+    <?php require '../menu2.php'; ?>
     
 </head>
 <body>

@@ -5,7 +5,7 @@ $html = "";
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Si el usuario no ha iniciado sesión, requerir la página de no inicio de sesión
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '../PaginasAdicionales/NoInicioSesion.php';
 } else {
     // Si el usuario ha iniciado sesión, proceder con la visualización de la página
 
@@ -17,11 +17,11 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <head>
         <meta charset="UTF-8">
         <title>Gaming World</title>
-        <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+        <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </head>
     <body>
-    <?php require '/Web/Menus/menuIndividual.php'; ?>
+    <?php require '../Menus/menuIndividual.php'; ?>
     <?php require '../bd.php'; ?>
 
     <div class="container-fluid">
@@ -86,7 +86,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 <div class="col-md-3">
                     <div class="card mb-5 bg-dark text-white">
                         <a href='PagJuego.php?juegoID=<?= $juego['juegoID'] ?>' class='enlace-juego text-white'>
-                            <img class='card-img-top' src='/Imagenes/ImagenesJuegos/<?= $juego['nombre'].".jpg" ?>' alt='<?= $juego['nombre'] ?>'>
+                            <img class='card-img-top' src='../../Imagenes/ImagenesJuegos/<?= $juego['nombre'].".jpg" ?>' alt='<?= $juego['nombre'] ?>'>
                             <div class='card-body'>
                                 <h5 class='card-title'><?= $juego['nombre'] ?></h5>
                                 <p class='card-text'>Precio: <?= $juego['precio'] ?></p>

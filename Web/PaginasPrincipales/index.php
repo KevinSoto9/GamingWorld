@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
                     
                     // Redirige a la página principal
-                    header("Location: /Web/PaginasPrincipales/PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
+                    header("Location: PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     exit();
                 }
             }
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -56,12 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card login-card">
                 <div class="row no-gutters">
                     <div class="col-md-5">
-                        <img src="/Imagenes/ImagenesJuegos/BioShock™.jpg" alt="login" class="login-card-img">
+                        <img src="../../Imagenes/ImagenesJuegos/BioShock™.jpg" alt="login" class="login-card-img">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body ml-4 mr-4">
                             <div class="brand-wrapper mb-4">
-                                <img src="/Imagenes/Imagenes/LogoPng.png" alt="logo" class="logo">
+                                <img src="../../Imagenes/Imagenes/LogoPng.png" alt="logo" class="logo">
                             </div>
                             <h3 class="card-title text-center mb-4">Inicia sesión</h3>
                             <?php if (isset($error_message)): ?>
@@ -93,9 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="register text-center mt-5">
                                 <a href="/Web/Funciones/ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
                                 <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="/Web/Funciones/registroCliente.php" class="text-reset">Regístrate aquí</a></p>
+                                <a href="ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
+                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="registroCliente.php" class="text-reset">Regístrate aquí</a></p>
                                 <nav class="login-card-footer-nav">
-                                    <a class="text-warning" href="/Web/Footer/TerminosDeUso.php">Términos de uso</a>
-                                    <a class="text-warning" href="/Web/Footer/PoliticaPrivacidad.php">Política de privacidad</a>
+                                    <a class="text-warning" href="../Footer/TerminosDeUso.php">Términos de uso</a>
+                                    <a class="text-warning" href="../Footer/PoliticaPrivacidad.php">Política de privacidad</a>
                                 </nav>
                             </div>
                         </div>

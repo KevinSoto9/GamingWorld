@@ -4,9 +4,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '/vendor/phpmailer/phpmailer/src/Exception.php';
-require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '/vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../../vendor/phpmailer/phpmailer/src/Exception.php';
+require '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../../vendor/phpmailer/phpmailer/src/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = htmlspecialchars($_POST['nombre']);
@@ -38,6 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $mail->send();
 
-    header("Location: /Web/PaginasPrincipales/PagPrincipal.php");
+    header("Location: ../PaginasPrincipales/PagPrincipal.php");
 }
 ?>

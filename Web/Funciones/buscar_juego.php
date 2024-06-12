@@ -73,8 +73,8 @@ function renderizarJuegos($juegos)
     foreach ($juegos as $juego) {
         $html .= "<div class='col-md-3 mb-4'>"; // Dividimos en columnas de Bootstrap
         $html .= "<div class='bg-dark card h-100'>"; // Clase h-100 para que todas las cartas tengan la misma altura
-        $html .= "<a href='/Web/PaginasIndividuales/PagJuego.php?juegoID={$juego['juegoID']}' class='text-white enlace-juego'>";
-        $html .= "<img class='card-img-top text-white' src='/Imagenes/ImagenesJuegos/{$juego['nombre']}.jpg' alt='{$juego['nombre']}'>";
+        $html .= "<a href='../PaginasIndividuales/PagJuego.php?juegoID={$juego['juegoID']}' class='text-white enlace-juego'>";
+        $html .= "<img class='card-img-top text-white' src='../../Imagenes/ImagenesJuegos/{$juego['nombre']}.jpg' alt='{$juego['nombre']}'>";
         $html .= "<div class='card-body'>";
         $html .= "<h5 class='card-title text-white'>{$juego['nombre']}</h5>";
         $html .= "<p class='card-text text-white'>Precio: {$juego['precio']}</p>";
@@ -88,7 +88,7 @@ function renderizarJuegos($juegos)
             $statement->execute([$genero]);
             $resultado = $statement->fetch();
             $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-            $html .= "<a class='generos text-white' href='/Web/PaginasIndividuales/PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>";
+            $html .= "<a class='generos text-white' href='PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>";
             if ($index < count($generos) - 1) {
                 $html .= ", ";
             }

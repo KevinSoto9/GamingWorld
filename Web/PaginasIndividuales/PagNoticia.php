@@ -6,7 +6,7 @@ $html = "";
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '../PaginasAdicionales/NoInicioSesion.php';
 } else {
     // Si el usuario ha iniciado sesión, mostrar la página principal
 
@@ -17,7 +17,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     }
 
     // Incluir los archivos necesarios
-    require '/Web/Menus/menuIndividual.php';
+    require '../Menus/menuIndividual.php';
     require '../bd.php';
 ?>
 
@@ -44,7 +44,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     foreach ($novedades as $novedad) {
         $html = "";
         $html .= "<div class='card bg-dark text-white mb-5'>";
-        $html .= "<img src='/Imagenes/ImagenesNoticiasDetalles/{$novedad['titulo']}.jpg' class='card-img-top' alt='{$novedad['titulo']}'>";
+        $html .= "<img src='../../Imagenes/ImagenesNoticiasDetalles/{$novedad['titulo']}.jpg' class='card-img-top' alt='{$novedad['titulo']}'>";
         $html .= "<div class='card-body'>";
         $html .= "<h5 class='card-title'>{$novedad['titulo']}</h5>";
         $html .= "<p class='card-text'>{$novedad['descripcion']}</p>";
@@ -92,12 +92,12 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
                     // Botón de editar: solo visible si el usuario es el autor del comentario
                     if ($_SESSION['UsuarioID'] == $comentario['usuarioID']) {
-                        echo "<button type='button' class='btn btn-primary mr-2' onclick=\"window.location.href='/Web/Funciones/EditarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . urlencode($noticiaID) . "'\">Editar</button>";
+                        echo "<button type='button' class='btn btn-primary mr-2' onclick=\"window.location.href='../Funciones/EditarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . urlencode($noticiaID) . "'\">Editar</button>";
                     }
 
                     // Botón de eliminar: solo visible para administradores
                     if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'administrador') {
-                        echo "<button type='button' class='btn btn-primary' onclick=\"window.location.href='/Web/Funciones/EliminarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . urlencode($noticiaID) . "'\">Eliminar</button>";
+                        echo "<button type='button' class='btn btn-primary' onclick=\"window.location.href='../Funciones/EliminarComentarioNoticia.php?comentarioNoticiaID=" . urlencode($comentario['comentarioNoticiaID']) . "&noticiaID=" . urlencode($noticiaID) . "'\">Eliminar</button>";
                     }
 
                     echo "</div>";
@@ -109,13 +109,13 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             ?>
 
             <!-- Enlace para agregar un nuevo comentario -->
-            <a href="/Web/Funciones/CrearComentarioNoticia.php?noticiaDetalleID=<?php echo urlencode($noticiaID) ?>&usuarioID=<?php echo urldecode($_SESSION['UsuarioID']) ?>" class="btn btn-primary">Agregar comentario</a>
+            <a href="../Funciones/CrearComentarioNoticia.php?noticiaDetalleID=<?php echo urlencode($noticiaID) ?>&usuarioID=<?php echo urldecode($_SESSION['UsuarioID']) ?>" class="btn btn-primary">Agregar comentario</a>
         </div>
     </div>
 </div>
 
 <?php
-require '/Web/Funciones/footer.php';
+require '../Funciones/footer.php';
 ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

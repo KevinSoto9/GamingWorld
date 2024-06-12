@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require '/fpdf/fpdf.php';
+require '../../fpdf/fpdf.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '/vendor/phpmailer/phpmailer/src/Exception.php';
-require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '/vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../../vendor/phpmailer/phpmailer/src/Exception.php';
+require '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../../vendor/phpmailer/phpmailer/src/SMTP.php';
 
 function randomString($length = 4) {
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -182,7 +182,7 @@ function enviarCorreoCompra($usuarioID) {
         // Enviar el correo electrónico
         $mail->send();
         
-        header("Location: /Web/PaginasPrincipales/PagPrincipal.php");
+        header("Location: ../PaginasPrincipales/PagPrincipal.php");
     } catch (Exception $e) {
         echo 'Error al enviar correo electrónico: ', $e->getMessage();
     }

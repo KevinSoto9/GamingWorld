@@ -2,14 +2,14 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '../PaginasAdicionales/NoInicioSesion.php';
 } else {
 // Incluir archivos necesarios
-require '/Web/Menus/menu.php';
+require '../Menus/menu.php';
 require '../bd.php';
 
 // Incluir estilos CSS
-echo "<link rel='stylesheet' href='/assets/cssPlus/cssPlus.css'>";
+echo "<link rel='stylesheet' href='assets/cssPlus/cssPlus.css'>";
 echo "<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'>";
 
 // Obtener el ID del usuario de la sesión
@@ -68,16 +68,16 @@ if ($carritoID) {
         $html .= "<h3 class='text-center text-white total-general mb-4'>Total General: $$totalGeneral</h3>";
 
         // Formulario para finalizar la compra
-        $html .= "<form action='/Web/Funciones/Email.php' method='post' class='text-center'>";
+        $html .= "<form action='../Funciones/Email.php' method='post' class='text-center'>";
         $html .= "<input type='submit' value='Finalizar la compra' class='btn btn-success'>";
         $html .= "</form>";
     } else {
         // Mensaje si el carrito está vacío
         $html .= "<div class='text-center'>";
         $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
-        $html .= "<img src='/Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
+        $html .= "<img src='../../Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
         $html .= "<div class='mt-4'>";
-        $html .= "<a href='/Web/PaginasPrincipales/PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+        $html .= "<a href='PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
         $html .= "</div>";
         $html .= "</div>";
     }
@@ -85,9 +85,9 @@ if ($carritoID) {
     // Mensaje si el carrito está vacío
     $html .= "<div class='text-center'>";
     $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
-    $html .= "<img src='/Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
+    $html .= "<img src='../../Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
     $html .= "<div class='mt-4'>";
-    $html .= "<a href='/Web/PaginasPrincipales/PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+    $html .= "<a href='PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
     $html .= "</div>";
     $html .= "</div>";
 }
@@ -111,7 +111,7 @@ $(document).ready(function() {
         var row = $('#juego-' + juegoID);
 
         $.ajax({
-            url: '/Web/Funciones/Eliminarjuego.php',
+            url: '../Funciones/Eliminarjuego.php',
             type: 'GET',
             data: {
                 juegoID: juegoID,

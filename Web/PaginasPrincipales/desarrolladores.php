@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '../PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -12,12 +12,12 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <meta charset="UTF-8">
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="assets/cssPlus/cssPlus.css">
 </head>
 <body>
     <?php 
         // Incluye el menú y la base de datos
-        require '/Web/Menus/menu.php'; 
+        require '../Menus/menu.php'; 
         require '../bd.php'; 
     ?>
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                     <div class="card bg-dark text-white">
                         <div class="card-body text-center">
                             <!-- Enlace al desarrollador con su ID -->
-                            <h5 class="card-title"><a href="/Web/PaginasIndividuales/PagDesarrollador.php?desarrolladorID=<?php echo $desarrolladorID; ?>" class="text-white"><?php echo $nombreDesarrollador; ?></a></h5>
+                            <h5 class="card-title"><a href="../PaginasIndividuales/PagDesarrollador.php?desarrolladorID=<?php echo $desarrolladorID; ?>" class="text-white"><?php echo $nombreDesarrollador; ?></a></h5>
                         </div>
                     </div>
                 </div>

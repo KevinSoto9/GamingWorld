@@ -17,7 +17,7 @@ if(isset($_GET['tarjetaID'])) {
         $stmt->bindParam(':tarjetaID', $tarjetaID);
         $stmt->execute();
 
-        header("Location: /Web/PaginasPrincipales/perfil.php");
+        header("Location: ../PaginasPrincipales/perfil.php");
         exit();
     } catch (PDOException $e) {
         echo $e->getMessage();

@@ -5,7 +5,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
 
-    require '/Web/PaginasAdicionales/PersonalAutorizado.php';
+    require '../PaginasAdicionales/PersonalAutorizado.php';
 } else {
 
     session_abort();
@@ -19,7 +19,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
         $imagen_temp = $_FILES["imagen"]["tmp_name"];
 
         // Carpeta de destino para las imágenes subidas
-        $carpeta_destino = "/Imagenes/ImagenesNoticias/";
+        $carpeta_destino = "../../Imagenes/ImagenesNoticias/";
 
         try {
             require '../bd.php';
@@ -30,7 +30,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
                 $ins = "INSERT INTO `noticias` (`noticiaID`, `titulo`, `resumen`) VALUES (NULL, '$titulo', '$resumen')";
                 $resul = $bd->query($ins);
                 if ($resul) {
-                    header("Location:/Web/PaginasPrincipales/Admin.php");
+                    header("Location:../PaginasPrincipales/Admin.php");
                 }
             } else {
                 echo "Error al subir la imagen.";
@@ -46,7 +46,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
             <meta charset="UTF-8">
             <title>Gaming World - Crear Noticia</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <?php require '/Web/Menus/menu2.php'; ?>
+    <?php require '../Menus/menu2.php'; ?>
         </head>
         <body>
             <!-- Formulario de creación de Noticias -->

@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $carritoQuery = $bd->prepare("INSERT INTO `carrito` (`carritoID`, `usuarioID`, `tarjetaID`) VALUES (NULL, ?, ?)");
                 if ($carritoQuery->execute([$usuario_id, $tarjetaID])) {
                     // Redirigir al perfil del usuario después de completar el registro de la tarjeta
-                    header("Location: /Web/PaginasPrincipales/perfil.php");
+                    header("Location: ../PaginasPrincipales/perfil.php");
                     exit();
                 } else {
                     $error = "Error al insertar en la tabla carrito.";
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
 </head>
 <body>
 
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- Enlace para volver al perfil del usuario -->
         <div class="mt-3">
-            <a href="/Web/PaginasPrincipales/perfil.php" class="btn btn-secondary">Volver</a>
+            <a href="../PaginasPrincipales/perfil.php" class="btn btn-secondary">Volver</a>
         </div>    
     </div>
 

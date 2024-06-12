@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '../PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -14,13 +14,13 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <!-- Enlace a Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la hoja de estilos personalizada -->
-    <link rel='stylesheet' href='/assets/cssPlus/cssPlus.css'>
+    <link rel='stylesheet' href='../../assets/cssPlus/cssPlus.css'>
 </head>
 <body>
 
     <?php 
     // Incluir menú de navegación y conexión a la base de datos
-    require '/Web/Menus/menu.php';
+    require '../Menus/menu.php';
     require '../bd.php';
 
     // Obtener la fecha actual
@@ -42,7 +42,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card bg-dark text-white h-100">
                         <!-- Imagen de la novedad -->
-                        <img src="/Imagenes/ImagenesNovedades/<?php echo $novedad['titulo'].".jpg"; ?>" class="card-img-top" alt="<?php echo $novedad['titulo']; ?>">
+                        <img src="../../Imagenes/ImagenesNovedades/<?php echo $novedad['titulo'].".jpg"; ?>" class="card-img-top" alt="<?php echo $novedad['titulo']; ?>">
                         <div class="card-body">
                             <!-- Título de la novedad -->
                             <h5 class="card-title"><?php echo $novedad['titulo']; ?></h5>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     
     <?php
     // Incluir pie de página
-    require '/Web/Funciones/footer.php';
+    require '../Funciones/footer.php';
     ?>
 
     <!-- Enlaces a las librerías JavaScript de jQuery y Bootstrap -->

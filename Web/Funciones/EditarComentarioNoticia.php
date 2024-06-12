@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         // Redirigir de vuelta a la página de la noticia después de actualizar el comentario
-        header("Location: /Web/PaginasIndividuales/PagNoticia.php?noticiaID=" . urlencode($noticiaID));
+        header("Location: ../PaginasIndividuales/PagNoticia.php?noticiaID=" . urlencode($noticiaID));
         exit;
     } catch (PDOException $e) {
         // En caso de error, mostrar el mensaje de error
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Gaming World</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="../../assets/cssPlus/cssPlus.css">
 </head>
 <body>
 
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         // Mostrar un botón para volver a la página de la noticia
                         foreach ($noticias as $noticia) {
-                            echo "<a class='btn btn-secondary' href='/Web/PaginasIndividuales/PagNoticia.php?noticiaID=" . htmlspecialchars($noticia['noticiaID']) . "'>Volver</a>";
+                            echo "<a class='btn btn-secondary' href='../PaginasIndividuales/PagNoticia.php?noticiaID=" . htmlspecialchars($noticia['noticiaID']) . "'>Volver</a>";
                         }
                         ?>
                     </div>
