@@ -17,7 +17,7 @@ $html .= "<div class='container mt-5'>";
 $html .= "<div class='alert alert-danger text-center mb-5' role='alert'>";
 $html .= "La página que buscas no existe";
 // Botón para volver al inicio de sesión
-$html .= "<button class='btn btn-dark ml-4' onclick='window.location.href=\"../PaginasPrincipales/index.php\"'>Volver a Inicio de Sesión</button>";
+$html .= "<button class='btn btn-dark ml-4' onclick='window.location.href=\"/Web/PaginasPrincipales/index.php\"'>Volver a Inicio de Sesión</button>";
 $html .= "</div>"; // Fin de la alerta
 $html .= "<div class='text-center'>"; 
 // Imagen de error 404

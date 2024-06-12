@@ -93,8 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="register text-center mt-5">
                                 <a href="/Web/Funciones/ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
                                 <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="/Web/Funciones/registroCliente.php" class="text-reset">Regístrate aquí</a></p>
-                                <a href="ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
-                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="registroCliente.php" class="text-reset">Regístrate aquí</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a class="text-warning" href="../Footer/TerminosDeUso.php">Términos de uso</a>
                                     <a class="text-warning" href="../Footer/PoliticaPrivacidad.php">Política de privacidad</a>
