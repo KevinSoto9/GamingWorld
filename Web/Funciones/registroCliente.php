@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" class="btn btn-primary btn-block">Enviar</button>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="index.php" class="btn btn-link">Volver</a>
+                            <a href="../PaginasPrincipales/index.php" class="btn btn-link">Volver</a>
                         </div>
                     </div>
                 </div>
