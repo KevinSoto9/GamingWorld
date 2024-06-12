@@ -3,7 +3,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -62,7 +62,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     </div>
     
     <!-- Incluye el pie de página -->
-    <?php require '/Web/Funciones/footer.php'; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/Web/Funciones/footer.php'; ?>
 
     <!-- Scripts de JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

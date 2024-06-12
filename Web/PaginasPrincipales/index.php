@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['UsuarioID'] = $usuario['UsuarioID'];
                     
                     // Redirige a la página principal
-                    header("Location: /Web/PaginasPrincipales/PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
+                    header("Location: {$_SERVER['DOCUMENT_ROOT']}/Web/PaginasPrincipales/PagPrincipal.php?tipo=" . urlencode($usuario['Tipo']));
                     exit();
                 }
             }
@@ -92,10 +92,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
                             <div class="register text-center mt-5">
                                 <a href="/Web/Funciones/ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
-                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="/Web/Funciones/registroCliente.php" class="text-reset">Regístrate aquí</a></p>
+                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/Funciones/registroCliente.php" class="text-reset">Regístrate aquí</a></p>
                                 <nav class="login-card-footer-nav">
-                                    <a class="text-warning" href="/Web/Footer/TerminosDeUso.php">Términos de uso</a>
-                                    <a class="text-warning" href="/Web/Footer/PoliticaPrivacidad.php">Política de privacidad</a>
+                                    <a class="text-warning" href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/Footer/TerminosDeUso.php">Términos de uso</a>
+                                    <a class="text-warning" href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/Footer/PoliticaPrivacidad.php">Política de privacidad</a>
                                 </nav>
                             </div>
                         </div>

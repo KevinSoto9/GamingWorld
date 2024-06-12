@@ -3,7 +3,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -19,7 +19,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <?php
         // Incluye el menú 
-        require '/Web/Menus/menu.php';
+        require $_SERVER['DOCUMENT_ROOT'] . '/Web/Menus/menu.php';
         ?>
     </head>
     <body>
@@ -32,15 +32,16 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 <!-- Botones para ver juegos por diferentes categorías -->
                 <div class="row mb-4 justify-content-center">
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '/Web/PaginasPrincipales/categorias.php';">Ver Juegos por Géneros</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/PaginasPrincipales/categorias.php';">Ver Juegos por Géneros</button>
                     </div>
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '/Web/PaginasPrincipales/desarrolladores.php';">Ver Juegos por Desarrolladores</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/PaginasPrincipales/desarrolladores.php';">Ver Juegos por Desarrolladores</button>
                     </div>
                     <div class="col-md-4 text-center mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '/Web/PaginasPrincipales/editores.php';">Ver Juegos por Editores</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href = '<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/PaginasPrincipales/editores.php';">Ver Juegos por Editores</button>
                     </div>
-                </div>
+                 </div>
+
 
                 <!-- Buscador de juegos -->
                 <div class="buscador mb-4 mt-5 text-center">
@@ -135,7 +136,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
         
         <?php
         // Incluir el pie de página
-        require '/Web/Funciones/footer.php';
+        require $_SERVER['DOCUMENT_ROOT'] . '/Web/Funciones/footer.php';
         ?>
 
         <!-- Script AJAX para buscar juegos -->
@@ -143,15 +144,16 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             $(document).ready(function () {
                 // Función para cargar juegos con filtros aplicados
                 function cargarJuegos(searchTerm, generosSeleccionados, precioSeleccionado) {
-                    $.ajax({
-                        url: "/Web/Funciones/buscar_juego.php",
-                        method: "POST",
-                        data: {searchTerm: searchTerm, generos: generosSeleccionados, precio: precioSeleccionado},
-                        success: function (response) {
-                            $(".contenedor-juegos").html(response);
+                 $.ajax({
+                    url: '<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/Funciones/buscar_juego.php',
+                    method: 'POST',
+                    data: { searchTerm: searchTerm, generos: generosSeleccionados, precio: precioSeleccionado },
+                    success: function(response) {
+                        $('.contenedor-juegos').html(response);
                         }
                     });
                 }
+
 
                 // Función para obtener los géneros seleccionados
                 function obtenerSeleccion(nombreClase) {

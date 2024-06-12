@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -20,7 +20,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
     <?php 
     // Incluir menú de navegación y conexión a la base de datos
-    require '/Web/Menus/menu.php';
+    require $_SERVER['DOCUMENT_ROOT'] .'/Web/Menus/menu.php';
     require '../bd.php';
 
     // Obtener la fecha actual
@@ -61,7 +61,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     
     <?php
     // Incluir pie de página
-    require '/Web/Funciones/footer.php';
+    require $_SERVER['DOCUMENT_ROOT'] '/Web/Funciones/footer.php';
     ?>
 
     <!-- Enlaces a las librerías JavaScript de jQuery y Bootstrap -->

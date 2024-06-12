@@ -8,10 +8,10 @@ $html = "";
 // Comprobar si el usuario no ha iniciado sesión
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require $_SERVER['DOCUMENT_ROOT'] .'/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
     // Requerir archivos necesarios
-    require '/Web/Menus/menu.php';
+    require $_SERVER['DOCUMENT_ROOT'] .'/Web/Menus/menu.php';
     require '../bd.php';
 
     // Agregar estilos CSS
@@ -57,7 +57,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
     // Botón del historial
     $html .= "<div class='mb-5 container d-flex justify-content-center align-items-center'>";
-    $html .= "<button class='btn btn-secondary' onclick=\"window.location.href='/Web/PaginasIndividuales/historico.php'\">Ver Juegos por año</button>";
+    $html .= "<button class='btn btn-secondary' onclick=\"window.location.href='" . $_SERVER['DOCUMENT_ROOT'] . "/Web/PaginasIndividuales/historico.php'\">Ver Juegos por año</button>";
     $html .= "</div>";
 
     // Modal para mensaje
@@ -85,7 +85,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     foreach ($juegos as $juego) {
         $html .= "<div class='col-md-3 mb-4'>";
         $html .= "<div class='bg-dark card h-100'>";
-        $html .= "<a href='/Web/PaginasIndividuales/PagJuego.php?juegoID={$juego['juegoID']}' class='text-white enlace-juego'>";
+        $html .= "<a href='" . $_SERVER['DOCUMENT_ROOT'] . "/Web/PaginasIndividuales/PagJuego.php?juegoID={$juego['juegoID']}' class='text-white enlace-juego'>";
         $html .= "<img class='card-img-top text-white' src='/Imagenes/ImagenesJuegos/{$juego['nombre']}.jpg' alt='{$juego['nombre']}'>";
         $html .= "<div class='card-body d-flex flex-column'>";
         $html .= "<h5 class='card-title text-white'>{$juego['nombre']}</h5>";
@@ -101,7 +101,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
             $statement->execute([$genero]);
             $resultado = $statement->fetch();
             $generoID = isset($resultado['generoID']) ? urlencode($resultado['generoID']) : '';
-            $generosHtml .= "<a class='generos text-white' href='/Web/PaginasIndividuales/PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
+            $generosHtml .= "<a class='generos text-white' href='" . $_SERVER['DOCUMENT_ROOT'] . "/Web/PaginasIndividuales/PagGenero.php?generoID=$generoID' id='$generoID'>$genero</a>, ";
         }
 
         $html .= rtrim($generosHtml, ", ");
@@ -137,7 +137,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     $html .= "        btn.addEventListener('click', function() {";
     $html .= "            var juegoID = btn.getAttribute('data-juego-id');";
     $html .= "            var precio = btn.getAttribute('data-precio');";
-    $html .= "            fetch('/Web/Funciones/AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID={$_SESSION['UsuarioID']}')";
+    $html .= "            fetch('" . $_SERVER['DOCUMENT_ROOT'] . "/Web/Funciones/AgregarAlCarrito.php?juegoID=' + juegoID + '&precio=' + precio + '&usuarioID={$_SESSION['UsuarioID']}')";
     $html .= "                .then(response => response.text())";
     $html .= "                .then(text => document.getElementById('mensajeModalBody').textContent = text);";
     $html .= "        });";
@@ -147,7 +147,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     
     echo $html;
 
-    require '/Web/Funciones/footer.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/Web/Funciones/footer.php';
     ?>
 
 
