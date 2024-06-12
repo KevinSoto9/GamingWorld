@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require $_SERVER['DOCUMENT_ROOT'] . '/PaginasAdicionales/NoInicioSesion.php';
+    require '/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 
@@ -13,11 +13,11 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     <title>Gaming World</title>
     <!-- Agregar referencia a Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href=" $_SERVER['DOCUMENT_ROOT'] . /assets/cssPlus/cssPlus.css">
+    <link rel="stylesheet" href="/assets/cssPlus/cssPlus.css">
 </head>
 
 <body>
-    <?php require $_SERVER['DOCUMENT_ROOT'] .'/Web/Menus/menu.php'; ?>
+    <?php require '/Web/Menus/menu.php'; ?>
 
     <div class="container mt-5">
         <div class="perfil">
@@ -64,7 +64,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 
                     <div class="perfil-cambiarContrasena mt-3">
                         <h2>¿Quieres cambiar la contraseña?</h2>
-                        <?php echo "<button class='btn btn-primary mt-2' onclick=\"window.location.href='{$_SERVER['DOCUMENT_ROOT']}/Web/Funciones/CambiarContra.php?UsuarioID=" . urlencode($usuario_id) . "'\">Hazlo Aquí</button>"; ?>
+                        <?php echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"/Web/Funciones/CambiarContra.php?UsuarioID=" . urlencode($usuario_id) . "\"'>Hazlo Aquí</button>"; ?>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                         if (!$tarjeta_res || $tarjeta_res->rowCount() === 0) {
                             echo "<div class='alert alert-warning'>";
                             echo "<h2>No tienes ninguna tarjeta asociada a tu perfil</h2>";
-                            echo "<button class='btn btn-primary' onclick='window.location.href=\"{$_SERVER['DOCUMENT_ROOT']}/Web/Funciones/CrearTarjeta.php\"'>Hazlo aquí</button>";
+                            echo "<button class='btn btn-primary' onclick='window.location.href=\"/Web/Funciones/CrearTarjeta.php\"'>Hazlo aquí</button>";
                             echo "</div>";
                         } else {
                             echo "<div class='perfil-tarjeta-vinculada p-3 mb-3 bg-secondary rounded'>";
@@ -115,7 +115,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                                 foreach ($tarjeta_res as $tar) {
                                     echo "<div class='perfil-quitarTarjeta-content'>";
                                     echo "<h2>¿Quieres desvincular la tarjeta?</h2>";
-                                    echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"{$_SERVER['DOCUMENT_ROOT']}/Web/Funciones/QuitarTarjeta.php?tarjetaID=" . urlencode($tar['tarjetaID']) . "\"'>Hazlo Aquí</button>";
+                                    echo "<button class='btn btn-primary mt-2' onclick='window.location.href=\"/Web/Funciones/QuitarTarjeta.php?tarjetaID=" . urlencode($tar['tarjetaID']) . "\"'>Hazlo Aquí</button>";
                                     echo "</div>";
                                 }
                             }

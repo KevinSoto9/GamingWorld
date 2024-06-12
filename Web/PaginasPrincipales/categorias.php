@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require $_SERVER['DOCUMENT_ROOT'] . '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
 <body>
     <?php 
         // Incluye el menú y la base de datos
-        require $_SERVER['DOCUMENT_ROOT'] . '/Web/Menus/menu.php'; 
+        require '/Web/Menus/menu.php'; 
         require '../bd.php'; 
     ?>
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                     <div class="card bg-dark text-white">
                         <div class="card-body text-center">
                             <!-- Enlace al género con su ID -->
-                            <h5 class="card-title"><a href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/Web/PaginasIndividuales/PagGenero.php?generoID=<?php echo $generoID; ?>" class="text-white"><?php echo $nombreGenero; ?></a></h5>
+                            <h5 class="card-title"><a href="/Web/PaginasIndividuales/PagGenero.php?generoID=<?php echo $generoID; ?>" class="text-white"><?php echo $nombreGenero; ?></a></h5>
                         </div>
                     </div>
                 </div>

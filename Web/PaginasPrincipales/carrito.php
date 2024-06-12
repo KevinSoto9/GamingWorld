@@ -2,10 +2,10 @@
 
 if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
     // Requerir archivo para usuario no logueado
-    require $_SERVER['DOCUMENT_ROOT'] . '/Web/PaginasAdicionales/NoInicioSesion.php';
+    require '/Web/PaginasAdicionales/NoInicioSesion.php';
 } else {
 // Incluir archivos necesarios
-require $_SERVER['DOCUMENT_ROOT'] . '/Web/Menus/menu.php';
+require '/Web/Menus/menu.php';
 require '../bd.php';
 
 // Incluir estilos CSS
@@ -68,7 +68,7 @@ if ($carritoID) {
         $html .= "<h3 class='text-center text-white total-general mb-4'>Total General: $$totalGeneral</h3>";
 
         // Formulario para finalizar la compra
-        $html .= "<form action='" . $_SERVER['DOCUMENT_ROOT'] . "/Web/Funciones/Email.php' method='post' class='text-center'>";
+        $html .= "<form action='/Web/Funciones/Email.php' method='post' class='text-center'>";
         $html .= "<input type='submit' value='Finalizar la compra' class='btn btn-success'>";
         $html .= "</form>";
     } else {
@@ -77,7 +77,7 @@ if ($carritoID) {
         $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
         $html .= "<img src='/Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
         $html .= "<div class='mt-4'>";
-        $html .= "<a href='" . $_SERVER['DOCUMENT_ROOT'] . "/Web/PaginasPrincipales/PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+        $html .= "<a href='/Web/PaginasPrincipales/PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
         $html .= "</div>";
         $html .= "</div>";
     }
@@ -87,7 +87,7 @@ if ($carritoID) {
     $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
     $html .= "<img src='/Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";
     $html .= "<div class='mt-4'>";
-    $html .= "<a href='" . $_SERVER['DOCUMENT_ROOT'] . "/Web/PaginasPrincipales/PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
+    $html .= "<a href='/Web/PaginasPrincipales/PagPrincipal.php' class='btn btn-primary btn-lg'>Volver a la tienda</a>";
     $html .= "</div>";
     $html .= "</div>";
 }
@@ -111,7 +111,7 @@ $(document).ready(function() {
         var row = $('#juego-' + juegoID);
 
         $.ajax({
-            url: <?php echo $_SERVER['DOCUMENT_ROOT'] ?>'/Web/Funciones/Eliminarjuego.php',
+            url: '/Web/Funciones/Eliminarjuego.php',
             type: 'GET',
             data: {
                 juegoID: juegoID,
