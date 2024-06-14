@@ -91,11 +91,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button type="submit" class="btn btn-warning btn-block">Login</button>
                             </form>
                             <div class="register text-center mt-5">
-                                <a id="forgot-password-link" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
-                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a id="register-link" class="text-reset">Regístrate aquí</a></p>
+                                <a id="forgot-password-link" class="forgot-password-link text-warning" href="#">¿Has olvidado tu contraseña?</a>
+                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a id="register-link" class="text-reset" href="#">Regístrate aquí</a></p>
                                 <nav class="login-card-footer-nav">
-                                    <a class="text-warning link-terminos" >Términos de uso</a>
-                                    <a class="text-warning link-politica" >Política de privacidad</a>
+                                    <a id="link-terminos" class="text-warning link-terminos" href="#">Términos de uso</a>
+                                    <a id="link-politica" class="text-warning link-politica" href="#">Política de privacidad</a>
                                 </nav>
                             </div>
                         </div>
@@ -106,29 +106,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </main>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Obtener la URL actual
-        var currentUrl = window.location.href;
+    // Obtener la URL actual
+    var currentUrl = window.location.href;
 
-        // Obtener los elementos de enlace
-        var forgotPasswordLink = document.getElementById("forgot-password-link");
-        var registerLink = document.getElementById("register-link");
-        var terminos = document.getElementByID("link-terminos");
-        var politica = document.getElementById("link-politica");
+    // Obtener los elementos de enlace
+    var forgotPasswordLink = document.getElementById("forgot-password-link");
+    var registerLink = document.getElementById("register-link");
+    var terminos = document.getElementById("link-terminos");
+    var politica = document.getElementById("link-politica");
 
-        // Determinar las nuevas rutas en función de la URL actual
-        if (currentUrl === "http://52.54.93.129/") {
-            forgotPasswordLink.href = "Web/Funciones/ContraNueva.php";
-            registerLink.href = "Web/Funciones/registroCliente.php";
-            terminos.href = "Web/Footer/TerminosDeUso.php";
-            politica.href = "Web/Footer/PoliticaPrivacidad.php";
-            
-        } else if (currentUrl === "http://52.54.93.129/Web/PaginasPrincipales/index.php") {
-            forgotPasswordLink.href = "../Funciones/ContraNueva.php";
-            registerLink.href = "../Funciones/registroCliente.php";
-            terminos.href = "../Footer/TerminosDeUso.php?ini=ok";
-            politica.href = "../Footer/PoliticaPrivacidad.php?ini=ok";
-        } 
-    });
+    // Determinar las nuevas rutas en función de la URL actual
+    if (currentUrl === "http://52.54.93.129/") {
+        forgotPasswordLink.href = "Web/Funciones/ContraNueva.php";
+        registerLink.href = "Web/Funciones/registroCliente.php";
+        terminos.href = "Web/Footer/TerminosDeUso.php";
+        politica.href = "Web/Footer/PoliticaPrivacidad.php";
+        
+    } else if (currentUrl === "http://52.54.93.129/Web/PaginasPrincipales/index.php") {
+        forgotPasswordLink.href = "../Funciones/ContraNueva.php";
+        registerLink.href = "../Funciones/registroCliente.php";
+        terminos.href = "../Footer/TerminosDeUso.php?ini=ok";
+        politica.href = "../Footer/PoliticaPrivacidad.php?ini=ok";
+    } 
+});
+
 </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

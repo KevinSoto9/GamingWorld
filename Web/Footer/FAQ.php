@@ -10,7 +10,7 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a href="PagPrincipal.php">
+            <a href="../PaginasPrincipales/PagPrincipal.php">
                 <img src="../../Imagenes/Imagenes/Titulo.png" href="../PaginasPrincipales/PagPrincipal.php" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
