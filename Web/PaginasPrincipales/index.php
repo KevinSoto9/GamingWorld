@@ -93,6 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="register text-center mt-5">
                                 <a id="forgot-password-link" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
                                 <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a id="register-link" class="text-reset">Regístrate aquí</a></p>
+                                <nav class="login-card-footer-nav">
+                                    <a class="text-warning link-terminos" >Términos de uso</a>
+                                    <a class="text-warning link-politica" >Política de privacidad</a>
+                                </nav>
                             </div>
                         </div>
                     </div>
@@ -108,19 +112,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Obtener los elementos de enlace
         var forgotPasswordLink = document.getElementById("forgot-password-link");
         var registerLink = document.getElementById("register-link");
+        var terminos = document.getElementByID("link-terminos");
+        var politica = document.getElementById("link-politica");
 
         // Determinar las nuevas rutas en función de la URL actual
         if (currentUrl === "http://52.54.93.129/") {
             forgotPasswordLink.href = "Web/Funciones/ContraNueva.php";
             registerLink.href = "Web/Funciones/registroCliente.php";
+            terminos.href = "Web/Footer/TerminosDeUso.php";
+            politica.href = "Web/Footer/PoliticaPrivacidad.php";
+            
         } else if (currentUrl === "http://52.54.93.129/Web/PaginasPrincipales/index.php") {
             forgotPasswordLink.href = "../Funciones/ContraNueva.php";
             registerLink.href = "../Funciones/registroCliente.php";
-        } else {
-            // Otras posibles rutas, ajustar según sea necesario
-            forgotPasswordLink.href = "default/path/to/ContraNueva.php";
-            registerLink.href = "default/path/to/registroCliente.php";
-        }
+            terminos.href = "../Footer/TerminosDeUso.php?ini=ok";
+            politica.href = "../Footer/PoliticaPrivacidad.php?ini=ok";
+        } 
     });
 </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -1,3 +1,14 @@
+<?php
+// Obtener el valor de la variable 'ini' desde la URL
+$ini = isset($_GET['ini']) ? $_GET['ini'] : '';
+
+// Determinar el prefijo de la ruta según el valor de 'ini'
+$routePrefix = ($ini === 'ok') ? 'Web/' : '../';
+
+$homeLink = $routePrefix . 'PaginasPrincipales/PagPrincipal.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,7 +22,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Logo -->
-            <a href="../PaginasPrincipales/PagPrincipal.php'"
+            <a href="<?php echo $homeLink; ?>">
                 <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
 
@@ -19,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class='nav-item'>
-                        <a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>
+                        <a class='nav-link' href='<?php echo $homeLink; ?>'>Ir al Inicio</a>
                     </li>
                 </ul>
             </div>
