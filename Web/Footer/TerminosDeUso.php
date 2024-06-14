@@ -11,31 +11,16 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Logo -->
-            <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo 'PagPrincipal.php'; } else { echo 'index.php';}; ?>">
+            <a href="../PaginasPrincipales/PagPrincipal.php'"
                 <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
 
             <!-- Menú de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <?php
-                    // Verificar si se ha iniciado sesión
-                    if(isset($_GET["ini"]) && $_GET["ini"] == "ok")
-                    {
-                        echo "<li class='nav-item'>";
-                        echo "<a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>";
-                        echo "</li>";
-                    }
-                    else {
-                        // Mostrar opciones de inicio de sesión y registro
-                        echo '<li class="nav-item">';
-                        echo '<a class="nav-link" href="../PaginasPrincipales/index.php">Iniciar Sesión</a>';
-                        echo '</li>';
-                        echo '<li class="nav-item">';
-                        echo '<a class="nav-link" href="../Funciones/registroCliente.php">Registrarse</a>';
-                        echo '</li>';
-                    }
-                    ?>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>
+                    </li>
                 </ul>
             </div>
         </div>

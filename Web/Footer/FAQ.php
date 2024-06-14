@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a href="PagPrincipal.php">
-                <img src="../../Imagenes/Imagenes/Titulo.png" href="PagPrincipal.php" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
+                <img src="../../Imagenes/Imagenes/Titulo.png" href="../PaginasPrincipales/PagPrincipal.php" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
             <div class="collapse navbar-collapse" id="navbarNav">

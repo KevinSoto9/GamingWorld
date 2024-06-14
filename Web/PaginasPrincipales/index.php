@@ -91,12 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button type="submit" class="btn btn-warning btn-block">Login</button>
                             </form>
                             <div class="register text-center mt-5">
-                                <a href="/Web/Funciones/ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
-                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="../Funciones/registroCliente.php" class="text-reset">Regístrate aquí</a></p>
-                                <nav class="login-card-footer-nav">
-                                    <a class="text-warning" href="Web/Footer/TerminosDeUso.php">Términos de uso</a>
-                                    <a class="text-warning" href="Web/Footer/PoliticaPrivacidad.php">Política de privacidad</a>
-                                </nav>
+                                <a id="forgot-password-link" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
+                                <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a id="register-link" class="text-reset">Regístrate aquí</a></p>
                             </div>
                         </div>
                     </div>
@@ -104,6 +100,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </main>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener la URL actual
+        var currentUrl = window.location.href;
+
+        // Obtener los elementos de enlace
+        var forgotPasswordLink = document.getElementById("forgot-password-link");
+        var registerLink = document.getElementById("register-link");
+
+        // Determinar las nuevas rutas en función de la URL actual
+        if (currentUrl === "http://52.54.93.129/") {
+            forgotPasswordLink.href = "Web/Funciones/ContraNueva.php";
+            registerLink.href = "Web/Funciones/registroCliente.php";
+        } else if (currentUrl === "http://52.54.93.129/Web/PaginasPrincipales/index.php") {
+            forgotPasswordLink.href = "../Funciones/ContraNueva.php";
+            registerLink.href = "../Funciones/registroCliente.php";
+        } else {
+            // Otras posibles rutas, ajustar según sea necesario
+            forgotPasswordLink.href = "default/path/to/ContraNueva.php";
+            registerLink.href = "default/path/to/registroCliente.php";
+        }
+    });
+</script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

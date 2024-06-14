@@ -15,13 +15,13 @@
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/TerminosDeUso.php?ini=ok" class="text-white">Términos de uso</a>
+                            <a href="../Footer/TerminosDeUso.php" class="text-white">Términos de uso</a>
                         </h6>
                     </div>
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="../Footer/PoliticaPrivacidad.php?ini=ok" class="text-white">Política de privacidad</a>
+                            <a href="../Footer/PoliticaPrivacidad.php" class="text-white">Política de privacidad</a>
                         </h6>
                     </div>
 
