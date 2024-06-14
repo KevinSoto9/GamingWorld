@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         // Intentar insertar los datos en la base de datos
         try {
-            require 'bd.php'; // Conectar a la base de datos
+            require '../bd.php'; // Conectar a la base de datos
             // Consulta SQL para insertar un nuevo usuario
             $ins = "INSERT INTO `usuarios` (`UsuarioID`, `Email`, `Password`, `Alias`, `Tipo`) VALUES (NULL, '$email', '$password', '$alias', 'Cliente')";
             // Ejecutar la consulta
