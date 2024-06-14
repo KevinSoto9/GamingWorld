@@ -127,7 +127,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         registerLink.href = "../Funciones/registroCliente.php";
         terminos.href = "../Footer/TerminosDeUso.php?ini=ok";
         politica.href = "../Footer/PoliticaPrivacidad.php?ini=ok";
-    } 
+    } else{
+        forgotPasswordLink.href = "../Funciones/ContraNueva.php";
+        registerLink.href = "../Funciones/registroCliente.php";
+        terminos.href = "../Footer/TerminosDeUso.php?ini=ok";
+        politica.href = "../Footer/PoliticaPrivacidad.php?ini=ok";
+    }
 });
 
 </script>
