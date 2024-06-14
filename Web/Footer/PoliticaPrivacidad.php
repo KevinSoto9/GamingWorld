@@ -2,12 +2,14 @@
 // Obtener el valor de la variable 'ini' desde la URL
 $ini = isset($_GET['ini']) ? $_GET['ini'] : '';
 
-// Determinar el prefijo de la ruta según el valor de 'ini'
-$routePrefix = ($ini === 'ok') ? 'Web/' : '../';
+// Determinar la página de destino según el valor de 'ini'
+$page = ($ini === 'ok') ? 'index.php' : 'PaginasPrincipales/PagPrincipal.php';
 
-$homeLink = $routePrefix . 'PaginasPrincipales/PagPrincipal.php';
+$routePrefix = '../';
+
+$homeLink = $routePrefix . $page;
+
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
