@@ -82,7 +82,7 @@ if ($carritoID) {
         $html .= "</div>";
     }
 } else {
-    // Mensaje si el carrito está vacío
+    // Mensaje si no hay carrito 
     $html .= "<div class='text-center'>";
     $html .= "<h2 class='text-white my-4'>Tu carrito está vacío</h2>";
     $html .= "<img src='../../Imagenes/Imagenes/carritoVacio.gif' alt='Carrito vacío' class='img-fluid my-4' style='max-width: 400px; height: auto;'>";

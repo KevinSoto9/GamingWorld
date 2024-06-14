@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Logo -->
-            <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo '../PaginasPrincipales/PagPrincipal.php';}else{echo '../PaginasPrincipales/index.php';};?>">
+            <a href="<?php if (isset($_GET["ini"]) && $_GET["ini"] == "ok") { echo '../PaginasPrincipales/PagPrincipal.php';}else{echo 'Web/PaginasPrincipales/index.php';};?>">
                 <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
@@ -21,7 +21,7 @@
                     <?php
                     if (isset($_GET["ini"]) && $_GET["ini"] == "ok") {
                         echo "<li class='nav-item'>";
-                        echo "<a class='nav-link' href='../PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>";
+                        echo "<a class='nav-link' href='Web/PaginasPrincipales/PagPrincipal.php'>Ir al Inicio</a>";
                         echo "</li>";
                     } else {
                         echo '<li class="nav-item">';
