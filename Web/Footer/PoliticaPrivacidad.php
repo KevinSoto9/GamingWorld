@@ -3,9 +3,9 @@
 $ini = isset($_GET['ini']) ? $_GET['ini'] : '';
 
 // Determinar la página de destino según el valor de 'ini'
-$page = ($ini === 'ok') ? 'index.php' : 'PaginasPrincipales/PagPrincipal.php';
+$page = ($ini === 'ok') ? 'PaginasPrincipales/index.php' : 'PaginasPrincipales/PagPrincipal.php';
 
-$routePrefix = ($ini === 'ok') ? '' : '../';
+$routePrefix = '../';
 
 $homeLink = $routePrefix . $page;
 
@@ -24,16 +24,14 @@ $homeLink = $routePrefix . $page;
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Logo -->
-            <a href="<?php echo $homeLink; ?>">
+            <a href="../PaginasPrincipales/PagPrincipal.php'">
                 <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
             <!-- Menú de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class='nav-item'>
-                        <a class='nav-link' href='<?php echo $homeLink; ?>'>Ir al Inicio</a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>

@@ -3,9 +3,9 @@
 $ini = isset($_GET['ini']) ? $_GET['ini'] : '';
 
 // Determinar la página de destino según el valor de 'ini'
-$page = ($ini === 'ok') ? 'index.php' : 'PaginasPrincipales/PagPrincipal.php';
+$page = ($ini === 'ok') ? 'PaginasPrincipales/index.php' : 'PaginasPrincipales/PagPrincipal.php';
 
-$routePrefix = ($ini === 'ok') ? '' : '../';
+$routePrefix = '../';
 
 $homeLink = $routePrefix . $page;
 
