@@ -94,8 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <a href="/Web/Funciones/ContraNueva.php" class="forgot-password-link text-warning">¿Has olvidado tu contraseña?</a>
                                 <p class="login-card-footer-text mt-3">¿No tienes una cuenta? <a href="../Funciones/registroCliente.php" class="text-reset">Regístrate aquí</a></p>
                                 <nav class="login-card-footer-nav">
-                                    <a class="text-warning" href="../Footer/TerminosDeUso.php">Términos de uso</a>
-                                    <a class="text-warning" href="../Footer/PoliticaPrivacidad.php">Política de privacidad</a>
+                                    <a class="text-warning" href="Web/Footer/TerminosDeUso.php">Términos de uso</a>
+                                    <a class="text-warning" href="Web/Footer/PoliticaPrivacidad.php">Política de privacidad</a>
                                 </nav>
                             </div>
                         </div>
