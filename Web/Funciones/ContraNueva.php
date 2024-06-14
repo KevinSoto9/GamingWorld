@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-                <a href="Web/PaginasPrincipales/index.php" class="btn btn-secondary btn-block">Volver</a>
+                <a href="../PaginasPrincipales/index.php" class="btn btn-secondary btn-block">Volver</a>
             </form>
         </div>
     </div>
