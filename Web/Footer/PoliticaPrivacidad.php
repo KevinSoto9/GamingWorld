@@ -24,14 +24,14 @@ $homeLink = $routePrefix . $page;
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- Logo -->
-            <a href="../PaginasPrincipales/PagPrincipal.php'">
+            <a href="<?php echo $homeLink; ?>">
                 <img src="../../Imagenes/Imagenes/Titulo.png" width="200px" height="30px" class="d-inline-block align-top" alt="Logo">
             </a>
             
             <!-- Menú de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    
+                    <a class='nav-link' href='<?php echo $homeLink; ?>'>Ir al Inicio</a>
                 </ul>
             </div>
         </div>
