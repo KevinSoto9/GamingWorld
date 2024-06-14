@@ -119,8 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (currentUrl === "http://52.54.93.129/") {
         forgotPasswordLink.href = "Web/Funciones/ContraNueva.php";
         registerLink.href = "Web/Funciones/registroCliente.php";
-        terminos.href = "Web/Footer/TerminosDeUso.php";
-        politica.href = "Web/Footer/PoliticaPrivacidad.php";
+        terminos.href = "Web/Footer/TerminosDeUso.php?ini=ok";
+        politica.href = "Web/Footer/PoliticaPrivacidad.php?ini=ok";
         
     } else if (currentUrl === "http://52.54.93.129/Web/PaginasPrincipales/index.php") {
         forgotPasswordLink.href = "../Funciones/ContraNueva.php";
