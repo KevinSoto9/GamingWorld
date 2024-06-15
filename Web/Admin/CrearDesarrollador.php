@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
    
-    require '../PaginasAdicionales//PersonalAutorizado.php';
+    require '../PaginasAdicionales/PersonalAutorizado.php';
 }
 
 else{

@@ -6,7 +6,7 @@ $html = "";
 
 if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administrador") {
     
-    require '../PersonalAutorizado.php';
+    require '../PaginasAdicionales/PersonalAutorizado.php';
 }
 
 else{
@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $ins = "INSERT INTO `generos` (`generoID`, `nombre`) VALUES (NULL, '$nombre')";
         $resul = $bd->query($ins);
         if ($resul) {
-            header("Location:../Admin.php");
+            header("Location:../PaginasPrincipales/Admin.php");
         }
     } catch (PDOException $e) {
         echo "Error: Comprueba que los datos introducidos no estan ya en la base de datos";
