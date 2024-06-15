@@ -52,7 +52,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== "administ
         <body>
             <div class="container mt-5">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="formularioCrear" enctype="multipart/form-data">
-                    <h1 class="text-center">Introduzca los datos del Detalle de la Noticia</h1>
+                    <h1 class="text-center">Introduzca los datos de la Novedad</h1>
 
                     <div class="row">
                         <div class="col-md-6">
