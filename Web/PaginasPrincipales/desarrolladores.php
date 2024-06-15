@@ -38,7 +38,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 $nombreDesarrollador = $desarrollador['nombre'];
             ?>
                 <div class="col-md-3 mb-4 mt-4">
-                    <div class="card bg-dark text-white">
+                    <div class="card bg-dark text-white h-100">
                         <div class="card-body text-center">
                             <!-- Enlace al desarrollador con su ID -->
                             <h5 class="card-title"><a href="../PaginasIndividuales/PagDesarrollador.php?desarrolladorID=<?php echo $desarrolladorID; ?>" class="text-white"><?php echo $nombreDesarrollador; ?></a></h5>

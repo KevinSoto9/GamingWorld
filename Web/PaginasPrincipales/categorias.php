@@ -38,7 +38,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 $nombreGenero = $genero['nombre'];
             ?>
                 <div class="col-md-3 mb-4 mt-4">
-                    <div class="card bg-dark text-white">
+                    <div class="card bg-dark text-white h-100">
                         <div class="card-body text-center">
                             <!-- Enlace al género con su ID -->
                             <h5 class="card-title"><a href="../PaginasIndividuales/PagGenero.php?generoID=<?php echo $generoID; ?>" class="text-white"><?php echo $nombreGenero; ?></a></h5>

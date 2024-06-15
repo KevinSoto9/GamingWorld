@@ -39,7 +39,7 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                 $nombreEditor = $editor['nombre'];
             ?>
                 <div class="col-md-3 mb-4 mt-4">
-                    <div class="card bg-dark text-white">
+                    <div class="card bg-dark text-white h-100">
                         <div class="card-body text-center">
                             <!-- Enlace al editor con su ID -->
                             <h5 class="card-title"><a href="../PaginasIndividuales/PagEditor.php?editorID=<?php echo $editorID; ?>" class="text-white"><?php echo $nombreEditor; ?></a></h5>

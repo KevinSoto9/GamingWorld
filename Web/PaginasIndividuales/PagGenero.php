@@ -85,8 +85,8 @@ if (!isset($_SESSION['UsuarioID']) || $_SESSION['UsuarioID'] === null) {
                     // Mostrar juegos
                     foreach ($juegos as $juego) {
                         ?>
-                        <div class="col-md-3">
-                            <div class="card mb-5 bg-dark text-white">
+                        <div class="col-md-3 mb-4">
+                            <div class="card mb-2 bg-dark  h-100 text-white">
                                 <a href='PagJuego.php?juegoID=<?= $juego['juegoID'] ?>' class='enlace-juego text-white'>
                                     <img class='card-img-top' src='../../Imagenes/ImagenesJuegos/<?= $juego['nombre'].".jpg" ?>' alt='<?= $juego['nombre'] ?>'>
                                     <div class='card-body'>
